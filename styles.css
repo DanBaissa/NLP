@@ -12,40 +12,86 @@ body {
 }
 
 header {
-    background: #333;
-    color: #fff;
+    background: #fff;
+    color: #333;
     padding: 1em 0;
+    border-bottom: 1px solid #ddd;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 1em;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
+    gap: 1em;
 }
 
 nav ul li {
-    margin: 0 1em;
+    margin: 0;
 }
 
 nav ul li a {
-    color: #fff;
+    color: #333;
     text-decoration: none;
     font-weight: bold;
 }
 
 .hero {
-    text-align: center;
-    padding: 2em 0;
-    background: #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 2em 1em;
+    background: #f4f4f4;
 }
 
-.hero h1 {
+.hero-text {
+    max-width: 600px;
+}
+
+.hero-text h1 {
     font-size: 3em;
     margin-bottom: 0.5em;
 }
 
-.hero p {
+.hero-text p {
     font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+.hero-text .btn {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.hero-text .btn:hover {
+    background: #555;
+}
+
+.hero-image {
+    max-width: 500px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
 }
 
 section {
@@ -60,18 +106,18 @@ h2 {
     font-size: 2.5em;
 }
 
-.project {
+.chapter {
     background: #fff;
     padding: 1em;
     margin-bottom: 1em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.project h3 {
+.chapter h3 {
     margin-bottom: 0.5em;
 }
 
-.project p {
+.chapter p {
     margin-bottom: 1em;
 }
 
@@ -93,7 +139,4 @@ footer {
     padding: 1em 0;
     background: #333;
     color: #fff;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
 }
