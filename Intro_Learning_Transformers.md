@@ -2,7 +2,16 @@
 
 ChatGPT has put Transformer models on the map. But there are actually many off the shelf transformer models to use. The goal here is to show some of the basics of using these models, and what they can do. The attention mask that transformer models has really gives them an edge in time series data such as Natural Language Processing (NLP) 
 
-
+## Table of Contents
+1. [Set up your environment](#set-up-your-environment)
+3. [A Story to Practice NLP On](#a-story-to-practice-nlp-on)
+4. [Text Classification](#text-classification)
+4. [Named Entity Recognition](#named-entity-recognition)
+5. [Question Answering](#question-answering)
+6. [Summarization](#summarization)
+7. [Translation](#translation)
+8. [Text Generation](#text-generation)
+## Set up your environment
 ```python
 import torch
 from transformers import AutoModel
@@ -21,7 +30,7 @@ else:
     CUDA is available. GPU is ready for use.
     
 
-## Let's start with a story to practice NLP on. 
+## A Story to Practice NLP On
 
 I used Chatgpt to throw together a quick story for us to practice on. 
 
@@ -108,7 +117,7 @@ pd.DataFrame(outputs)
 
 Here we can see that this is labled as positive with an extremely high degree of confidince. This is not suprising given that it the prompt given to Chatgpt was to make a cute story about a baby girl named Maia. 
 
-## Named Entity Recognition. 
+## Named Entity Recognition
 
 We were able to successfuly estimate the sentiment of the story, which is nice. But it might also be nice to know what they text is actually talking about. Who or what is the text about. Here we will use a named entity recognition model "ner". Here we will use Note that the default model "dbmdz/bert-large-cased-finetuned-conll03-english". That is ok for this task
 
