@@ -2,48 +2,6 @@
 
 ChatGPT has put Transformer models on the map. But there are actually many off the shelf transformer models to use. The goal here is to show some of the basics of using these models, and what they can do. The attention mask that transformer models has really gives them an edge in time series data such as Natural Language Processing (NLP) 
 
-Let's start by setting up the enviornment. These will be some large models so I will want to make sure I can get them saved to a large drive and ensure the GPU is used.
-
-
-```python
-import os
-
-# Set the cache directory before importing any other libraries
-os.environ['TRANSFORMERS_CACHE'] = 'A:\\AI\\Models'
-os.environ['TMP'] = 'A:\\Temp'
-os.environ['TEMP'] = 'A:\\Temp'
-
-# Import libraries
-import tempfile
-import warnings
-import logging
-from transformers import logging as transformers_logging, AutoModel
-
-# Make sure the temporary directory exists
-os.makedirs(os.environ['TMP'], exist_ok=True)
-
-# Disable symlink warnings and ignore other warnings
-os.environ['HF_HUB_DISABLE_SYMLINKS_WARNING'] = '1'
-warnings.filterwarnings('ignore')
-
-# Set the logging level to error to reduce console output
-transformers_logging.set_verbosity_error()
-logging.getLogger("transformers").setLevel(logging.ERROR)
-
-# Example of loading a model with the specified cache directory
-model = AutoModel.from_pretrained('bert-base-uncased', cache_dir=os.environ['TRANSFORMERS_CACHE'])
-
-print("Model loaded successfully with cache directory:", os.environ['TRANSFORMERS_CACHE'])
-
-```
-
-    C:\Users\fa18d\AppData\Local\Programs\Python\Python311\Lib\site-packages\transformers\utils\hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-      warnings.warn(
-    
-
-    Model loaded successfully with cache directory: A:\AI\Models
-    
-
 
 ```python
 import torch
@@ -100,8 +58,7 @@ model_name = "distilbert-base-uncased-finetuned-sst-2-english"
 classifier = pipeline("sentiment-analysis", model=model_name)
 ```
 
-    WARNING:tensorflow:From C:\Users\fa18d\AppData\Local\Programs\Python\Python311\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
-    
+ 
     
 
 Now that we have the classifier all we need to do is classiffy the text as negative or positive. I will use pandas to make this into a table so it will look nice.

@@ -29,11 +29,6 @@ from datasets  import load_dataset
 emotions = load_dataset("emotion")
 ```
 
-    C:\Users\fa18d\AppData\Local\Programs\Python\Python311\Lib\site-packages\datasets\load.py:1486: FutureWarning: The repository for emotion contains custom code which must be executed to correctly load the dataset. You can inspect the repository content at https://hf.co/datasets/emotion
-    You can avoid this message in future by passing the argument `trust_remote_code=True`.
-    Passing `trust_remote_code=True` will be mandatory to load this dataset from the next major release of `datasets`.
-      warnings.warn(
-    
 
 Ok, now let's look at the structure of the dataset
 
@@ -211,9 +206,6 @@ model_ckpt = "distilbert-base-uncased"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = AutoModel.from_pretrained(model_ckpt).to(device)
 ```
-
-    C:\Users\fa18d\AppData\Local\Programs\Python\Python311\Lib\site-packages\huggingface_hub\file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
-      warnings.warn(
     
 
 ### Practice on last hidden state
@@ -233,9 +225,6 @@ print(f"Input tensor shape is:{inputs['input_ids'].size()}")
     Input tensor shape is:torch.Size([1, 6])
     
 
-    C:\Users\fa18d\AppData\Local\Programs\Python\Python311\Lib\site-packages\huggingface_hub\file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
-      warnings.warn(
-    
 
 This says that the batch size is 1, and the number of tokens is 6.
 
@@ -602,9 +591,6 @@ model = (AutoModelForSequenceClassification
          .from_pretrained(model_ckpt, num_labels=num_labels)
          .to(device))
 ```
-
-    C:\Users\fa18d\AppData\Local\Programs\Python\Python311\Lib\site-packages\huggingface_hub\file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
-      warnings.warn(
     Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight', 'pre_classifier.bias', 'pre_classifier.weight']
     You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
     
