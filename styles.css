@@ -56,6 +56,7 @@ nav ul li a {
     margin: auto;
     padding: 2em 1em;
     background: #f4f4f4;
+    flex-wrap: wrap;
 }
 
 .hero-text {
@@ -87,6 +88,7 @@ nav ul li a {
 
 .hero-image {
     max-width: 500px;
+    margin-top: 1em;
 }
 
 .hero-image img {
