@@ -97,15 +97,6 @@ response = "Maia gets ready for her next adventure. She finds a toy boat and"
 prompt = text + "\n\n"+ response
 ```
 
-
-    Downloading shards:   0%|          | 0/4 [00:00<?, ?it/s]
-
-
-
-    Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
-
-
-
 ```python
 outputs = generator(prompt)
 print(outputs[0]['generated_text'])
