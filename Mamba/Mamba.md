@@ -33,8 +33,6 @@ requires a careful hardware-aware algorithm to only materialize the expanded sta
 memory hierarchy. [Mamba paper on arXiv](https://arxiv.org/abs/2312.00752)*
 
 
-
-
 ### Comparison to Transformer Models
 
 **Efficiency and Scalability**:
