@@ -16,21 +16,23 @@ focus on relevant parts of the input sequence, Mamba models employ a selective m
 dynamically. This selectivity enables Mamba models to filter out irrelevant data and retain important information 
 efficiently.
 
-The architecture of Mamba models is designed to handle long sequences more effectively than Transformers. Mamba achieves 
-this by allowing the parameters of SSMs (such as the forgetting and remembering matrices) to be functions of the input, 
-making the model context-aware and able to adapt based on the current token in the sequence. This approach reduces 
-computational complexity and improves inference speed significantly 
-
 <div style="text-align: center;">
   <img src="Mamba_Model.png" alt="https://arxiv.org/abs/2312.00752" width="500"/>
 </div>
 
-*Figure 1: (Overview.) Structured SSMs independently map each channel (e.g. 𝐷 = 5) of an input 𝑥 to output 𝑦 through a 
+*Figure: (Overview.) Structured SSMs independently map each channel (e.g. 𝐷 = 5) of an input 𝑥 to output 𝑦 through a 
 higher dimensional latent state ℎ (e.g. 𝑁 = 4). Prior SSMs avoid materializing this large effective state 
 (𝐷𝑁, times batch size 𝐵 and sequence length 𝐿) through clever alternate computation paths requiring time-invariance: the 
 (∆, A, B, C) parameters are constant across time. Our selection mechanism adds back input-dependent dynamics, which also 
 requires a careful hardware-aware algorithm to only materialize the expanded states in more efficient levels of the GPU 
 memory hierarchy. [Mamba paper on arXiv](https://arxiv.org/abs/2312.00752)*
+
+
+
+The architecture of Mamba models is designed to handle long sequences more effectively than Transformers. Mamba achieves 
+this by allowing the parameters of SSMs (such as the forgetting and remembering matrices) to be functions of the input, 
+making the model context-aware and able to adapt based on the current token in the sequence. This approach reduces 
+computational complexity and improves inference speed significantly 
 
 
 ### Comparison to Transformer Models
