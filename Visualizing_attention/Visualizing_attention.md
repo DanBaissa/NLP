@@ -4,46 +4,6 @@ Transformer Models are often seen as black boxes, where it is not entirely clear
 
 
 
-
-```python
-import os
-
-# Set the cache directory before importing any other libraries
-os.environ['TRANSFORMERS_CACHE'] = 'A:\\AI\\Models'
-os.environ['TMP'] = 'A:\\Temp'
-os.environ['TEMP'] = 'A:\\Temp'
-
-# Import libraries
-import tempfile
-import warnings
-import logging
-from transformers import logging as transformers_logging, AutoModel
-
-# Make sure the temporary directory exists
-os.makedirs(os.environ['TMP'], exist_ok=True)
-
-# Disable symlink warnings and ignore other warnings
-os.environ['HF_HUB_DISABLE_SYMLINKS_WARNING'] = '1'
-warnings.filterwarnings('ignore')
-
-# Set the logging level to error to reduce console output
-transformers_logging.set_verbosity_error()
-logging.getLogger("transformers").setLevel(logging.ERROR)
-
-# Example of loading a model with the specified cache directory
-model = AutoModel.from_pretrained('bert-base-uncased', cache_dir=os.environ['TRANSFORMERS_CACHE'])
-
-print("Model loaded successfully with cache directory:", os.environ['TRANSFORMERS_CACHE'])
-
-```
-
-    C:\Users\fa18d\AppData\Local\Programs\Python\Python311\Lib\site-packages\transformers\utils\hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-      warnings.warn(
-    
-
-    Model loaded successfully with cache directory: A:\AI\Models
-    
-
 Let's use the bert-base-uncased model.
 
 ## Step 1: Load the Model
