@@ -11,7 +11,7 @@
 Here is an overview of how Mamba models work and how they compare to Transformers:
 
 
-### How Mamba Models Work
+## How Mamba Models Work
 
 Mamba models are based on Selective State Space Models (SSMs). Unlike Transformers, which use an attention mechanism to 
 focus on relevant parts of the input sequence, Mamba models employ a selective mechanism to manage state information 
