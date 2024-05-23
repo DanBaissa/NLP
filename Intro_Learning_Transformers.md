@@ -72,7 +72,7 @@ classifier = pipeline("sentiment-analysis", model=model_name)
  
     
 
-Now that we have the classifier all we need to do is classiffy the text as negative or positive. I will use pandas to make this into a table so it will look nice.
+Now that we have the classifier all we need to do is classify the text as negative or positive. I will use pandas to make this into a table so it will look nice.
 
 
 ```python
