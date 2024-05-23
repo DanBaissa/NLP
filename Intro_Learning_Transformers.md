@@ -525,3 +525,9 @@ print(outputs[0]['generated_text'])
     
 
 Again not bad given that it is a local model running off of a single gpu!!
+
+
+I hope this was helpful!
+
+Best,
+Dan Baissa

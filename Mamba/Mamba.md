@@ -277,3 +277,9 @@ print(output_text)
     
 
 I love the "I'm not sure if this is a good idea, but I'm going to try it anyway." I don't know if the prompt word silly make it sound like it was written by a child, but it succeeded in its task.
+
+
+I hope this was helpful!
+
+Best,
+Dan Baissa

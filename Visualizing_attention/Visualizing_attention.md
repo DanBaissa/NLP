@@ -101,3 +101,7 @@ Inspiration from:
 [Transformers for NLP and Computer Vision 3rd Edition](https://github.com/Denis2054/Transformers-for-NLP-and-Computer-Vision-3rd-Edition/tree/main)
 
 
+I hope this was helpful!
+
+Best,
+Dan Baissa

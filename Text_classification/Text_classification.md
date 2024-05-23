@@ -722,3 +722,10 @@ plot_confusion_matrix(y_preds, y_valid, labels)
 
 
 With just 2 Epochs we were able to obtain  > .9 on 2/3s of the metrichs and greater than .8 on the remaining two. Not bad! But it would be nice to know where it failed.
+
+
+
+I hope this was helpful!
+
+Best,
+Dan Baissa

@@ -186,3 +186,9 @@ print("Weighted F1 Score:", weighted_f1)
     
 
 Here we can see that the fit is actually pretty decent with an accuracy and weighted F1 of .92
+
+
+I hope this was helpful!
+
+Best,
+Dan Baissa
