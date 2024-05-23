@@ -3,7 +3,6 @@
 > **by Daniel K Baissa**
  
 
----
 Transformer models are often seen as black boxes, where it's not entirely clear how they make their predictions. However, by exploring the attention weights of these models, we can gain insights into how they process information. Here we will delve into the weights of a GPT model and demonstrate how to visualize and interpret these them.
 
 

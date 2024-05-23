@@ -1,6 +1,7 @@
 ># A Look into the Black Box of Transformers
 > **by Daniel K Baissa**
----
+
+
 Transformer Models are often seen as black boxes, where it is not entirely clear how the models make their predictions. This has led to a field of research to develop tools to help us peer into these models and see how they come up with their outputs. In this post we will look at how to visualize the attention between tokens that transformer models assign. This should help researchers have a better understanding about the relationships their models find and the outcomes they produce.
 
 
