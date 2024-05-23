@@ -1,5 +1,6 @@
-# Mamba the new competator to Transformers
-by Daniel K Baissa
+># Mamba the new competator to Transformers
+> **by Daniel K Baissa**
+
 ## Table of Contents
 1. [How Mamba Models Work](#how-mamba-models-work)
 2. [Test Story](#test-story)

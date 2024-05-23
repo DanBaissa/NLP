@@ -1,4 +1,5 @@
-# Text Classification with Transformers
+># Text Classification with Transformers
+> **by Daniel K Baissa**
 
 Text classification is one of NLP's most common applications, and here, the transformer's attention layer gives it an advantage over older models because it is better able to determine who is doing what action and to whom. 
 
