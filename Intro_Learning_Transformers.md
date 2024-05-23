@@ -12,7 +12,9 @@ ChatGPT has put Transformer models on the map. But there are actually many off t
 6. [Summarization](#summarization)
 7. [Translation](#translation)
 8. [Text Generation](#text-generation)
+
 ## Set up your environment
+
 ```python
 import torch
 from transformers import AutoModel
@@ -25,7 +27,6 @@ else:
     
     print("CUDA is not available. Using CPU.")
     device = torch.device("cpu")  # Set device to CPU
-
 ```
 
     CUDA is available. GPU is ready for use.
