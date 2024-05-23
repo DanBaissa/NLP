@@ -1,6 +1,6 @@
 ># Arabic Text Classification with Transformers
 > **by Daniel K Baissa**
-
+---
 The transformer's attention layer gives it an advantage over older
 models because it is better able to determine who is doing what action
 and to whom. So the AraBERT should be very helpful at classifying hate

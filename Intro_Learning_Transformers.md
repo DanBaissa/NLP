@@ -1,6 +1,6 @@
 ># Using Transformers on Natural Language Data Locally!
 > **by Daniel K Baissa**
-
+---
 ChatGPT has put Transformer models on the map. But there are actually many off the shelf transformer models to use. The goal here is to show some of the basics of using these models, and what they can do. The attention mask that transformer models has really gives them an edge in time series data such as Natural Language Processing (NLP) 
 
 ## Table of Contents
