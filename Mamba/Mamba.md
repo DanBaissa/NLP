@@ -8,7 +8,9 @@
 
 Here is an overview of how Mamba models work and how they compare to Transformers:
 
-<img src="Mamba_Model.png" alt="https://arxiv.org/abs/2312.00752" width="500"/>
+<div style="text-align: center;">
+  <img src="Mamba_Model.png" alt="https://arxiv.org/abs/2312.00752" width="500"/>
+</div>
 
 *Figure 1: (Overview.) Structured SSMs independently map each channel (e.g. 𝐷 = 5) of an input 𝑥 to output 𝑦 through a 
 higher dimensional latent state ℎ (e.g. 𝑁 = 4). Prior SSMs avoid materializing this large effective state 
