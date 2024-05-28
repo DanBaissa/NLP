@@ -461,6 +461,7 @@ y_test = np.array(sim_notes_encoded_hidden["test"]["label"])
 plot_confusion_matrix(y_preds, y_test, labels)
 ```
 
+
     
 ![png](output_45_1.png)
     
