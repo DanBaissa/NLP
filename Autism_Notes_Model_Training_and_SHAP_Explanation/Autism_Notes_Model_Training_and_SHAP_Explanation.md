@@ -448,9 +448,8 @@ trainer.train();
 </table><p>
 
 
-Here, we again see perfect predictions. This is not too surprising, given that is where we started, but it limits the model's ability to grow.
-
-
+Here, we again see perfect predictions. This is not too surprising, given that is where we started ,
+but it limits the model's ability to grow.
 
 ```python
 preds_output = trainer.predict(sim_notes_encoded["test"])
