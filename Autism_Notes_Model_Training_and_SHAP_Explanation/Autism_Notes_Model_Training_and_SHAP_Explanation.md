@@ -412,33 +412,11 @@ trainer.train();
 
 ```
 
- <table border="1" class="dataframe">
- <thead>
- <tr style="text-align: left;">
- <th>Epoch</th>
- <th>Training Loss</th>
- <th>Validation Loss</th>
- <th>Accuracy</th>
- <th>F1</th>
- </tr>
- </thead>
- <tbody>
- <tr>
- <td>1</td>
- <td>0.374500</td>
- <td>0.105375</td>
- <td>1.000000</td>
- <td>1.000000</td>
- </tr>
- <tr>
- <td>2</td>
- <td>0.070500</td>
- <td>0.039812</td>
- <td>1.000000</td>
- <td>1.000000</td>
- </tr>
- </tbody>
-</table><p>
+| Epoch | Training Loss | Validation Loss | Accuracy | F1      |
+|-------|---------------|-----------------|----------|---------|
+| 1     | 0.374500      | 0.105375        | 1.000000 | 1.000000|
+| 2     | 0.070500      | 0.039812        | 1.000000 | 1.000000|
+
 
 ### Results from fit
 
