@@ -413,39 +413,40 @@ trainer.train();
 ```
 
 
+    <div>
 
- <div>
-
- <progress value='44' max='44' style='width:300px; height:20px; vertical-align: middle;'></progress>
- [44/44 20:33, Epoch 2/2]
- </div>
- <table border="1" class="dataframe">
- <thead>
+      <progress value='44' max='44' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      [44/44 20:33, Epoch 2/2]
+    </div>
+    <table border="1" class="dataframe">
+  <thead>
  <tr style="text-align: left;">
- <th>Epoch</th>
- <th>Training Loss</th>
- <th>Validation Loss</th>
- <th>Accuracy</th>
- <th>F1</th>
- </tr>
- </thead>
- <tbody>
- <tr>
- <td>1</td>
- <td>0.374500</td>
- <td>0.105375</td>
- <td>1.000000</td>
- <td>1.000000</td>
- </tr>
- <tr>
- <td>2</td>
- <td>0.070500</td>
- <td>0.039812</td>
- <td>1.000000</td>
- <td>1.000000</td>
- </tr>
- </tbody>
+      <th>Epoch</th>
+      <th>Training Loss</th>
+      <th>Validation Loss</th>
+      <th>Accuracy</th>
+      <th>F1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>0.374500</td>
+      <td>0.105375</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.070500</td>
+      <td>0.039812</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
 </table><p>
+
+
 
 
 Here, we again see perfect predictions. This is not too surprising, given that is where we started ,
