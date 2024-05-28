@@ -451,6 +451,7 @@ trainer.train();
 Here, we again see perfect predictions. This is not too surprising, given that is where we started, but it limits the model's ability to grow.
 
 
+
 ```python
 preds_output = trainer.predict(sim_notes_encoded["test"])
 
@@ -460,11 +461,6 @@ y_test = np.array(sim_notes_encoded_hidden["test"]["label"])
 
 plot_confusion_matrix(y_preds, y_test, labels)
 ```
-
-
-
-
-
 
     
 ![png](output_45_1.png)
