@@ -412,11 +412,6 @@ trainer.train();
 
 ```
 
- <div>
-
- <progress value='44' max='44' style='width:300px; height:20px; vertical-align: middle;'></progress>
- [44/44 20:33, Epoch 2/2]
- </div>
  <table border="1" class="dataframe">
  <thead>
  <tr style="text-align: left;">
