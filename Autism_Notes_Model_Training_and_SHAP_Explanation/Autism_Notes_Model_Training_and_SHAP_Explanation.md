@@ -412,8 +412,6 @@ trainer.train();
 
 ```
 
-
-
  <div>
 
  <progress value='44' max='44' style='width:300px; height:20px; vertical-align: middle;'></progress>
