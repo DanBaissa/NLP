@@ -3,7 +3,7 @@
 
 ## Table of Contents
 1. [Set up](#set-up)
-2. [Generating Synthetic Data](#generating-sythetic-data)
+2. [Generating Synthetic Data](#generating-synthetic-data)
 3. [Reading the notes with a pre-trained Model](#reading-the-notes-with-a-pretrained-model)
 4. [Diagnosing Autism with a Classifier](#diagnosing-autism-with-math)
 5. [Finetuning the Model](#finetuning) 
