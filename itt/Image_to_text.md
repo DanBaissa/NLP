@@ -263,7 +263,7 @@ Audio(audio_array, rate=SAMPLE_RATE)
 
 <audio  controls="controls" >
 
-    <source src="[uform-gen2-dpo.wav](uform-gen2-dpo.wav)" type="audio/wav" />
+    <source src="uform-gen2-dpo.wav" type="audio/wav" />
 
     Your browser does not support the audio element.
 
