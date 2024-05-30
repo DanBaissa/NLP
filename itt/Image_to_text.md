@@ -15,7 +15,10 @@ Let's start by defining our base image. Here, I will use a cat photo from my pre
 image = "HyperSD.png"
 ```
 
-![HyperSD.png](HyperSD.png)
+<div style="text-align: center;">
+  <img src="HyperSD.png" alt="HyperSD" style="width: 50%;"/>
+</div>
+
 
 ## The Models
 
@@ -34,8 +37,7 @@ text = captioner(image)
 print(text)
 ```
 
-    WARNING:tensorflow:From C:\Users\fa18d\AppData\Local\Programs\Python\Python311\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
-    
+   
     [{'generated_text': 'a cat dressed as a warrior'}]
     
 
