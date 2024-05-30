@@ -66,30 +66,16 @@ Audio(audio_array, rate=SAMPLE_RATE)
     
 
 
-[//]: # (<audio id="audio-player" src="audio/blip-image-captioning-base.wav" type="audio/mpeg"></audio>)
+<audio  controls="controls" >
 
-[//]: # (<button onclick="playAudio&#40;&#41;">Play Audio</button>)
+    <source src="blip-image-captioning-base.wav" type="audio/wav" />
 
-[//]: # ()
-[//]: # (<script>)
+    Your browser does not support the audio element.
 
-[//]: # (  function playAudio&#40;&#41; {)
+</audio>
 
-[//]: # (    var audio = document.getElementById&#40;'audio-player'&#41;;)
 
-[//]: # (    if &#40;audio.paused&#41; {)
 
-[//]: # (      audio.play&#40;&#41;;)
-
-[//]: # (    } else {)
-
-[//]: # (      audio.pause&#40;&#41;;)
-
-[//]: # (    })
-
-[//]: # (  })
-
-[//]: # (</script>)
 
 
 On the otherhand this Suno Text-to-Speech (TTS) model is pretty nice given that it is run locally!
@@ -136,22 +122,21 @@ Audio(audio_array, rate=SAMPLE_RATE)
 
 
 
-[//]: # (<audio  controls="controls" >)
+<audio  controls="controls" >
 
-[//]: # (    <source src="blip-image-captioning-large.wav" type="audio/wav" />)
+    <source src="blip-image-captioning-large.wav" type="audio/wav" />
 
-[//]: # (    Your browser does not support the audio element.)
+    Your browser does not support the audio element.
 
-[//]: # (</audio>)
-
-[//]: # ()
-[//]: # ()
+</audio>
 
 
 
-```python
+
+
+
 ### microsoft/git-base
-```
+
 
 
 ```python
@@ -274,16 +259,15 @@ Audio(audio_array, rate=SAMPLE_RATE)
 
 
 
-[//]: # ()
-[//]: # (<audio  controls="controls" >)
+<audio  controls="controls" >
 
-[//]: # (    <source src="[uform-gen2-dpo.wav]&#40;uform-gen2-dpo.wav&#41;" type="audio/wav" />)
+    <source src="[uform-gen2-dpo.wav](uform-gen2-dpo.wav)" type="audio/wav" />
 
-[//]: # (    Your browser does not support the audio element.)
+    Your browser does not support the audio element.
 
-[//]: # (</audio>)
+</audio>
 
-[//]: # ()
+
 
 
 
