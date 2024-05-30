@@ -157,6 +157,11 @@ image=pipe(prompt=prompt, num_inference_steps=1, guidance_scale=0, eta=eta).imag
 The eyes are imperfect but again not bad! It is amazing that these kinds of models are avaiable to anyone who can use 
 Python and has access to a GPT, not to mention Automatic1111!
 
+So the next time someone tells you that deepfakes are decades off and there is nothing to be worried about, you can 
+simply say "when pigs fly" and show them this!
+
+![WhenPigsFly](example.png)
+
 I hope this page was useful! Next I will create a page where we take one of these images for image-to-text processing.
 
 Thank you!
