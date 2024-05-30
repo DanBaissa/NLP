@@ -66,19 +66,30 @@ Audio(audio_array, rate=SAMPLE_RATE)
     
 
 
-<audio id="audio-player" src="audio/blip-image-captioning-base.wav" type="audio/mpeg"></audio>
-<button onclick="playAudio()">Play Audio</button>
+[//]: # (<audio id="audio-player" src="audio/blip-image-captioning-base.wav" type="audio/mpeg"></audio>)
 
-<script>
-  function playAudio() {
-    var audio = document.getElementById('audio-player');
-    if (audio.paused) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-  }
-</script>
+[//]: # (<button onclick="playAudio&#40;&#41;">Play Audio</button>)
+
+[//]: # ()
+[//]: # (<script>)
+
+[//]: # (  function playAudio&#40;&#41; {)
+
+[//]: # (    var audio = document.getElementById&#40;'audio-player'&#41;;)
+
+[//]: # (    if &#40;audio.paused&#41; {)
+
+[//]: # (      audio.play&#40;&#41;;)
+
+[//]: # (    } else {)
+
+[//]: # (      audio.pause&#40;&#41;;)
+
+[//]: # (    })
+
+[//]: # (  })
+
+[//]: # (</script>)
 
 
 On the otherhand this Suno Text-to-Speech (TTS) model is pretty nice given that it is run locally!
@@ -125,12 +136,16 @@ Audio(audio_array, rate=SAMPLE_RATE)
 
 
 
-<audio  controls="controls" >
-    <source src="blip-image-captioning-large.wav" type="audio/wav" />
-    Your browser does not support the audio element.
-</audio>
+[//]: # (<audio  controls="controls" >)
 
+[//]: # (    <source src="blip-image-captioning-large.wav" type="audio/wav" />)
 
+[//]: # (    Your browser does not support the audio element.)
+
+[//]: # (</audio>)
+
+[//]: # ()
+[//]: # ()
 
 
 
@@ -178,12 +193,16 @@ Audio(audio_array, rate=SAMPLE_RATE)
 
 
 
-<audio  controls="controls" >
-    <source src="git-base.wav" type="audio/wav" />
-    Your browser does not support the audio element.
-</audio>
+[//]: # (<audio  controls="controls" >)
 
+[//]: # (    <source src="git-base.wav" type="audio/wav" />)
 
+[//]: # (    Your browser does not support the audio element.)
+
+[//]: # (</audio>)
+
+[//]: # ()
+[//]: # ()
 
 
 ### unum-cloud/uform-gen2-dpo
@@ -255,12 +274,16 @@ Audio(audio_array, rate=SAMPLE_RATE)
 
 
 
+[//]: # ()
+[//]: # (<audio  controls="controls" >)
 
-<audio  controls="controls" >
-    <source src="[uform-gen2-dpo.wav](uform-gen2-dpo.wav)" type="audio/wav" />
-    Your browser does not support the audio element.
-</audio>
+[//]: # (    <source src="[uform-gen2-dpo.wav]&#40;uform-gen2-dpo.wav&#41;" type="audio/wav" />)
 
+[//]: # (    Your browser does not support the audio element.)
+
+[//]: # (</audio>)
+
+[//]: # ()
 
 
 
