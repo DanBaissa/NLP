@@ -193,16 +193,16 @@ Audio(audio_array, rate=SAMPLE_RATE)
 
 
 
-[//]: # (<audio  controls="controls" >)
+<audio  controls="controls" >
 
-[//]: # (    <source src="git-base.wav" type="audio/wav" />)
+    <source src="git-base.wav" type="audio/wav" />
 
-[//]: # (    Your browser does not support the audio element.)
+    Your browser does not support the audio element.
 
-[//]: # (</audio>)
+</audio>
 
-[//]: # ()
-[//]: # ()
+
+
 
 
 ### unum-cloud/uform-gen2-dpo
