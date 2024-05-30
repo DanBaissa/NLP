@@ -44,7 +44,7 @@ diffusion models from early versions to more modern versions of Stable Diffusion
 
 ### Stable Diffusion v1.4
 
-Let's start with 1.4. Stable Diffusion has come a long way since 1.4 but it should give us an idea of how far this 
+Let's start with 1.4. Stable Diffusion has come a long way since 1.4, but it should give us an idea of how far this 
 technology has come. This model is from all the way back in 2022.
 
 ```python
