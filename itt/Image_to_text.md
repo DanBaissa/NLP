@@ -1,4 +1,4 @@
-# Image to Text
+# Image to Text and Speech
 
 In a separate notebook, I created some cute cat pictures for fun using Stable Diffusion text to image. Now, it is time to convert an image to text. This project is a bit less cute but likely just as useful, if not more so. Image-to-text conversion can mean rapid labeling of data for use in a number of applications, from detecting violent content on the internet to converting presentation slides into text for those who are vision impaired. The description of the images is important because it can convey more nuance than a simple CNN output and thus allow for more accurate classification of images.
 
