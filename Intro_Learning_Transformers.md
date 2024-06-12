@@ -15,7 +15,7 @@ ChatGPT has put Transformer models on the map. But there are actually many off-t
 7.  [Translation](#translation)
 8.  [Text Generation](#text-generation)
 
-## Set up your environment {#set-up-your-environment}
+## Set up your environment 
 
 ``` python
 import torch
@@ -35,7 +35,7 @@ else:
 CUDA is available. GPU is ready for use.
 ```
 
-## A Story to Practice NLP On {#a-story-to-practice-nlp-on}
+## A Story to Practice NLP On 
 
 Let's use a story to have the models apply these functions. I used Chatgpt to throw together a quick story for us to use. It created this cute story about a baby girl named Maia:
 
@@ -54,7 +54,7 @@ The garden was full of wonders. Maia found flowers to smell, butterflies to chas
 She had seen so much, learned so many new things, and had so much fun. And though she was just a baby, Maia knew that the world was full of endless adventures waiting for her to discover."""
 ```
 
-## Text Classification {#text-classification}
+## Text Classification 
 
 I am going to start with some basic sentiment analysis. I will use a transformer from Hugging Face🤗. Let's start by importing the transformer library.
 
@@ -77,9 +77,9 @@ outputs = classifier(text)
 pd.DataFrame(outputs)
 ```
 
-<div>
 
-```{=html}
+
+<div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -93,18 +93,27 @@ pd.DataFrame(outputs)
         text-align: right;
     }
 </style>
-```
-+---+----------+----------+
-|   | label    | score    |
-+===+==========+==========+
-| 0 | POSITIVE | 0.999142 |
-+---+----------+----------+
-
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>POSITIVE</td>
+      <td>0.999142</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 
 Here, we can see that this is labeled as positive with an extremely high degree of confidence. These findings are not surprising given that the prompt given that this is a cute story about a baby!
 
-## Named Entity Recognition {#named-entity-recognition}
+## Named Entity Recognition 
 
 We successfully estimated the story's sentiment, which can be very handy when reading survey or feedback responses. 
 
@@ -122,9 +131,8 @@ outputs = ner_tagger(text)
 pd.DataFrame(outputs)
 ```
 
-<div>
 
-```{=html}
+<div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -138,44 +146,138 @@ pd.DataFrame(outputs)
         text-align: right;
     }
 </style>
-```
-+----+--------------+----------+----------------+-------+------+
-|    | entity_group | score    | word           | start | end  |
-+====+==============+==========+================+=======+======+
-| 0  | LOC          | 0.988708 | Utica          | 72    | 77   |
-+----+--------------+----------+----------------+-------+------+
-| 1  | LOC          | 0.982091 | New York State | 81    | 95   |
-+----+--------------+----------+----------------+-------+------+
-| 2  | PER          | 0.987294 | Maia           | 127   | 131  |
-+----+--------------+----------+----------------+-------+------+
-| 3  | PER          | 0.990340 | Maia           | 133   | 137  |
-+----+--------------+----------+----------------+-------+------+
-| 4  | PER          | 0.982831 | Maia           | 273   | 277  |
-+----+--------------+----------+----------------+-------+------+
-| 5  | PER          | 0.973810 | Maia           | 512   | 516  |
-+----+--------------+----------+----------------+-------+------+
-| 6  | PER          | 0.954940 | Whiskers       | 809   | 817  |
-+----+--------------+----------+----------------+-------+------+
-| 7  | PER          | 0.965617 | Maia           | 832   | 836  |
-+----+--------------+----------+----------------+-------+------+
-| 8  | PER          | 0.918289 | Whiskers       | 843   | 851  |
-+----+--------------+----------+----------------+-------+------+
-| 9  | PER          | 0.941341 | Whiskers       | 895   | 903  |
-+----+--------------+----------+----------------+-------+------+
-| 10 | PER          | 0.972468 | Maia           | 955   | 959  |
-+----+--------------+----------+----------------+-------+------+
-| 11 | PER          | 0.945366 | Maia           | 1054  | 1058 |
-+----+--------------+----------+----------------+-------+------+
-| 12 | PER          | 0.962110 | Maia           | 1120  | 1124 |
-+----+--------------+----------+----------------+-------+------+
-| 13 | PER          | 0.971372 | Maia           | 1422  | 1426 |
-+----+--------------+----------+----------------+-------+------+
-
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>entity_group</th>
+      <th>score</th>
+      <th>word</th>
+      <th>start</th>
+      <th>end</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>LOC</td>
+      <td>0.988708</td>
+      <td>Utica</td>
+      <td>72</td>
+      <td>77</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>LOC</td>
+      <td>0.982091</td>
+      <td>New York State</td>
+      <td>81</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PER</td>
+      <td>0.987294</td>
+      <td>Maia</td>
+      <td>127</td>
+      <td>131</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>PER</td>
+      <td>0.990340</td>
+      <td>Maia</td>
+      <td>133</td>
+      <td>137</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>PER</td>
+      <td>0.982831</td>
+      <td>Maia</td>
+      <td>273</td>
+      <td>277</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>PER</td>
+      <td>0.973810</td>
+      <td>Maia</td>
+      <td>512</td>
+      <td>516</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>PER</td>
+      <td>0.954940</td>
+      <td>Whiskers</td>
+      <td>809</td>
+      <td>817</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>PER</td>
+      <td>0.965617</td>
+      <td>Maia</td>
+      <td>832</td>
+      <td>836</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>PER</td>
+      <td>0.918289</td>
+      <td>Whiskers</td>
+      <td>843</td>
+      <td>851</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>PER</td>
+      <td>0.941341</td>
+      <td>Whiskers</td>
+      <td>895</td>
+      <td>903</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>PER</td>
+      <td>0.972468</td>
+      <td>Maia</td>
+      <td>955</td>
+      <td>959</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>PER</td>
+      <td>0.945366</td>
+      <td>Maia</td>
+      <td>1054</td>
+      <td>1058</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>PER</td>
+      <td>0.962110</td>
+      <td>Maia</td>
+      <td>1120</td>
+      <td>1124</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>PER</td>
+      <td>0.971372</td>
+      <td>Maia</td>
+      <td>1422</td>
+      <td>1426</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+
 
 Here, we see that Maia is the most common entity in the text. This is, of course, good because she is the main subject of most of the text. Whiskers the cat, Utica, and New York State also show up as named entities. We can also see that it groups the entities. Maia is listed as a person, and Utica and New York appear as Locations. Funnily enough, the model infers that Whiskers the cat is a person.
 
-## Question Answering {#question-answering}
+## Question Answering
 
 For question answering, this model will respond with a span of the corresponding text to answer the question that we give it. This is useful because you can identify sections of the data without asking the model for an opinion, so to speak. This should mitigate hallucinations because it does not force the model to be generative.
 
@@ -191,10 +293,7 @@ question = "Where did Maia live?"
 outputs = reader(question=question, context=text)
 pd.DataFrame([outputs])
 ```
-
 <div>
-
-```{=html}
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -208,14 +307,28 @@ pd.DataFrame([outputs])
         text-align: right;
     }
 </style>
-```
-+---+----------+-------+-----+-------------------------+
-|   | score    | start | end | answer                  |
-+===+==========+=======+=====+=========================+
-| 0 | 0.434803 | 72    | 95  | Utica in New York State |
-+---+----------+-------+-----+-------------------------+
-
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>score</th>
+      <th>start</th>
+      <th>end</th>
+      <th>answer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.434803</td>
+      <td>72</td>
+      <td>95</td>
+      <td>Utica in New York State</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+
 
 Here, we can see that it correctly identified Utica, New York, as the correct location. 
 
@@ -228,10 +341,7 @@ question = "What is Maia's cat's name?"
 outputs = reader(question=question, context=text)
 pd.DataFrame([outputs])
 ```
-
 <div>
-
-```{=html}
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -245,18 +355,34 @@ pd.DataFrame([outputs])
         text-align: right;
     }
 </style>
-```
-+---+----------+-------+-----+----------+
-|   | score    | start | end | answer   |
-+===+==========+=======+=====+==========+
-| 0 | 0.995755 | 809   | 817 | Whiskers |
-+---+----------+-------+-----+----------+
-
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>score</th>
+      <th>start</th>
+      <th>end</th>
+      <th>answer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.995755</td>
+      <td>809</td>
+      <td>817</td>
+      <td>Whiskers</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+
+
+
 
 Here we have a high degree of confidence that it is Whiskers, which is correct! Ironically it performed better at identifying the name of the cat than the location. Still these were easy questions to ask. We can push this model to the limit in the future.
 
-## Summarization {#summarization}
+## Summarization 
 
 Now, we will slowly step into generative text. Here, we will use `sshleifer/distilbart-cnn-12-6` to summarize the text. This model will actually have to read the text and then generate a text response. Let's summarize this story.
 
@@ -279,7 +405,7 @@ print(outputs[0]['summary_text'])
 
 Not bad at all for a quick model run locally! Ironically it might be a good kids story on its own.
 
-## Translation {#translation}
+## Translation 
 
 Let's see if we can translate this text into multiple languages! Again, we are using basic models.
 
@@ -307,7 +433,7 @@ print(outputs[0]["translation_text"])
 في وقت من الأوقات، في منزل صغير على حافة مدينة أوتيكا في ولاية نيويورك، عاشت طفلة اسمها مايا. مايا لم تكن مجرد أي طفلة؛ كانت غريبة، ذكية، وكان لديها مُسْتَعِدّة للحصول على جميع أنواع من الرائحات المُضحكة. في صباح مشمس، استيقظت مايا بفكرة رائعة. قررت أنه اليوم المثالي لاستكشاف العالم خارج سريرها. مع نظرة حاسمة في عينيها المشرقة، كانت تهتز طريقها للخروج من السرير والتدحرج نحو الباب. أولاً، كانت:
 ```
 
-## Text Generation {#text-generation}
+## Text Generation 
 
 Now for the thing that transformer models have received a lot of hype for! Despite being made initially for translation services, their usage for generative language is famous. Let's use GPT2, which is open-source. This model has only 124M parameters, so we should have too high of expectations. 
 

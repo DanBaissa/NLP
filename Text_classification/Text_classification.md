@@ -101,9 +101,8 @@ df["label_name"] = df["label"].apply(label_int2str)
 df.head()
 ```
 
-<div>
 
-```{=html}
+<div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -117,21 +116,48 @@ df.head()
         text-align: right;
     }
 </style>
-```
-+---+----------------------------------------------------+-------+------------+
-|   | text                                               | label | label_name |
-+===+====================================================+=======+============+
-| 0 | i didnt feel humiliated                            | 0     | sadness    |
-+---+----------------------------------------------------+-------+------------+
-| 1 | i can go from feeling so hopeless to so damned\... | 0     | sadness    |
-+---+----------------------------------------------------+-------+------------+
-| 2 | im grabbing a minute to post i feel greedy wrong   | 3     | anger      |
-+---+----------------------------------------------------+-------+------------+
-| 3 | i am ever feeling nostalgic about the fireplac\... | 2     | love       |
-+---+----------------------------------------------------+-------+------------+
-| 4 | i am feeling grouchy                               | 3     | anger      |
-+---+----------------------------------------------------+-------+------------+
-
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+      <th>label</th>
+      <th>label_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>i didnt feel humiliated</td>
+      <td>0</td>
+      <td>sadness</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>i can go from feeling so hopeless to so damned...</td>
+      <td>0</td>
+      <td>sadness</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>im grabbing a minute to post i feel greedy wrong</td>
+      <td>3</td>
+      <td>anger</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>i am ever feeling nostalgic about the fireplac...</td>
+      <td>2</td>
+      <td>love</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>i am feeling grouchy</td>
+      <td>3</td>
+      <td>anger</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 
 The text and the label names seem to line up pretty well, as expected from an often used dataset
@@ -328,9 +354,8 @@ df_emb["label"] = y_train
 df_emb.head()
 ```
 
-<div>
 
-```{=html}
+<div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -344,23 +369,49 @@ df_emb.head()
         text-align: right;
     }
 </style>
-```
-+---+-----------+----------+-------+
-|   | X         | Y        | label |
-+===+===========+==========+=======+
-| 0 | 4.167885  | 6.707959 | 0     |
-+---+-----------+----------+-------+
-| 1 | -2.930339 | 5.881098 | 0     |
-+---+-----------+----------+-------+
-| 2 | 5.138806  | 3.229693 | 3     |
-+---+-----------+----------+-------+
-| 3 | -2.375273 | 3.953859 | 2     |
-+---+-----------+----------+-------+
-| 4 | -3.187050 | 3.962574 | 3     |
-+---+-----------+----------+-------+
-
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4.167885</td>
+      <td>6.707959</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-2.930339</td>
+      <td>5.881098</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5.138806</td>
+      <td>3.229693</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-2.375273</td>
+      <td>3.953859</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-3.187050</td>
+      <td>3.962574</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
 </div>
-
 Here we have an array with only 2 features out of the 768. Let's plot it to see what it looks like.
 
 ``` python
