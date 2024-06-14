@@ -1,0 +1,66 @@
+--- 
+title: "Introduction to Basic Stats Concepts"
+author: "Daniel K Baissa"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography:
+- book.bib
+- packages.bib
+description: "\"Dive into the world of statistics with 'Introduction to Basic Stats
+  Concepts.' This book is designed to demystify complex statistical topics and make
+  them accessible to everyone. Whether you're a student starting out, a professional
+  looking to refresh your knowledge, or a curious mind eager to understand how data
+  shapes our understanding of the world, this book is for you. Featuring practical
+  examples, detailed explanations, and interactive R code snippets, this guide is
+  your first step towards mastering the fundamentals of statistics. Join us as we
+  explore everything from p-values to machine learning, all explained in a clear and
+  engaging manner.\"\n"
+link-citations: yes
+github-repo: "rstudio/bookdown-demo"
+---
+
+
+# Introduction
+
+## Welcome to Our Statistical Journey!
+
+Hello and welcome! If you've ever felt baffled by statistics or wondered how data scientists turn raw numbers into insights, you're in the right place. This book isn't just about learning statistical methods, it's about discovering a new language of data that speaks volumes about the world around us. 
+
+### Why This Book?
+
+This book is born from a passion for making complex concepts accessible and engaging. Statistics is often viewed as daunting and overly technical. My goal is to strip away these barriers and expose the beauty of statistics in its purest form. Whether you're a student, professional, or just a curious mind, I aim to equip you with the tools to understand and appreciate the power of statistical analysis. My goal here is to make these concepts as simple and approachable as possible! This means most of these concepts will be addressed at a high level for beginners so they can learn to dive and start working imediatly. 
+
+### What Will You Learn?
+
+From the basics of p-values and t-tests to the intricacies of machine learning models like random forests, we will journey through:
+
+- **Understanding the Fundamentals:** Starting with hypothesis testing and the meaning behind statistical significance.
+
+- **Exploring Regression Models:** Diving deep into linear and logistic regression, and understanding how to interpret their results.
+
+- **Adventures in Machine Learning:** Taking our first baby steps into the realm of machine learning, leaning about random forest algorithms that can predict outcomes and uncover patterns.
+
+- **Real-World Applications:** Every concept is paired with practical examples and R code snippets that you can run yourself, reinforcing learning through doing.
+
+### How to Use This Book
+
+Each chapter builds on the previous one, introducing new concepts while reinforcing old ones. The content is structured to be digested in bite-sized pieces, allowing you to learn at your own pace. Code examples are provided throughout, giving you hands-on experience with real statistical analysis tools.
+
+### A Note of Caution
+
+As we delve into the powerful tools of statistical analysis, remember the mantra: with great power comes great responsibility. We'll explore not only how to use these tools but also discuss the ethical considerations that come with wielding such analytical power.
+
+## Let's Get Started!
+
+I invite you to bring your curiosity and enthusiasm. Let’s demystify the world of statistics together. By the end of this book, you won't just perform statistical analyses—you'll understand the story the data is trying to tell.
+
+Ready to turn the page and start this exciting journey? Let's dive in!
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

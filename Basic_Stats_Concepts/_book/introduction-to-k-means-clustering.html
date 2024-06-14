@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Introduction to K-Means Clustering | Introduction to Basic Stats Concepts</title>
+  <meta name="description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Introduction to K-Means Clustering | Introduction to Basic Stats Concepts" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Introduction to K-Means Clustering | Introduction to Basic Stats Concepts" />
+  
+  <meta name="twitter:description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  
+
+<meta name="author" content="Daniel K Baissa" />
+
+
+<meta name="date" content="2024-06-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="going-beyond-linear-regression-introduction-to-logistic-regression.html"/>
+<link rel="next" href="introduction-to-machine-learning-random-forests.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Basic Stats Concepts</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#welcome-to-our-statistical-journey"><i class="fa fa-check"></i><b>1.1</b> Welcome to Our Statistical Journey!</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#why-this-book"><i class="fa fa-check"></i><b>1.1.1</b> Why This Book?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#what-will-you-learn"><i class="fa fa-check"></i><b>1.1.2</b> What Will You Learn?</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1.3</b> How to Use This Book</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#a-note-of-caution"><i class="fa fa-check"></i><b>1.1.4</b> A Note of Caution</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lets-get-started"><i class="fa fa-check"></i><b>1.2</b> Let’s Get Started!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html"><i class="fa fa-check"></i><b>2</b> Understanding the p-value</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#what-is-a-p-value"><i class="fa fa-check"></i><b>2.1</b> What is a p-value?</a></li>
+<li class="chapter" data-level="2.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#visualizing-p-values-how-sigma-frames-our-understanding"><i class="fa fa-check"></i><b>2.2</b> Visualizing p-values: How Sigma Frames Our Understanding</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-concept-of-sigma"><i class="fa fa-check"></i><b>2.2.1</b> The Concept of Sigma</a></li>
+<li class="chapter" data-level="2.2.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-plot-of-sigma-and-p-values"><i class="fa fa-check"></i><b>2.2.2</b> The Plot of Sigma and p-values</a></li>
+<li class="chapter" data-level="2.2.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#whats-going-on-here"><i class="fa fa-check"></i><b>2.2.3</b> What’s Going on Here?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#takeaway"><i class="fa fa-check"></i><b>2.2.4</b> Takeaway</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#exploring-p-values-through-simulation"><i class="fa fa-check"></i><b>2.3</b> Exploring p-values through Simulation</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#simulating-multiple-t-tests"><i class="fa fa-check"></i><b>2.3.1</b> Simulating Multiple t-tests</a></li>
+<li class="chapter" data-level="2.3.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#whats-happening-here"><i class="fa fa-check"></i><b>2.3.2</b> What’s Happening Here?</a></li>
+<li class="chapter" data-level="2.3.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#insights-from-the-simulation"><i class="fa fa-check"></i><b>2.3.3</b> Insights from the Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#false-positives-and-false-negatives"><i class="fa fa-check"></i><b>2.4</b> False Positives and False Negatives</a></li>
+<li class="chapter" data-level="2.5" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#understanding-power-through-elephants"><i class="fa fa-check"></i><b>2.5</b> Understanding Power Through Elephants</a></li>
+<li class="chapter" data-level="2.6" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#beyond-p-values-the-importance-of-substantive-significance"><i class="fa fa-check"></i><b>2.6</b> Beyond p-values: The Importance of Substantive Significance</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#example-water-vs.-cyanide"><i class="fa fa-check"></i><b>2.6.1</b> Example: Water vs. Cyanide</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html"><i class="fa fa-check"></i><b>3</b> Dive into the t-test</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#basics-of-the-t-test"><i class="fa fa-check"></i><b>3.1</b> Basics of the t-test</a></li>
+<li class="chapter" data-level="3.2" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#step-by-step-example-using-simulated-data"><i class="fa fa-check"></i><b>3.2</b> Step-by-Step Example Using Simulated Data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#setting-up-the-problem"><i class="fa fa-check"></i><b>3.2.1</b> Setting Up the Problem</a></li>
+<li class="chapter" data-level="3.2.2" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#performing-an-independent-samples-t-test"><i class="fa fa-check"></i><b>3.2.2</b> Performing an Independent Samples t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#interpreting-results"><i class="fa fa-check"></i><b>3.3</b> Interpreting Results</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html"><i class="fa fa-check"></i><b>4</b> A/B Testing Explained</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#what-is-ab-testing"><i class="fa fa-check"></i><b>4.1</b> What is A/B Testing?</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#running-an-ab-test"><i class="fa fa-check"></i><b>4.1.1</b> Running an A/B Test</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#example-scenario"><i class="fa fa-check"></i><b>4.1.2</b> Example Scenario</a></li>
+<li class="chapter" data-level="4.1.3" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#implementing-in-r"><i class="fa fa-check"></i><b>4.1.3</b> Implementing in R</a></li>
+<li class="chapter" data-level="4.1.4" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#analyzing-results"><i class="fa fa-check"></i><b>4.1.4</b> Analyzing Results</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#considerations-and-best-practices"><i class="fa fa-check"></i><b>4.2</b> Considerations and Best Practices</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Introduction to Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#the-concept"><i class="fa fa-check"></i><b>5.1</b> The Concept</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#visualizing-simple-attempts"><i class="fa fa-check"></i><b>5.1.1</b> Visualizing Simple Attempts</a></li>
+<li class="chapter" data-level="5.1.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#finding-the-best-fit"><i class="fa fa-check"></i><b>5.1.2</b> Finding the Best Fit</a></li>
+<li class="chapter" data-level="5.1.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#understanding-the-model"><i class="fa fa-check"></i><b>5.1.3</b> Understanding the Model</a></li>
+<li class="chapter" data-level="5.1.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#going-a-step-further-linear-algebra"><i class="fa fa-check"></i><b>5.1.4</b> Going a Step Further: Linear Algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>5.2</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#extending-linear-regression"><i class="fa fa-check"></i><b>5.3</b> Extending Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#spatial-regression"><i class="fa fa-check"></i><b>5.3.1</b> Spatial Regression</a></li>
+<li class="chapter" data-level="5.3.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#robust-estimation"><i class="fa fa-check"></i><b>5.3.2</b> Robust Estimation</a></li>
+<li class="chapter" data-level="5.3.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#robust-standard-errors"><i class="fa fa-check"></i><b>5.3.3</b> Robust Standard Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html"><i class="fa fa-check"></i><b>6</b> Diving into Spatial Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#why-not-just-use-ordinary-regression"><i class="fa fa-check"></i><b>6.1</b> Why Not Just Use Ordinary Regression?</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#introducing-spatial-regression"><i class="fa fa-check"></i><b>6.1.1</b> Introducing Spatial Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#key-concepts-in-spatial-regression"><i class="fa fa-check"></i><b>6.2</b> Key Concepts in Spatial Regression</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#why-does-this-matter"><i class="fa fa-check"></i><b>6.2.1</b> Why Does This Matter?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><i class="fa fa-check"></i><b>7</b> Robust Estimation: Dealing with Outliers and Heavy Tails</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#why-robust-estimation"><i class="fa fa-check"></i><b>7.1</b> Why Robust Estimation?</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#m-estimators-a-closer-look"><i class="fa fa-check"></i><b>7.1.1</b> M Estimators: A Closer Look</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#commonly-used-weight-functions"><i class="fa fa-check"></i><b>7.2</b> Commonly Used Weight Functions:</a></li>
+<li class="chapter" data-level="7.3" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#mm-estimators-enhancing-robustness"><i class="fa fa-check"></i><b>7.3</b> MM Estimators: Enhancing Robustness</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#simulation-and-analysis-in-r"><i class="fa fa-check"></i><b>7.3.1</b> Simulation and Analysis in R</a></li>
+<li class="chapter" data-level="7.3.2" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#observations-from-the-simulation"><i class="fa fa-check"></i><b>7.3.2</b> Observations from the Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#how-robust-is-robust"><i class="fa fa-check"></i><b>7.4</b> How Robust is Robust?</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#simulation-setup"><i class="fa fa-check"></i><b>7.4.1</b> Simulation Setup</a></li>
+<li class="chapter" data-level="7.4.2" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#observations-from-the-plot"><i class="fa fa-check"></i><b>7.4.2</b> Observations from the Plot</a></li>
+<li class="chapter" data-level="7.4.3" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#conclusion"><i class="fa fa-check"></i><b>7.4.3</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html"><i class="fa fa-check"></i><b>8</b> Robust Standard Errors: Tackling Heteroscedasticity</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#visualizing-heteroscedasticity"><i class="fa fa-check"></i><b>8.1</b> Visualizing Heteroscedasticity</a></li>
+<li class="chapter" data-level="8.2" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#addressing-heteroscedasticity-with-robust-standard-errors"><i class="fa fa-check"></i><b>8.2</b> Addressing Heteroscedasticity with Robust Standard Errors</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#observations-from-the-analysis"><i class="fa fa-check"></i><b>8.2.1</b> Observations from the Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#math-behind-robust-standard-errors"><i class="fa fa-check"></i><b>8.3</b> Math Behind Robust Standard Errors</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#basic-formulation"><i class="fa fa-check"></i><b>8.3.1</b> Basic Formulation</a></li>
+<li class="chapter" data-level="8.3.2" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#robust-standard-errors-1"><i class="fa fa-check"></i><b>8.3.2</b> Robust Standard Errors</a></li>
+<li class="chapter" data-level="8.3.3" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#heteroscedasticity-consistent-estimators-hc"><i class="fa fa-check"></i><b>8.3.3</b> Heteroscedasticity-Consistent Estimators (HC)</a></li>
+<li class="chapter" data-level="8.3.4" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#choosing-the-right-estimator"><i class="fa fa-check"></i><b>8.3.4</b> Choosing the Right Estimator</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#implementing-in-r-1"><i class="fa fa-check"></i><b>8.4</b> Implementing in R</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#ending-thoughts"><i class="fa fa-check"></i><b>8.4.1</b> Ending Thoughts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Going Beyond Linear Regression: Introduction to Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#why-use-logistic-regression"><i class="fa fa-check"></i><b>9.1</b> Why Use Logistic Regression?</a></li>
+<li class="chapter" data-level="9.2" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#the-logistic-function"><i class="fa fa-check"></i><b>9.2</b> The Logistic Function</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#visualizing-the-sigmoid-function"><i class="fa fa-check"></i><b>9.2.1</b> Visualizing the Sigmoid Function</a></li>
+<li class="chapter" data-level="9.2.2" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#what-does-this-plot-show"><i class="fa fa-check"></i><b>9.2.2</b> What Does This Plot Show?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#demonstration-in-r"><i class="fa fa-check"></i><b>9.3</b> Demonstration in R</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html"><i class="fa fa-check"></i><b>10</b> Introduction to K-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#why-k-means-clustering"><i class="fa fa-check"></i><b>10.1</b> Why K-Means Clustering?</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#how-does-k-means-work"><i class="fa fa-check"></i><b>10.1.1</b> How Does K-Means Work?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#practical-example-k-means-on-the-iris-dataset"><i class="fa fa-check"></i><b>10.2</b> Practical Example: K-Means on the Iris Dataset</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#visualizing-k-means-clustering"><i class="fa fa-check"></i><b>10.2.1</b> Visualizing K-Means Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#the-math-of-k-means-clustering-getting-the-grouping-right"><i class="fa fa-check"></i><b>10.3</b> The Math of K-Means Clustering: Getting the Grouping Right</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#the-math-behind-perfect-grouping"><i class="fa fa-check"></i><b>10.3.1</b> The Math Behind Perfect Grouping</a></li>
+<li class="chapter" data-level="10.3.2" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#how-k-means-tidies-up"><i class="fa fa-check"></i><b>10.3.2</b> How K-Means Tidies Up</a></li>
+<li class="chapter" data-level="10.3.3" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#why-do-we-care"><i class="fa fa-check"></i><b>10.3.3</b> Why Do We Care?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html"><i class="fa fa-check"></i><b>11</b> Introduction to Machine Learning: Random Forests</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#why-random-forests"><i class="fa fa-check"></i><b>11.1</b> Why Random Forests?</a></li>
+<li class="chapter" data-level="11.2" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#understanding-random-forests-by-starting-with-a-single-tree"><i class="fa fa-check"></i><b>11.2</b> Understanding Random Forests by Starting with a Single Tree</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#how-are-splits-determined"><i class="fa fa-check"></i><b>11.2.1</b> How are Splits Determined?</a></li>
+<li class="chapter" data-level="11.2.2" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#example-decision-tree-with-the-iris-dataset"><i class="fa fa-check"></i><b>11.2.2</b> Example: Decision Tree with the Iris Dataset</a></li>
+<li class="chapter" data-level="11.2.3" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-the-decision-tree"><i class="fa fa-check"></i><b>11.2.3</b> Visualizing the Decision Tree</a></li>
+<li class="chapter" data-level="11.2.4" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#decision-tree-insights"><i class="fa fa-check"></i><b>11.2.4</b> Decision Tree Insights</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#step-by-step-example-with-random-forests"><i class="fa fa-check"></i><b>11.3</b> Step-by-Step Example with Random Forests</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#setting-up-the-problem-2"><i class="fa fa-check"></i><b>11.3.1</b> Setting Up the Problem</a></li>
+<li class="chapter" data-level="11.3.2" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-the-ensemble-effect"><i class="fa fa-check"></i><b>11.3.2</b> Visualizing the Ensemble Effect</a></li>
+<li class="chapter" data-level="11.3.3" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#using-the-model"><i class="fa fa-check"></i><b>11.3.3</b> Using the Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html"><i class="fa fa-check"></i><b>12</b> Wrapping Up: Fun with Numbers</a>
+<ul>
+<li class="chapter" data-level="12.0.1" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#embrace-the-power-use-it-wisely"><i class="fa fa-check"></i><b>12.0.1</b> Embrace the Power, Use it Wisely</a></li>
+<li class="chapter" data-level="12.0.2" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#the-cautionary-note"><i class="fa fa-check"></i><b>12.0.2</b> The Cautionary Note</a></li>
+<li class="chapter" data-level="12.0.3" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#stay-curious"><i class="fa fa-check"></i><b>12.0.3</b> Stay Curious!</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Basic Stats Concepts</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-k-means-clustering" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Introduction to K-Means Clustering<a href="introduction-to-k-means-clustering.html#introduction-to-k-means-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>When diving into the world of unsupervised learning, one of the most straightforward yet powerful algorithms you’ll encounter is k-means clustering. It’s like sorting your socks by color and size without knowing how many pairs you have in the first place. K-means helps to organize data into clusters that exhibit similar characteristics, making it a fantastic tool for pattern discovery and data segmentation.</p>
+<div id="why-k-means-clustering" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Why K-Means Clustering?<a href="introduction-to-k-means-clustering.html#why-k-means-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>K-means clustering is used extensively across different fields, from market segmentation and data compression to pattern recognition and image analysis. It groups data points into a predefined number of clusters (k) based on their features, minimizing the variance within each cluster. The result? A clear, concise grouping of data points that can reveal patterns and insights which might not be immediately obvious.</p>
+<div id="how-does-k-means-work" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> How Does K-Means Work?<a href="introduction-to-k-means-clustering.html#how-does-k-means-work" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The process is beautifully simple:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Select k points as the initial centroids</strong> randomly.</li>
+<li><strong>Assign each data point</strong> to the nearest centroid.</li>
+<li><strong>Recompute the centroid</strong> of each cluster by taking the mean of all points assigned to that cluster.</li>
+<li><strong>Repeat</strong> the assignment and centroid computation steps until the centroids no longer move significantly, which indicates that the clusters are stable and the algorithm has converged.</li>
+</ol>
+<p>This method partitions the dataset into Voronoi cells, which are essentially the k regions we aim to discover, where each point is closer to its own cluster centroid than to others.</p>
+</div>
+</div>
+<div id="practical-example-k-means-on-the-iris-dataset" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Practical Example: K-Means on the Iris Dataset<a href="introduction-to-k-means-clustering.html#practical-example-k-means-on-the-iris-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s put theory into practice with the Iris dataset, where we’ll attempt to cluster the flowers based solely on their petal and sepal measurements.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-k-means-clustering.html#cb1-1" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb1-2"><a href="introduction-to-k-means-clustering.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb1-3"><a href="introduction-to-k-means-clustering.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="introduction-to-k-means-clustering.html#cb1-4" tabindex="-1"></a><span class="co"># Load the iris dataset</span></span>
+<span id="cb1-5"><a href="introduction-to-k-means-clustering.html#cb1-5" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb1-6"><a href="introduction-to-k-means-clustering.html#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="introduction-to-k-means-clustering.html#cb1-7" tabindex="-1"></a><span class="co"># Use only the petal and sepal measurements</span></span>
+<span id="cb1-8"><a href="introduction-to-k-means-clustering.html#cb1-8" tabindex="-1"></a>iris_data <span class="ot">&lt;-</span> iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb1-9"><a href="introduction-to-k-means-clustering.html#cb1-9" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="introduction-to-k-means-clustering.html#cb1-10" tabindex="-1"></a><span class="co"># Set a seed for reproducibility</span></span>
+<span id="cb1-11"><a href="introduction-to-k-means-clustering.html#cb1-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-12"><a href="introduction-to-k-means-clustering.html#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="introduction-to-k-means-clustering.html#cb1-13" tabindex="-1"></a><span class="co"># Perform k-means clustering with 3 clusters (as we expect 3 species)</span></span>
+<span id="cb1-14"><a href="introduction-to-k-means-clustering.html#cb1-14" tabindex="-1"></a>km_result <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(iris_data, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb1-15"><a href="introduction-to-k-means-clustering.html#cb1-15" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="introduction-to-k-means-clustering.html#cb1-16" tabindex="-1"></a><span class="co"># View the results</span></span>
+<span id="cb1-17"><a href="introduction-to-k-means-clustering.html#cb1-17" tabindex="-1"></a><span class="fu">print</span>(km_result<span class="sc">$</span>centers)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1     5.006000    3.428000     1.462000    0.246000
+## 2     5.901613    2.748387     4.393548    1.433871
+## 3     6.850000    3.073684     5.742105    2.071053</code></pre>
+<div id="visualizing-k-means-clustering" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Visualizing K-Means Clustering<a href="introduction-to-k-means-clustering.html#visualizing-k-means-clustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To see our clustering in action, let’s plot the clusters along with the centroids:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-k-means-clustering.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="introduction-to-k-means-clustering.html#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="introduction-to-k-means-clustering.html#cb3-3" tabindex="-1"></a><span class="co"># Create a data frame with the cluster assignments</span></span>
+<span id="cb3-4"><a href="introduction-to-k-means-clustering.html#cb3-4" tabindex="-1"></a>iris_clusters <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(iris_data, <span class="at">Cluster =</span> <span class="fu">factor</span>(km_result<span class="sc">$</span>cluster))</span>
+<span id="cb3-5"><a href="introduction-to-k-means-clustering.html#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="introduction-to-k-means-clustering.html#cb3-6" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb3-7"><a href="introduction-to-k-means-clustering.html#cb3-7" tabindex="-1"></a><span class="fu">ggplot</span>(iris_clusters, <span class="fu">aes</span>(Petal.Length, Petal.Width, <span class="at">color =</span> Cluster)) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="introduction-to-k-means-clustering.html#cb3-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb3-9"><a href="introduction-to-k-means-clustering.html#cb3-9" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(km_result<span class="sc">$</span>centers), <span class="fu">aes</span>(<span class="at">x =</span> Petal.Length, <span class="at">y =</span> Petal.Width), </span>
+<span id="cb3-10"><a href="introduction-to-k-means-clustering.html#cb3-10" tabindex="-1"></a>             <span class="at">colour =</span> <span class="st">&#39;red&#39;</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">shape =</span> <span class="dv">17</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="introduction-to-k-means-clustering.html#cb3-11" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;K-Means Clustering of the Iris Dataset&quot;</span>) <span class="sc">+</span></span>
+<span id="cb3-12"><a href="introduction-to-k-means-clustering.html#cb3-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>This plot will shows how the algorithm groups the flowers into clusters, with red points marking the centroids. Each cluster corresponds to groups of flowers that share similar petal and sepal dimensions. Based on these two dimentions we can see that these flowers are nicely clustered!</p>
+</div>
+</div>
+<div id="the-math-of-k-means-clustering-getting-the-grouping-right" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> The Math of K-Means Clustering: Getting the Grouping Right<a href="introduction-to-k-means-clustering.html#the-math-of-k-means-clustering-getting-the-grouping-right" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>At its core, k-means clustering is all about grouping things neatly and effectively. Think of it as organizing a jumbled set of books into neatly labeled categories on a shelf. In k-means, our “books” are data points, and the “categories” are clusters. The goal? To make sure each book finds its perfect spot where it fits the best.</p>
+<div id="the-math-behind-perfect-grouping" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> The Math Behind Perfect Grouping<a href="introduction-to-k-means-clustering.html#the-math-behind-perfect-grouping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s break down the magic formula that k-means uses to achieve this tidy arrangement:</p>
+<p><span class="math display">\[ \text{arg } \underset{\mathcal{Z}, A}{\text{ min }}\sum_{i=1}^{N}||x_i-z_{A(x_i)}||^2 \]</span></p>
+<p>Here’s what this equation is telling us:
+- Every data point <span class="math inline">\(x_i\)</span> is trying to find its closest cluster center <span class="math inline">\(z\)</span> from a set of possible centers <span class="math inline">\(\mathcal{Z}\)</span>.
+- <span class="math inline">\(A(x_i)\)</span> is the rule that decides which cluster center is the best match for <span class="math inline">\(x_i\)</span>.
+- The double bars <span class="math inline">\(||x_i - z_{A(x_i)}||^2\)</span> represent the “distance” each book (data point) is from its designated spot on the shelf (cluster center). Our goal is to minimize this distance so that every book is as close as possible to its ideal location.</p>
+</div>
+<div id="how-k-means-tidies-up" class="section level3 hasAnchor" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> How K-Means Tidies Up<a href="introduction-to-k-means-clustering.html#how-k-means-tidies-up" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Starting Lineup</strong>: First, we pick a starting lineup by randomly selecting a few cluster centers.</li>
+<li><strong>Finding Friends</strong>: Each data point looks around, finds the nearest cluster center, and joins that group.</li>
+<li><strong>Regrouping</strong>: Once everyone has picked a spot, each cluster center recalculates its position based on the average location of all its new friends.</li>
+<li><strong>Repeat</strong>: This process of finding friends and regrouping continues until everyone is settled and the centers don’t need to move anymore.</li>
+</ol>
+</div>
+<div id="why-do-we-care" class="section level3 hasAnchor" number="10.3.3">
+<h3><span class="header-section-number">10.3.3</span> Why Do We Care?<a href="introduction-to-k-means-clustering.html#why-do-we-care" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Understanding this objective function is like knowing the rules of the game. It helps us see why k-means makes certain decisions: grouping data points based on similarity, adjusting cluster centers, and iteratively refining groups. It’s about creating clusters that are as tight-knit and distinct as possible, which is essential when we’re trying to uncover hidden patterns in our data.</p>
+<p>This clustering isn’t just about neatness—it’s about making sense of the chaos. By minimizing the “distances” or differences within groups, k-means helps ensure that each cluster is a clear, distinct category that tells us something meaningful about the data. It’s a powerful way to turn raw data into insights that can inform real-world decisions.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="going-beyond-linear-regression-introduction-to-logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-machine-learning-random-forests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/055-Kmeans.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

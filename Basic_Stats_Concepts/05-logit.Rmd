@@ -1,0 +1,85 @@
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+# Going Beyond Linear Regression: Introduction to Logistic Regression
+
+While linear regression is suited for continuous outcomes, what do we do when our dependent variable is binary, like "yes" or "no," "success" or "failure"? This is where logistic regression comes into play.
+
+## Why Use Logistic Regression?
+
+Logistic regression is used when the dependent variable is categorical and binary. It allows us to estimate the probability that a given input belongs to a certain category, based on the logistic function.
+
+## The Logistic Function
+
+The logistic function, also known as the sigmoid function, ensures that the output of the regression model is always between 0 and 1, making it interpretable as a probability. The equation for logistic regression is:
+
+\[ p(x) = \frac{1}{1 + e^{-(\beta_0 + \beta_1x_1 + \beta_2x_2 + \ldots + \beta_nx_n)}} \]
+
+where \( p(x) \) represents the probability that the dependent variable equals 1 given the predictors \( x_1, x_2, \ldots, x_n \). 
+
+### Visualizing the Sigmoid Function
+
+The beauty of the logistic (sigmoid) function lies in its ability to squash the entire range of real numbers into a bounded interval of [0, 1], making it perfect for probability modeling. Let’s plot this function to see how changes in the input (from negative to positive values) smoothly transition the output from 0 to 1. This transition exemplifies how logistic regression manages probability estimations.
+
+```{r}
+# Generate values for the input
+x_values <- seq(-10, 10, length.out = 100)
+
+# Calculate the sigmoid function values
+sigmoid_values <- 1 / (1 + exp(-x_values))
+
+# Create the plot
+plot(x_values, sigmoid_values, type = 'l', col = 'blue', lwd = 2, 
+     main = "Visualization of the Sigmoid Function",
+     xlab = "Input Value (x)", ylab = "Sigmoid Output (p(x))",
+     ylim = c(0, 1))
+
+# Add lines to indicate the midpoint transition
+abline(h = 0.5, v = 0, col = 'black', lty = 2)
+```
+
+### What Does This Plot Show?
+
+- **Horizontal Line (black, Dashed):** This line at \( p(x) = 0.5 \) marks the decision threshold in logistic regression. Values above this line indicate a probability greater than 50%, typically classified as a "success" or "1".
+- **Vertical Line (black, Dashed):** This line at \( x = 0 \) shows where the input to the function is zero. It's the point of symmetry for the sigmoid function, highlighting the balance between the probabilities.
+
+This plot beautifully illustrates the gradual, smooth transition of probabilities, characteristic of the logistic function. By moving from left to right along the x-axis, we can observe how increasingly positive values push the probability closer to 1, which is precisely how logistic regression models the probability of success based on various predictors.
+
+
+## Demonstration in R
+
+Let's demonstrate logistic regression by considering a dataset where we predict whether a student passes (1) or fails (0) based on their hours of study.
+
+#### Setting Up the Problem
+
+```{r}
+# Simulating some data
+set.seed(42)
+hours_studied <- runif(100, 0, 10)  # Randomly generate hours studied between 0 and 10
+pass <- ifelse(hours_studied + rnorm(100, sd = 2) > 5, 1, 0)  # Pass if studied hours + noise > 5
+
+# Create a data frame
+student_data <- data.frame(hours_studied, pass)
+```
+
+#### Fitting a Logistic Regression Model
+
+```{r}
+# Fitting the model
+logit_model <- glm(pass ~ hours_studied, family = binomial(link = "logit"), data = student_data)
+
+# Summarizing the model
+summary(logit_model)
+```
+
+#### Visualizing the Results
+
+```{r}
+# Plotting the fitted probabilities
+plot(student_data$hours_studied, student_data$pass, col = ifelse(student_data$pass == 1, "green", "red"), pch = 19, main = "Probability of Passing based on Hours Studied")
+curve(predict(logit_model, data.frame(hours_studied = x), type = "response"), add = TRUE)
+```
+
+This plot shows the probability of a student passing based on their hours of study, with the logistic regression model providing a smooth probability curve.
+

@@ -1,0 +1,45 @@
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Dive into the t-test
+
+After talking about p-values and hypothesis tests, you're probably wondering, "How do we actually test these hypotheses?" Enter the t-test, a powerful tool that helps us compare means and decide whether observed differences are statistically significant.
+
+## Basics of the t-test
+
+The t-test helps us determine whether two groups have different means. This test assumes that the data follows a normally distributed pattern when the sample size is small and that variances are equal, unless stated otherwise.
+
+There are mainly two types of t-tests:
+1. **Independent samples t-test:** Used when comparing the means of two separate groups, like testing a new teaching method by comparing test scores from two different classrooms.
+2. **Paired sample t-test:** Useful when comparing measurements taken from the same group at different times, such as before and after a specific treatment in a medical study.
+
+## Step-by-Step Example Using Simulated Data
+
+Let’s consider a scenario where we're testing a new fertilizer on plant growth. We have a control group (old fertilizer) and a treatment group (new fertilizer). We want to know if the new fertilizer leads to better plant growth.
+
+### Setting Up the Problem
+
+```{r}
+# Simulating plant heights for control and treatment groups
+set.seed(42)
+control <- rnorm(30, mean=20, sd=5)  # Control group, N=30, mean height = 20 cm
+treatment <- rnorm(30, mean=23, sd=5)  # Treatment group, N=30, mean height = 23 cm
+```
+
+### Performing an Independent Samples t-test
+
+```{r}
+# Comparing the two groups
+t_test_result <- t.test(control, treatment, alternative = "two.sided")
+t_test_result
+```
+
+The output of this t-test will provide us with a p-value, which tells us if the differences in plant growth are statistically significant.
+
+## Interpreting Results
+
+If our p-value is less than 0.05, we can reject the null hypothesis and conclude that the new fertilizer makes a significant difference in plant growth. If it's higher, we might need more data or accept that the new fertilizer doesn't significantly outperform the old one.
+
+Awesome! Let's tackle A/B testing next. That section will show how A/B testing is a practical application of hypothesis testing and t-tests in real-world decision-making scenarios.

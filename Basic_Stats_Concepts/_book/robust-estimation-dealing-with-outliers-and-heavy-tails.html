@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Robust Estimation: Dealing with Outliers and Heavy Tails | Introduction to Basic Stats Concepts</title>
+  <meta name="description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Robust Estimation: Dealing with Outliers and Heavy Tails | Introduction to Basic Stats Concepts" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Robust Estimation: Dealing with Outliers and Heavy Tails | Introduction to Basic Stats Concepts" />
+  
+  <meta name="twitter:description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  
+
+<meta name="author" content="Daniel K Baissa" />
+
+
+<meta name="date" content="2024-06-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="diving-into-spatial-regression.html"/>
+<link rel="next" href="going-beyond-linear-regression-introduction-to-logistic-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Basic Stats Concepts</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#welcome-to-our-statistical-journey"><i class="fa fa-check"></i><b>1.1</b> Welcome to Our Statistical Journey!</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#why-this-book"><i class="fa fa-check"></i><b>1.1.1</b> Why This Book?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#what-will-you-learn"><i class="fa fa-check"></i><b>1.1.2</b> What Will You Learn?</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1.3</b> How to Use This Book</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#a-note-of-caution"><i class="fa fa-check"></i><b>1.1.4</b> A Note of Caution</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lets-get-started"><i class="fa fa-check"></i><b>1.2</b> Let’s Get Started!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html"><i class="fa fa-check"></i><b>2</b> Understanding the p-value</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#what-is-a-p-value"><i class="fa fa-check"></i><b>2.1</b> What is a p-value?</a></li>
+<li class="chapter" data-level="2.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#visualizing-p-values-how-sigma-frames-our-understanding"><i class="fa fa-check"></i><b>2.2</b> Visualizing p-values: How Sigma Frames Our Understanding</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-concept-of-sigma"><i class="fa fa-check"></i><b>2.2.1</b> The Concept of Sigma</a></li>
+<li class="chapter" data-level="2.2.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-plot-of-sigma-and-p-values"><i class="fa fa-check"></i><b>2.2.2</b> The Plot of Sigma and p-values</a></li>
+<li class="chapter" data-level="2.2.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#whats-going-on-here"><i class="fa fa-check"></i><b>2.2.3</b> What’s Going on Here?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#takeaway"><i class="fa fa-check"></i><b>2.2.4</b> Takeaway</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#exploring-p-values-through-simulation"><i class="fa fa-check"></i><b>2.3</b> Exploring p-values through Simulation</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#simulating-multiple-t-tests"><i class="fa fa-check"></i><b>2.3.1</b> Simulating Multiple t-tests</a></li>
+<li class="chapter" data-level="2.3.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#whats-happening-here"><i class="fa fa-check"></i><b>2.3.2</b> What’s Happening Here?</a></li>
+<li class="chapter" data-level="2.3.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#insights-from-the-simulation"><i class="fa fa-check"></i><b>2.3.3</b> Insights from the Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#false-positives-and-false-negatives"><i class="fa fa-check"></i><b>2.4</b> False Positives and False Negatives</a></li>
+<li class="chapter" data-level="2.5" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#understanding-power-through-elephants"><i class="fa fa-check"></i><b>2.5</b> Understanding Power Through Elephants</a></li>
+<li class="chapter" data-level="2.6" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#beyond-p-values-the-importance-of-substantive-significance"><i class="fa fa-check"></i><b>2.6</b> Beyond p-values: The Importance of Substantive Significance</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#example-water-vs.-cyanide"><i class="fa fa-check"></i><b>2.6.1</b> Example: Water vs. Cyanide</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html"><i class="fa fa-check"></i><b>3</b> Dive into the t-test</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#basics-of-the-t-test"><i class="fa fa-check"></i><b>3.1</b> Basics of the t-test</a></li>
+<li class="chapter" data-level="3.2" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#step-by-step-example-using-simulated-data"><i class="fa fa-check"></i><b>3.2</b> Step-by-Step Example Using Simulated Data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#setting-up-the-problem"><i class="fa fa-check"></i><b>3.2.1</b> Setting Up the Problem</a></li>
+<li class="chapter" data-level="3.2.2" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#performing-an-independent-samples-t-test"><i class="fa fa-check"></i><b>3.2.2</b> Performing an Independent Samples t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#interpreting-results"><i class="fa fa-check"></i><b>3.3</b> Interpreting Results</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html"><i class="fa fa-check"></i><b>4</b> A/B Testing Explained</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#what-is-ab-testing"><i class="fa fa-check"></i><b>4.1</b> What is A/B Testing?</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#running-an-ab-test"><i class="fa fa-check"></i><b>4.1.1</b> Running an A/B Test</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#example-scenario"><i class="fa fa-check"></i><b>4.1.2</b> Example Scenario</a></li>
+<li class="chapter" data-level="4.1.3" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#implementing-in-r"><i class="fa fa-check"></i><b>4.1.3</b> Implementing in R</a></li>
+<li class="chapter" data-level="4.1.4" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#analyzing-results"><i class="fa fa-check"></i><b>4.1.4</b> Analyzing Results</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#considerations-and-best-practices"><i class="fa fa-check"></i><b>4.2</b> Considerations and Best Practices</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Introduction to Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#simplifying-the-concept"><i class="fa fa-check"></i><b>5.0.1</b> Simplifying the Concept</a></li>
+<li class="chapter" data-level="5.0.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#visualizing-simple-attempts"><i class="fa fa-check"></i><b>5.0.2</b> Visualizing Simple Attempts</a></li>
+<li class="chapter" data-level="5.0.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#finding-the-best-fit"><i class="fa fa-check"></i><b>5.0.3</b> Finding the Best Fit</a></li>
+<li class="chapter" data-level="5.0.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#understanding-the-model"><i class="fa fa-check"></i><b>5.0.4</b> Understanding the Model</a></li>
+<li class="chapter" data-level="5.0.5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#going-a-step-further-linear-algebra"><i class="fa fa-check"></i><b>5.0.5</b> Going a Step Further: Linear Algebra</a></li>
+<li class="chapter" data-level="5.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#extending-linear-regression"><i class="fa fa-check"></i><b>5.2</b> Extending Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#spatial-regression"><i class="fa fa-check"></i><b>5.2.1</b> Spatial Regression</a></li>
+<li class="chapter" data-level="5.2.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#robust-estimation"><i class="fa fa-check"></i><b>5.2.2</b> Robust Estimation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#robust-standard-errors"><i class="fa fa-check"></i><b>5.2.3</b> Robust Standard Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html"><i class="fa fa-check"></i><b>6</b> Diving into Spatial Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#why-not-just-use-ordinary-regression"><i class="fa fa-check"></i><b>6.1</b> Why Not Just Use Ordinary Regression?</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#introducing-spatial-regression"><i class="fa fa-check"></i><b>6.1.1</b> Introducing Spatial Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#key-concepts-in-spatial-regression"><i class="fa fa-check"></i><b>6.2</b> Key Concepts in Spatial Regression</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#why-does-this-matter"><i class="fa fa-check"></i><b>6.2.1</b> Why Does This Matter?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><i class="fa fa-check"></i><b>7</b> Robust Estimation: Dealing with Outliers and Heavy Tails</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#why-robust-estimation"><i class="fa fa-check"></i><b>7.1</b> Why Robust Estimation?</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#m-estimators-a-closer-look"><i class="fa fa-check"></i><b>7.1.1</b> M Estimators: A Closer Look</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#commonly-used-weight-functions"><i class="fa fa-check"></i><b>7.2</b> Commonly Used Weight Functions:</a></li>
+<li class="chapter" data-level="7.3" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#mm-estimators-enhancing-robustness"><i class="fa fa-check"></i><b>7.3</b> MM Estimators: Enhancing Robustness</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#simulation-and-analysis-in-r"><i class="fa fa-check"></i><b>7.3.1</b> Simulation and Analysis in R</a></li>
+<li class="chapter" data-level="7.3.2" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#observations-from-the-simulation"><i class="fa fa-check"></i><b>7.3.2</b> Observations from the Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#how-robust-is-robust"><i class="fa fa-check"></i><b>7.4</b> How Robust is Robust?</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#simulation-setup"><i class="fa fa-check"></i><b>7.4.1</b> Simulation Setup</a></li>
+<li class="chapter" data-level="7.4.2" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#observations-from-the-plot"><i class="fa fa-check"></i><b>7.4.2</b> Observations from the Plot</a></li>
+<li class="chapter" data-level="7.4.3" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#conclusion"><i class="fa fa-check"></i><b>7.4.3</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html"><i class="fa fa-check"></i><b>8</b> Going Beyond Linear Regression: Introduction to Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#why-use-logistic-regression"><i class="fa fa-check"></i><b>8.0.1</b> Why Use Logistic Regression?</a></li>
+<li class="chapter" data-level="8.0.2" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#the-logistic-function"><i class="fa fa-check"></i><b>8.0.2</b> The Logistic Function</a></li>
+<li class="chapter" data-level="8.0.3" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#demonstration-in-r"><i class="fa fa-check"></i><b>8.0.3</b> Demonstration in R</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html"><i class="fa fa-check"></i><b>9</b> Introduction to Machine Learning: Random Forests</a>
+<ul>
+<li class="chapter" data-level="9.0.1" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#why-random-forests"><i class="fa fa-check"></i><b>9.0.1</b> Why Random Forests?</a></li>
+<li class="chapter" data-level="9.0.2" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#shallow-learners-combined-to-form-a-strong-learner"><i class="fa fa-check"></i><b>9.0.2</b> Shallow Learners Combined to Form a Strong Learner</a></li>
+<li class="chapter" data-level="9.0.3" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#step-by-step-example-with-random-forests"><i class="fa fa-check"></i><b>9.0.3</b> Step-by-Step Example with Random Forests</a></li>
+<li class="chapter" data-level="9.0.4" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-a-single-tree-from-the-forest"><i class="fa fa-check"></i><b>9.0.4</b> Visualizing a Single Tree from the Forest</a></li>
+<li class="chapter" data-level="9.0.5" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-the-ensemble-effect"><i class="fa fa-check"></i><b>9.0.5</b> Visualizing the Ensemble Effect</a></li>
+<li class="chapter" data-level="9.0.6" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#using-the-model"><i class="fa fa-check"></i><b>9.0.6</b> Using the Model</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html"><i class="fa fa-check"></i><b>10</b> Wrapping Up: Fun with Numbers</a>
+<ul>
+<li class="chapter" data-level="10.0.1" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#embrace-the-power-use-it-wisely"><i class="fa fa-check"></i><b>10.0.1</b> Embrace the Power, Use it Wisely</a></li>
+<li class="chapter" data-level="10.0.2" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#the-cautionary-note"><i class="fa fa-check"></i><b>10.0.2</b> The Cautionary Note</a></li>
+<li class="chapter" data-level="10.0.3" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#stay-curious"><i class="fa fa-check"></i><b>10.0.3</b> Stay Curious!</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Basic Stats Concepts</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="robust-estimation-dealing-with-outliers-and-heavy-tails" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Robust Estimation: Dealing with Outliers and Heavy Tails<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#robust-estimation-dealing-with-outliers-and-heavy-tails" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the real world, data isn’t always nice and tidy. Often, it’s messy, with outliers or heavy-tailed distributions that can skew your analysis. This is where robust estimation comes to the rescue, allowing us to create more reliable models even when data doesn’t play by the rules.</p>
+<div id="why-robust-estimation" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Why Robust Estimation?<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#why-robust-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Traditional methods like Ordinary Least Squares (OLS) assume that all observations are created equal. But what happens when some of those observations are way off-mark—like that one house price that’s ten times the average? OLS can get disproportionately thrown off by these outliers. Robust estimation methods, particularly M estimators, adjust the influence of different observations based on their conformity to the majority of the data, making them less sensitive to anomalies.</p>
+<div id="m-estimators-a-closer-look" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> M Estimators: A Closer Look<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#m-estimators-a-closer-look" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>M estimators work by modifying the loss function used in estimation. Instead of minimizing the sum of squared residuals (like in OLS), M estimators minimize a function of the residuals that gives less weight to outliers.</p>
+</div>
+</div>
+<div id="commonly-used-weight-functions" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Commonly Used Weight Functions:<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#commonly-used-weight-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Huber Weight Function:</strong>
+<ul>
+<li><span class="math inline">\(\psi(t) =
+\begin{cases}
+t &amp; \text{if } |t| \leq k \\
+k \cdot \text{sign}(t) &amp; \text{otherwise}
+\end{cases}\)</span></li>
+<li>The Huber weight function is piecewise linear, giving full weight to small residuals and decreasing the influence of large residuals.</li>
+</ul></li>
+<li><strong>Tukey Biweight Function:</strong>
+<ul>
+<li><span class="math inline">\(\psi(t) =
+\begin{cases}
+t \cdot (1 - \left(\frac{t}{k}\right)^2)^2 &amp; \text{if } |t| \leq k \\
+0 &amp; \text{otherwise}
+\end{cases}\)</span></li>
+<li>The Tukey function is a smooth, bounded function that completely eliminates the influence of very large residuals.</li>
+</ul></li>
+</ul>
+</div>
+<div id="mm-estimators-enhancing-robustness" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> MM Estimators: Enhancing Robustness<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#mm-estimators-enhancing-robustness" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>MM estimators build on the concept of M estimators by ensuring high breakdown point (the proportion of incorrect observations a method can handle before giving incorrect results) and efficiency at the Gaussian model. They are particularly useful when you expect a small proportion of your data to be outliers but want to retain high efficiency for the majority of the data.</p>
+<div id="simulation-and-analysis-in-r" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Simulation and Analysis in R<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#simulation-and-analysis-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s simulate some data, introduce outliers, and see how OLS and MM estimators handle it:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(MASS)  <span class="co"># for robust estimation functions</span></span>
+<span id="cb1-2"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-3"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-4" tabindex="-1"></a><span class="co"># Generate data</span></span>
+<span id="cb1-5"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb1-6"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb1-7"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-8" tabindex="-1"></a><span class="co"># Introduce outliers</span></span>
+<span id="cb1-9"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-9" tabindex="-1"></a>y[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="ot">&lt;-</span> y[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb1-10"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-11" tabindex="-1"></a><span class="co"># Fit OLS model</span></span>
+<span id="cb1-12"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-12" tabindex="-1"></a>ols_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb1-13"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-14" tabindex="-1"></a><span class="co"># Fit MM estimator</span></span>
+<span id="cb1-15"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-15" tabindex="-1"></a>mm_model <span class="ot">&lt;-</span> <span class="fu">rlm</span>(y <span class="sc">~</span> x, <span class="at">method =</span> <span class="st">&quot;MM&quot;</span>)</span>
+<span id="cb1-16"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-17" tabindex="-1"></a><span class="co"># Plot the data and fits</span></span>
+<span id="cb1-18"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-18" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">main =</span> <span class="st">&quot;Comparison of OLS and MM Estimator Fits&quot;</span>)</span>
+<span id="cb1-19"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-19" tabindex="-1"></a><span class="fu">abline</span>(ols_model, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-20"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-20" tabindex="-1"></a><span class="fu">abline</span>(mm_model, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-21"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb1-21" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;OLS&quot;</span>, <span class="st">&quot;MM&quot;</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="observations-from-the-simulation" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Observations from the Simulation<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#observations-from-the-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The plot will show that the OLS line is heavily influenced by the outliers, skewing the fit, while the MM estimator line remains more true to the majority of the data, demonstrating robustness.</p>
+</div>
+</div>
+<div id="how-robust-is-robust" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> How Robust is Robust?<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#how-robust-is-robust" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this example, we’ll explore the resilience of robust estimation methods by deliberately tainting a significant portion of our dataset. We’ll introduce outliers to 35% of the data to see how well the Ordinary Least Squares (OLS) and MM estimators can handle such extreme deviations.</p>
+<div id="simulation-setup" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Simulation Setup<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#simulation-setup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We start by generating a simple linear dataset with <code>x</code> as the predictor and <code>y</code> as the response. To test the robustness of our estimators, we’ll add a substantial upward shift to 35% of the response values, simulating a scenario where a large chunk of our data might be compromised or erroneous.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(MASS)  <span class="co"># for robust estimation functions</span></span>
+<span id="cb2-2"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb2-3"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-4" tabindex="-1"></a><span class="co"># Generate data</span></span>
+<span id="cb2-5"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb2-6"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb2-7"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-7" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-8" tabindex="-1"></a><span class="co"># Introduce significant outliers to 35% of the data</span></span>
+<span id="cb2-9"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-9" tabindex="-1"></a>y[<span class="dv">1</span><span class="sc">:</span><span class="dv">35</span>] <span class="ot">&lt;-</span> y[<span class="dv">1</span><span class="sc">:</span><span class="dv">35</span>] <span class="sc">+</span> <span class="dv">50</span>  <span class="co"># More pronounced effect to highlight the robustness</span></span>
+<span id="cb2-10"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-10" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-11" tabindex="-1"></a><span class="co"># Fit OLS model</span></span>
+<span id="cb2-12"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-12" tabindex="-1"></a>ols_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb2-13"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-13" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-14" tabindex="-1"></a><span class="co"># Fit MM estimator</span></span>
+<span id="cb2-15"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-15" tabindex="-1"></a>mm_model <span class="ot">&lt;-</span> <span class="fu">rlm</span>(y <span class="sc">~</span> x, <span class="at">method =</span> <span class="st">&quot;MM&quot;</span>)</span>
+<span id="cb2-16"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-16" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-17" tabindex="-1"></a><span class="co"># Plot the data and fits</span></span>
+<span id="cb2-18"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-18" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">main =</span> <span class="st">&quot;Robustness Check: OLS vs. MM Estimators&quot;</span>,</span>
+<span id="cb2-19"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-19" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Predictor (x)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Response (y)&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb2-20"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-20" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">ifelse</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">35</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;black&quot;</span>))  <span class="co"># Red for outliers, black for untainted data</span></span>
+<span id="cb2-21"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-21" tabindex="-1"></a><span class="fu">abline</span>(ols_model, <span class="at">col =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb2-22"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-22" tabindex="-1"></a><span class="fu">abline</span>(mm_model, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb2-23"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#cb2-23" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;OLS&quot;</span>, <span class="st">&quot;MM&quot;</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="observations-from-the-plot" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Observations from the Plot<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#observations-from-the-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the resulting plot, you’ll notice:</p>
+<ul>
+<li><p>The <strong>red line</strong> (OLS model) is significantly influenced by the tainted data, veering towards the outliers. This shift demonstrates how traditional regression methods can be swayed by substantial deviations in the dataset.</p></li>
+<li><p>The <strong>blue line</strong> (MM estimator), in stark contrast, remains steadfastly aligned with the untainted data, running right down the middle of the original data distribution. This robustness showcases the MM estimator’s ability to resist the influence of a large proportion of tainted data.</p></li>
+</ul>
+</div>
+<div id="conclusion" class="section level3 hasAnchor" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Conclusion<a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This example strikingly illustrates that even with 35% of the data compromised, the MM estimator provides a reliable insight into the true underlying patterns in the data, proving its mettle as a robust statistical tool. The OLS model, while still providing useful insights under normal conditions, fails to maintain its reliability in the face of such significant data contamination.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="diving-into-spatial-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="going-beyond-linear-regression-introduction-to-logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/042-lm.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

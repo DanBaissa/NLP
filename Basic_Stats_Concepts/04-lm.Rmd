@@ -1,0 +1,158 @@
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+# Introduction to Linear Regression
+
+Linear regression might sound complex, but let's break it down to something as simple as fitting a line through a set of points, just like you might have done in middle school. Remember the equation \( y = mx + b \)? We're going to start there. Remember m is the slope, and b is the intercept? Well, all regression does is solve for that using your data!
+
+## The Concept
+
+In statistical terms, this line equation becomes \( y = \alpha + \beta \times x + \epsilon\), where:
+
+- \( \alpha \) (alpha) is the y-intercept,
+- \( \beta \) (beta) is the slope of the line,
+- \( \epsilon  \) (epsilon) or the error is the difference between the predicted values and the actual values.
+
+### Visualizing Simple Attempts
+
+Let’s imagine a "Dan Estimator" and "Steve Estimator" are trying to draw a line through some data points. Both are pretty bad at it. Their lines don't really capture the trend of the data.
+
+
+
+```{r}
+# Simulate some data
+set.seed(42)
+x <- 1:100
+y <- 2*x + rnorm(100, mean=0, sd=20)  # true line: y = 2x + noise
+plot(x, y, main = "Fitting Lines: Dan vs. Steve", xlab = "X", ylab = "Y", pch = 19)
+
+# Dan's and Steve's poor attempts
+lines(x, 4*x - 40, col = "red")  # Dan's line
+lines(x, .5*x + 30, col = "blue")  # Steve's line
+legend("topright", legend=c("Dan", "Steve"), col=c("red", "blue"), lty=1, cex=0.8)
+```
+
+### Finding the Best Fit
+
+Now, while Dan and Steve's attempts are entertaining, they're obviously not ideal. Maybe we want an estimator that draws a line right through the middle of these points? One that minimizes the distance from all points to the line itself. How can we ensure it's the best fit?
+
+#### Introducing Least Squares
+
+We want to fit a line through the middle one where we minimize the distance from the line to the points on average. In otherwords we aim to minimize the sum of the squared distances (squared errors) from the data points to the regression line. This method is called "least squares."
+
+
+```{r}
+set.seed(42)
+x <- 1:100
+y <- 2*x + rnorm(100, mean=0, sd=20)
+
+# Fitting a regression line
+fit <- lm(y ~ x)
+
+# true line: y = 2x + noise
+plot(x, y, main = "Fitting Lines: Dan vs. Steve vs. Least Squares", xlab = "X", ylab = "Y", pch = 19)
+
+# Dan's and Steve's poor attempts
+lines(x, 4*x - 40, col = "red")  # Dan's line
+lines(x, 0.5*x + 30, col = "blue")  # Steve's line
+abline(fit, col="black")  # adding the least squares line
+
+# Adding residuals for the least squares line
+predicted_values <- predict(fit)
+for (i in 1:length(x)) {
+    lines(c(x[i], x[i]), c(y[i], predicted_values[i]), col="black")
+}
+
+legend("topright", legend=c("Dan", "Steve", "Least Squares"), col=c("red", "blue", "black"), lty=1, cex=0.8)
+
+
+# Add a legend for the residuals
+legend("bottomright", legend=c("Residuals"), col=c("black"), lty=1, cex=0.8)
+
+```
+
+Here we can see that the Least Squares line goes right through the middle and on average the distance from the line, the "residuals" are about the same on top as they are on the bottom.
+
+### Understanding the Model
+
+The regression equation can be written as:
+\[ y = \alpha + \beta \times x + error\]
+where \( \hat{\alpha} \) and \( \hat{\beta} \) are estimates of the intercept and slope, determined by the least squares method.
+
+### Going a Step Further: Linear Algebra
+
+For those interested in the mathematical details, the coefficients \( \beta \) can also be estimated using linear algebra. This is expressed as:
+\[ \beta = (X^TX)^{-1}X^TY \]
+where \( X \) is the matrix of input values, and \( Y \) is the vector of output values. This formula provides the least squares estimates of the coefficients.
+
+Let’s take the `cars` dataset, which contains two variables: `speed` (the speed of cars) and `dist` (the distance required to stop). We'll predict `dist` based on `speed` using linear algebra.
+
+#### Load and Prepare Data
+
+First, let’s load the data and prepare the matrices.
+
+```{r}
+# Load the dataset
+data(mtcars)
+
+# Prepare the data matrix X (with intercept) and response vector Y
+X <- as.matrix(cbind(Intercept = 1, `Weight (1000 lbs)` = mtcars$wt, `Displacement (cu.in.)` = mtcars$disp, `Horsepower` = mtcars$hp, `Number of cylinders` = mtcars$cyl))  # Adding an intercept
+Y <- mtcars$mpg
+
+# Display the first few rows of X and Y
+head(X)
+head(Y)
+```
+
+#### Apply the Linear Algebra Formula for Beta
+
+Now, we apply the linear algebra formula to compute the coefficients. The formula \( \beta = (X^TX)^{-1}X^TY \) will give us the estimates for the intercept and the coefficient for `speed`.
+
+```{r}
+# Compute (X'X)^(-1)
+XTX_inv <- solve(t(X) %*% X)
+
+# Compute beta = (X'X)^(-1)X'Y
+beta <- XTX_inv %*% t(X) %*% Y
+
+# Print the estimated coefficients
+beta
+```
+
+This isn't as pretty but check that out! Let's just compare it to the built in lm function:
+
+```{r}
+cars <- lm(mpg ~ wt + disp + hp + cyl, data = mtcars)
+summary(cars)
+```
+
+Math works! In all seriousness though computers are much faster at solving \( \beta = (X^TX)^{-1}X^TY \) than running that function, so if you are computing many \( \beta\)s at once, it can come in handy.
+
+
+## Assumptions of Linear Regression
+
+To effectively use linear regression, it’s essential to understand its underlying assumptions. If these assumptions are violated, the results might not be reliable. Here are the key assumptions:
+
+1. **Linearity:** The relationship between the predictors and the dependent variable is linear.
+2. **Independence:** Observations are independent of each other.
+3. **Homoscedasticity:** The variance of residual is the same for any value of the input variables.
+4. **Normality:** For any fixed value of the predictors, the dependent variable is normally distributed.
+
+Addressing these assumptions ensures the validity of the regression results. When these assumptions are not met, modifications and more advanced techniques might be necessary.
+
+## Extending Linear Regression
+
+As powerful as linear regression is, it sometimes needs to be adjusted or extended to handle more complex data characteristics. Here are a few notable extensions:
+
+### Spatial Regression
+
+When dealing with geographical or spatial data, traditional regression might not suffice because observations in close proximity might be correlated, violating the independence assumption. Spatial regression models account for this correlation, offering more precise insights for geographical data analysis.
+
+### Robust Estimation
+
+Robust estimators are a broad class of estimators that generalize the method of least squares. They are particularly useful when dealing with outliers or heavy-tailed distributions, as they provide robustness against violations of the normality assumption.
+
+### Robust Standard Errors
+
+Robust standard errors are an adjustment to standard errors in regression analysis that provide a safeguard against violations of both the homoscedasticity and independence assumptions. They are essential for drawing reliable inference when these assumptions are challenged.

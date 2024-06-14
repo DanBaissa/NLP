@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Dive into the t-test | Introduction to Basic Stats Concepts</title>
+  <meta name="description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Dive into the t-test | Introduction to Basic Stats Concepts" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Dive into the t-test | Introduction to Basic Stats Concepts" />
+  
+  <meta name="twitter:description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  
+
+<meta name="author" content="Daniel K Baissa" />
+
+
+<meta name="date" content="2024-06-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="understanding-the-p-value.html"/>
+<link rel="next" href="ab-testing-explained.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Basic Stats Concepts</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#welcome-to-our-statistical-journey"><i class="fa fa-check"></i><b>1.1</b> Welcome to Our Statistical Journey!</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#why-this-book"><i class="fa fa-check"></i><b>1.1.1</b> Why This Book?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#what-will-you-learn"><i class="fa fa-check"></i><b>1.1.2</b> What Will You Learn?</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1.3</b> How to Use This Book</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#a-note-of-caution"><i class="fa fa-check"></i><b>1.1.4</b> A Note of Caution</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lets-get-started"><i class="fa fa-check"></i><b>1.2</b> Let’s Get Started!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html"><i class="fa fa-check"></i><b>2</b> Understanding the p-value</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#what-is-a-p-value"><i class="fa fa-check"></i><b>2.0.1</b> What is a p-value?</a></li>
+<li class="chapter" data-level="2.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#visualizing-p-values-how-sigma-frames-our-understanding"><i class="fa fa-check"></i><b>2.1</b> Visualizing p-values: How Sigma Frames Our Understanding</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-concept-of-sigma"><i class="fa fa-check"></i><b>2.1.1</b> The Concept of Sigma</a></li>
+<li class="chapter" data-level="2.1.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-plot-of-sigma-and-p-values"><i class="fa fa-check"></i><b>2.1.2</b> The Plot of Sigma and p-values</a></li>
+<li class="chapter" data-level="2.1.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#whats-going-on-here"><i class="fa fa-check"></i><b>2.1.3</b> What’s Going on Here?</a></li>
+<li class="chapter" data-level="2.1.4" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#takeaway"><i class="fa fa-check"></i><b>2.1.4</b> Takeaway</a></li>
+<li class="chapter" data-level="2.1.5" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#exploring-p-values-through-simulation"><i class="fa fa-check"></i><b>2.1.5</b> Exploring p-values through Simulation</a></li>
+<li class="chapter" data-level="2.1.6" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#false-positives-and-false-negatives"><i class="fa fa-check"></i><b>2.1.6</b> False Positives and False Negatives</a></li>
+<li class="chapter" data-level="2.1.7" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#understanding-power-through-elephants-and-statistical-nuances"><i class="fa fa-check"></i><b>2.1.7</b> Understanding Power Through Elephants and Statistical Nuances</a></li>
+<li class="chapter" data-level="2.1.8" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#beyond-p-values-the-importance-of-substantive-significance"><i class="fa fa-check"></i><b>2.1.8</b> Beyond p-values: The Importance of Substantive Significance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html"><i class="fa fa-check"></i><b>3</b> Dive into the t-test</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#basics-of-the-t-test"><i class="fa fa-check"></i><b>3.0.1</b> Basics of the t-test</a></li>
+<li class="chapter" data-level="3.0.2" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#step-by-step-example-using-simulated-data"><i class="fa fa-check"></i><b>3.0.2</b> Step-by-Step Example Using Simulated Data</a></li>
+<li class="chapter" data-level="3.0.3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#interpreting-results"><i class="fa fa-check"></i><b>3.0.3</b> Interpreting Results</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html"><i class="fa fa-check"></i><b>4</b> A/B Testing Explained</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#what-is-ab-testing"><i class="fa fa-check"></i><b>4.0.1</b> What is A/B Testing?</a></li>
+<li class="chapter" data-level="4.0.2" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#running-an-ab-test"><i class="fa fa-check"></i><b>4.0.2</b> Running an A/B Test</a></li>
+<li class="chapter" data-level="4.0.3" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#considerations-and-best-practices"><i class="fa fa-check"></i><b>4.0.3</b> Considerations and Best Practices</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Introduction to Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#simplifying-the-concept"><i class="fa fa-check"></i><b>5.0.1</b> Simplifying the Concept</a></li>
+<li class="chapter" data-level="5.0.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#visualizing-simple-attempts"><i class="fa fa-check"></i><b>5.0.2</b> Visualizing Simple Attempts</a></li>
+<li class="chapter" data-level="5.0.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#finding-the-best-fit"><i class="fa fa-check"></i><b>5.0.3</b> Finding the Best Fit</a></li>
+<li class="chapter" data-level="5.0.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#understanding-the-model"><i class="fa fa-check"></i><b>5.0.4</b> Understanding the Model</a></li>
+<li class="chapter" data-level="5.0.5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#going-a-step-further-linear-algebra"><i class="fa fa-check"></i><b>5.0.5</b> Going a Step Further: Linear Algebra</a></li>
+<li class="chapter" data-level="5.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#extending-linear-regression"><i class="fa fa-check"></i><b>5.2</b> Extending Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#spatial-regression"><i class="fa fa-check"></i><b>5.2.1</b> Spatial Regression</a></li>
+<li class="chapter" data-level="5.2.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#m-estimation"><i class="fa fa-check"></i><b>5.2.2</b> M Estimation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#robust-standard-errors"><i class="fa fa-check"></i><b>5.2.3</b> Robust Standard Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Going Beyond Linear Regression: Introduction to Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#why-use-logistic-regression"><i class="fa fa-check"></i><b>6.0.1</b> Why Use Logistic Regression?</a></li>
+<li class="chapter" data-level="6.0.2" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#the-logistic-function"><i class="fa fa-check"></i><b>6.0.2</b> The Logistic Function</a></li>
+<li class="chapter" data-level="6.0.3" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#demonstration-in-r"><i class="fa fa-check"></i><b>6.0.3</b> Demonstration in R</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html"><i class="fa fa-check"></i><b>7</b> Introduction to Machine Learning: Random Forests</a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#why-random-forests"><i class="fa fa-check"></i><b>7.0.1</b> Why Random Forests?</a></li>
+<li class="chapter" data-level="7.0.2" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#shallow-learners-combined-to-form-a-strong-learner"><i class="fa fa-check"></i><b>7.0.2</b> Shallow Learners Combined to Form a Strong Learner</a></li>
+<li class="chapter" data-level="7.0.3" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#step-by-step-example-with-random-forests"><i class="fa fa-check"></i><b>7.0.3</b> Step-by-Step Example with Random Forests</a></li>
+<li class="chapter" data-level="7.0.4" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-a-single-tree-from-the-forest"><i class="fa fa-check"></i><b>7.0.4</b> Visualizing a Single Tree from the Forest</a></li>
+<li class="chapter" data-level="7.0.5" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-the-ensemble-effect"><i class="fa fa-check"></i><b>7.0.5</b> Visualizing the Ensemble Effect</a></li>
+<li class="chapter" data-level="7.0.6" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#using-the-model"><i class="fa fa-check"></i><b>7.0.6</b> Using the Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html"><i class="fa fa-check"></i><b>8</b> Wrapping Up: Fun with Numbers</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#embrace-the-power-use-it-wisely"><i class="fa fa-check"></i><b>8.0.1</b> Embrace the Power, Use it Wisely</a></li>
+<li class="chapter" data-level="8.0.2" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#the-cautionary-note"><i class="fa fa-check"></i><b>8.0.2</b> The Cautionary Note</a></li>
+<li class="chapter" data-level="8.0.3" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#stay-curious"><i class="fa fa-check"></i><b>8.0.3</b> Stay Curious!</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Basic Stats Concepts</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dive-into-the-t-test" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Dive into the t-test<a href="dive-into-the-t-test.html#dive-into-the-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>After talking about p-values and hypothesis tests, you’re probably wondering, “How do we actually test these hypotheses?” Enter the t-test, a powerful tool that helps us compare means and decide whether observed differences are statistically significant.</p>
+<div id="basics-of-the-t-test" class="section level3 hasAnchor" number="3.0.1">
+<h3><span class="header-section-number">3.0.1</span> Basics of the t-test<a href="dive-into-the-t-test.html#basics-of-the-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The t-test helps us determine whether two groups have different means. This test assumes that the data follows a normally distributed pattern when the sample size is small and that variances are equal, unless stated otherwise.</p>
+<p>There are mainly two types of t-tests:
+1. <strong>Independent samples t-test:</strong> Used when comparing the means of two separate groups, like testing a new teaching method by comparing test scores from two different classrooms.
+2. <strong>Paired sample t-test:</strong> Useful when comparing measurements taken from the same group at different times, such as before and after a specific treatment in a medical study.</p>
+</div>
+<div id="step-by-step-example-using-simulated-data" class="section level3 hasAnchor" number="3.0.2">
+<h3><span class="header-section-number">3.0.2</span> Step-by-Step Example Using Simulated Data<a href="dive-into-the-t-test.html#step-by-step-example-using-simulated-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s consider a scenario where we’re testing a new fertilizer on plant growth. We have a control group (old fertilizer) and a treatment group (new fertilizer). We want to know if the new fertilizer leads to better plant growth.</p>
+<div id="setting-up-the-problem" class="section level4 hasAnchor" number="3.0.2.1">
+<h4><span class="header-section-number">3.0.2.1</span> Setting Up the Problem<a href="dive-into-the-t-test.html#setting-up-the-problem" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="dive-into-the-t-test.html#cb1-1" tabindex="-1"></a><span class="co"># Simulating plant heights for control and treatment groups</span></span>
+<span id="cb1-2"><a href="dive-into-the-t-test.html#cb1-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-3"><a href="dive-into-the-t-test.html#cb1-3" tabindex="-1"></a>control <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean=</span><span class="dv">20</span>, <span class="at">sd=</span><span class="dv">5</span>)  <span class="co"># Control group, N=30, mean height = 20 cm</span></span>
+<span id="cb1-4"><a href="dive-into-the-t-test.html#cb1-4" tabindex="-1"></a>treatment <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean=</span><span class="dv">23</span>, <span class="at">sd=</span><span class="dv">5</span>)  <span class="co"># Treatment group, N=30, mean height = 23 cm</span></span></code></pre></div>
+</div>
+<div id="performing-an-independent-samples-t-test" class="section level4 hasAnchor" number="3.0.2.2">
+<h4><span class="header-section-number">3.0.2.2</span> Performing an Independent Samples t-test<a href="dive-into-the-t-test.html#performing-an-independent-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="dive-into-the-t-test.html#cb2-1" tabindex="-1"></a><span class="co"># Comparing the two groups</span></span>
+<span id="cb2-2"><a href="dive-into-the-t-test.html#cb2-2" tabindex="-1"></a>t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(control, treatment, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb2-3"><a href="dive-into-the-t-test.html#cb2-3" tabindex="-1"></a>t_test_result</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  control and treatment
+## t = -1.3707, df = 56.249, p-value = 0.1759
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -5.0396655  0.9446189
+## sample estimates:
+## mean of x mean of y 
+##  20.34293  22.39046</code></pre>
+<p>The output of this t-test will provide us with a p-value, which tells us if the differences in plant growth are statistically significant.</p>
+</div>
+</div>
+<div id="interpreting-results" class="section level3 hasAnchor" number="3.0.3">
+<h3><span class="header-section-number">3.0.3</span> Interpreting Results<a href="dive-into-the-t-test.html#interpreting-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If our p-value is less than 0.05, we can reject the null hypothesis and conclude that the new fertilizer makes a significant difference in plant growth. If it’s higher, we might need more data or accept that the new fertilizer doesn’t significantly outperform the old one.</p>
+<p>Awesome! Let’s tackle A/B testing next. That section will show how A/B testing is a practical application of hypothesis testing and t-tests in real-world decision-making scenarios.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="understanding-the-p-value.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ab-testing-explained.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-ttest.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to Basic Stats Concepts</title>
+  <meta name="description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction to Basic Stats Concepts" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to Basic Stats Concepts" />
+  
+  <meta name="twitter:description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
+  
+
+<meta name="author" content="Daniel K Baissa" />
+
+
+<meta name="date" content="2024-06-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="understanding-the-p-value.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Basic Stats Concepts</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#welcome-to-our-statistical-journey"><i class="fa fa-check"></i><b>1.1</b> Welcome to Our Statistical Journey!</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#why-this-book"><i class="fa fa-check"></i><b>1.1.1</b> Why This Book?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#what-will-you-learn"><i class="fa fa-check"></i><b>1.1.2</b> What Will You Learn?</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.1.3</b> How to Use This Book</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#a-note-of-caution"><i class="fa fa-check"></i><b>1.1.4</b> A Note of Caution</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lets-get-started"><i class="fa fa-check"></i><b>1.2</b> Let’s Get Started!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html"><i class="fa fa-check"></i><b>2</b> Understanding the p-value</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#what-is-a-p-value"><i class="fa fa-check"></i><b>2.0.1</b> What is a p-value?</a></li>
+<li class="chapter" data-level="2.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#visualizing-p-values-how-sigma-frames-our-understanding"><i class="fa fa-check"></i><b>2.1</b> Visualizing p-values: How Sigma Frames Our Understanding</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-concept-of-sigma"><i class="fa fa-check"></i><b>2.1.1</b> The Concept of Sigma</a></li>
+<li class="chapter" data-level="2.1.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-plot-of-sigma-and-p-values"><i class="fa fa-check"></i><b>2.1.2</b> The Plot of Sigma and p-values</a></li>
+<li class="chapter" data-level="2.1.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#whats-going-on-here"><i class="fa fa-check"></i><b>2.1.3</b> What’s Going on Here?</a></li>
+<li class="chapter" data-level="2.1.4" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#takeaway"><i class="fa fa-check"></i><b>2.1.4</b> Takeaway</a></li>
+<li class="chapter" data-level="2.1.5" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#simulating-data-for-a-p-value-example"><i class="fa fa-check"></i><b>2.1.5</b> Simulating Data for a p-value Example</a></li>
+<li class="chapter" data-level="2.1.6" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#false-positives-and-false-negatives"><i class="fa fa-check"></i><b>2.1.6</b> False Positives and False Negatives</a></li>
+<li class="chapter" data-level="2.1.7" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#understanding-power-through-elephants"><i class="fa fa-check"></i><b>2.1.7</b> Understanding Power Through Elephants</a></li>
+<li class="chapter" data-level="2.1.8" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#beyond-p-values-the-importance-of-substantive-significance"><i class="fa fa-check"></i><b>2.1.8</b> Beyond p-values: The Importance of Substantive Significance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html"><i class="fa fa-check"></i><b>3</b> Dive into the t-test</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#basics-of-the-t-test"><i class="fa fa-check"></i><b>3.0.1</b> Basics of the t-test</a></li>
+<li class="chapter" data-level="3.0.2" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#step-by-step-example-using-simulated-data"><i class="fa fa-check"></i><b>3.0.2</b> Step-by-Step Example Using Simulated Data</a></li>
+<li class="chapter" data-level="3.0.3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#interpreting-results"><i class="fa fa-check"></i><b>3.0.3</b> Interpreting Results</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html"><i class="fa fa-check"></i><b>4</b> A/B Testing Explained</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#what-is-ab-testing"><i class="fa fa-check"></i><b>4.0.1</b> What is A/B Testing?</a></li>
+<li class="chapter" data-level="4.0.2" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#running-an-ab-test"><i class="fa fa-check"></i><b>4.0.2</b> Running an A/B Test</a></li>
+<li class="chapter" data-level="4.0.3" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#considerations-and-best-practices"><i class="fa fa-check"></i><b>4.0.3</b> Considerations and Best Practices</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Introduction to Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#simplifying-the-concept"><i class="fa fa-check"></i><b>5.0.1</b> Simplifying the Concept</a></li>
+<li class="chapter" data-level="5.0.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#visualizing-simple-attempts"><i class="fa fa-check"></i><b>5.0.2</b> Visualizing Simple Attempts</a></li>
+<li class="chapter" data-level="5.0.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#finding-the-best-fit"><i class="fa fa-check"></i><b>5.0.3</b> Finding the Best Fit</a></li>
+<li class="chapter" data-level="5.0.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#understanding-the-model"><i class="fa fa-check"></i><b>5.0.4</b> Understanding the Model</a></li>
+<li class="chapter" data-level="5.0.5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#going-a-step-further-linear-algebra"><i class="fa fa-check"></i><b>5.0.5</b> Going a Step Further: Linear Algebra</a></li>
+<li class="chapter" data-level="5.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#extending-linear-regression"><i class="fa fa-check"></i><b>5.2</b> Extending Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#spatial-regression"><i class="fa fa-check"></i><b>5.2.1</b> Spatial Regression</a></li>
+<li class="chapter" data-level="5.2.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#m-estimation"><i class="fa fa-check"></i><b>5.2.2</b> M Estimation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#robust-standard-errors"><i class="fa fa-check"></i><b>5.2.3</b> Robust Standard Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Going Beyond Linear Regression: Introduction to Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#why-use-logistic-regression"><i class="fa fa-check"></i><b>6.0.1</b> Why Use Logistic Regression?</a></li>
+<li class="chapter" data-level="6.0.2" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#the-logistic-function"><i class="fa fa-check"></i><b>6.0.2</b> The Logistic Function</a></li>
+<li class="chapter" data-level="6.0.3" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#demonstration-in-r"><i class="fa fa-check"></i><b>6.0.3</b> Demonstration in R</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html"><i class="fa fa-check"></i><b>7</b> Introduction to Machine Learning: Random Forests</a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#why-random-forests"><i class="fa fa-check"></i><b>7.0.1</b> Why Random Forests?</a></li>
+<li class="chapter" data-level="7.0.2" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#shallow-learners-combined-to-form-a-strong-learner"><i class="fa fa-check"></i><b>7.0.2</b> Shallow Learners Combined to Form a Strong Learner</a></li>
+<li class="chapter" data-level="7.0.3" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#step-by-step-example-with-random-forests"><i class="fa fa-check"></i><b>7.0.3</b> Step-by-Step Example with Random Forests</a></li>
+<li class="chapter" data-level="7.0.4" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-a-single-tree-from-the-forest"><i class="fa fa-check"></i><b>7.0.4</b> Visualizing a Single Tree from the Forest</a></li>
+<li class="chapter" data-level="7.0.5" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-the-ensemble-effect"><i class="fa fa-check"></i><b>7.0.5</b> Visualizing the Ensemble Effect</a></li>
+<li class="chapter" data-level="7.0.6" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#using-the-model"><i class="fa fa-check"></i><b>7.0.6</b> Using the Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html"><i class="fa fa-check"></i><b>8</b> Wrapping Up: Fun with Numbers</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#embrace-the-power-use-it-wisely"><i class="fa fa-check"></i><b>8.0.1</b> Embrace the Power, Use it Wisely</a></li>
+<li class="chapter" data-level="8.0.2" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#the-cautionary-note"><i class="fa fa-check"></i><b>8.0.2</b> The Cautionary Note</a></li>
+<li class="chapter" data-level="8.0.3" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#stay-curious"><i class="fa fa-check"></i><b>8.0.3</b> Stay Curious!</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Basic Stats Concepts</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Introduction to Basic Stats Concepts</h1>
+<p class="author"><em>Daniel K Baissa</em></p>
+<p class="date"><em>2024-06-14</em></p>
+</div>
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="welcome-to-our-statistical-journey" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Welcome to Our Statistical Journey!<a href="index.html#welcome-to-our-statistical-journey" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hello and welcome! If you’ve ever felt baffled by statistics or wondered how data scientists turn raw numbers into insights, you’re in the right place. This book isn’t just about learning statistical methods, it’s about discovering a new language of data that speaks volumes about the world around us.</p>
+<div id="why-this-book" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Why This Book?<a href="index.html#why-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This book is born from a passion for making complex concepts accessible and engaging. Statistics is often viewed as daunting and overly technical. My goal is to strip away these barriers and expose the beauty of statistics in its purest form. Whether you’re a student, professional, or just a curious mind, I aim to equip you with the tools to understand and appreciate the power of statistical analysis. My goal here is to make these concepts as simple and approachable as possible! This means most of these concepts will be addressed at a high level for beginners so they can learn to dive and start working imediatly.</p>
+</div>
+<div id="what-will-you-learn" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> What Will You Learn?<a href="index.html#what-will-you-learn" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From the basics of p-values and t-tests to the intricacies of machine learning models like random forests, we will journey through:</p>
+<ul>
+<li><p><strong>Understanding the Fundamentals:</strong> Starting with hypothesis testing and the meaning behind statistical significance.</p></li>
+<li><p><strong>Exploring Regression Models:</strong> Diving deep into linear and logistic regression, and understanding how to interpret their results.</p></li>
+<li><p><strong>Adventures in Machine Learning:</strong> Taking our first baby steps into the realm of machine learning, leaning about random forest algorithms that can predict outcomes and uncover patterns.</p></li>
+<li><p><strong>Real-World Applications:</strong> Every concept is paired with practical examples and R code snippets that you can run yourself, reinforcing learning through doing.</p></li>
+</ul>
+</div>
+<div id="how-to-use-this-book" class="section level3 hasAnchor" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> How to Use This Book<a href="index.html#how-to-use-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Each chapter builds on the previous one, introducing new concepts while reinforcing old ones. The content is structured to be digested in bite-sized pieces, allowing you to learn at your own pace. Code examples are provided throughout, giving you hands-on experience with real statistical analysis tools.</p>
+</div>
+<div id="a-note-of-caution" class="section level3 hasAnchor" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> A Note of Caution<a href="index.html#a-note-of-caution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As we delve into the powerful tools of statistical analysis, remember the mantra: with great power comes great responsibility. We’ll explore not only how to use these tools but also discuss the ethical considerations that come with wielding such analytical power.</p>
+</div>
+</div>
+<div id="lets-get-started" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Let’s Get Started!<a href="index.html#lets-get-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I invite you to bring your curiosity and enthusiasm. Let’s demystify the world of statistics together. By the end of this book, you won’t just perform statistical analyses—you’ll understand the story the data is trying to tell.</p>
+<p>Ready to turn the page and start this exciting journey? Let’s dive in!</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="understanding-the-p-value.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

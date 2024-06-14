@@ -1,0 +1,509 @@
+---
+title: "Introduction to Basic Statistical Concepts"
+author: "Daniel K Baissa"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+
+```
+
+## Understanding the p-value
+
+Let's start with a simple question: What is the probability that what we observe in a test is due to random chance? This is an important question, right? It's the foundational idea behind the p-value.
+
+### What is a p-value?
+
+The p-value helps us answer this question. It measures the probability of observing results at least as extreme as the ones in your study, assuming that the null hypothesis (no effect, no difference, etc.) is true. In simpler terms, a low p-value indicates that the observed data is unusual under the assumption of the null hypothesis.
+
+
+
+## Visualizing p-values: How Sigma Frames Our Understanding
+
+Ever wondered how statisticians turn abstract p-values into something you can actually picture? Let’s dive into an engaging visualization that makes this concept as clear as a sunny day.
+
+### The Concept of Sigma
+
+In statistics, when we talk about sigma (σ), we're really diving into the world of standard deviations—a measure of how spread out numbers are in your data. It’s like measuring how far people in a park are spread out from the ice cream truck!
+
+### The Plot of Sigma and p-values
+
+Let's paint this picture using R and the wonderful `ggplot2` package. We're going to plot a standard normal distribution (you know, that classic bell-shaped curve) and shade the areas that correspond to significant p-values.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# Create a sequence of z-scores and their density values
+z_scores <- seq(-4, 4, by = 0.01)
+density_values <- dnorm(z_scores)  # Normal density
+
+# Data frame for ggplot
+data_for_plot <- data.frame(z_scores, density_values) %>%
+  mutate(
+    fill_color = case_when(
+      z_scores < -1.96 | z_scores > 1.96 & z_scores < -2.58 | z_scores > 2.58 ~ "blue",
+      z_scores < -1.96 | z_scores > 1.96 ~ "red",
+      TRUE ~ NA_character_
+    )
+  )
+
+# Create the plot
+p_value_plot <- ggplot(data_for_plot, aes(x = z_scores, y = density_values)) +
+  geom_line() +
+  # geom_area(aes(fill = fill_color), alpha = 0.2) +
+  scale_fill_manual(values = c("red" = "red", "blue" = "blue")) +
+  geom_vline(xintercept = c(-1.96, 1.96), linetype = "dashed", color = "red") +
+  geom_vline(xintercept = c(-2.58, 2.58), linetype = "dashed", color = "blue") +
+  labs(
+    title = "Visualizing p-values in terms of Sigma",
+    subtitle = "Red: p < 0.05 (approx. 2-sigma), Blue: p < 0.01 (approx. 3-sigma)",
+    x = "Z-score (Sigma)",
+    y = "Density"
+  ) +
+  theme_minimal()
+
+p_value_plot
+```
+
+### What's Going on Here?
+
+- **Red Zones:** These areas show where our results would fall if they were more than 1.96 standard deviations away from the mean (either side). Statistically, this represents a p-value less than 0.05, where we start to raise our eyebrows and think, "Hmm, maybe there's something interesting going on here."
+- **Blue Zones:** Even more extreme, these parts of the curve represent results more than 2.58 standard deviations from the mean. Here, with a p-value less than 0.01, our eyebrows aren't just raised, they're practically in our hairline, signaling even stronger evidence against the Null Hypothesis.
+
+### Takeaway
+
+By mapping p-values to this visual sigma scale, we can literally see the "distance" a result needs to achieve to be considered significant. It's a fun and illuminative way to grasp what can often be an elusive concept. Keep this visual in mind next time you come across p-values in your research or studies!
+
+### Simulating Data for a p-value Example
+
+To make this concept more tangible, let's simulate some data in R:
+
+```{r}
+# Simulate data under the null hypothesis
+set.seed(42)  # for reproducibility
+data <- rnorm(100, mean=0, sd=1)  # 100 random normals (mean = 0, sd = 1)
+
+# Perform a t-test to see if observed mean significantly differs from 0
+t.test_result <- t.test(data)
+t.test_result$p.value
+```
+
+This simulation represents a scenario where there is truly no effect (mean = 0). The p-value we obtain tells us how likely we are to see our data (or more extreme) if the null hypothesis is true.
+
+### False Positives and False Negatives
+
+Now, let's discuss a bit about false positives and false negatives:
+
+- **False Positive (Type I Error):** This occurs when we incorrectly reject the null hypothesis when it is actually true. For example, our experiment might suggest that a drug is effective when it isn't.
+- **False Negative (Type II Error):** This happens when we fail to reject the null hypothesis when it is actually false. In this case, we might miss out on recognizing an effective treatment.
+
+### Understanding Power Through Elephants
+
+Let’s use a fun example to understand statistical power. Imagine we're trying to detect an elephant in this room. How many of you would it take to notice it? Probably just one, right? Because an elephant is huge and obvious. This scenario describes a test with high power — even with minimal data, you can correctly detect an effect.
+
+Now, what if we’re trying to detect a mouse instead? It's much smaller, more elusive. You'd probably need more people to confirm it's really there. This is like a statistical test where detecting a small effect size requires a larger sample to maintain high power.
+
+```{r}
+# Calculating power in R
+library(pwr)
+pwr.t.test(n = 30, d = 0.5, sig.level = 0.05, type = "two.sample", alternative = "two.sided")
+```
+
+In this R code, we're calculating the power of a t-test designed to detect a medium effect size (Cohen's d = 0.5) with 30 observations per group.
+
+By understanding these concepts, you can better design your studies and interpret their results. Isn't that helpful?
+
+
+
+### Beyond p-values: The Importance of Substantive Significance
+
+While diving into hypothesis testing and p-values, it’s crucial to remember that statistical significance doesn't always equate to substantive, or practical, significance. This distinction can help us make more meaningful interpretations of our results.
+
+#### Example: Water vs. Cyanide
+
+Consider an experiment determining the lethality of drinking water compared to cyanide. If one consumes enough water, they can get water poisoning. Thus, statistically we might find significant effects for both substances on health outcomes, but the substantive significance differs dramatically. The amount of cyanide required to be lethal is minuscule compared to water. Here, the p-value tells us there's an effect, but it doesn't tell us about the magnitude or practical implications of these effects.
+
+In practical terms, always ask, "How big is the effect? Is it large enough to be of concern or interest?" This approach ensures that we're not just chasing statistically significant results but are also making decisions based on their real-world impacts.
+
+
+## Dive into the t-test
+
+After talking about p-values and hypothesis tests, you're probably wondering, "How do we actually test these hypotheses?" Enter the t-test, a powerful tool that helps us compare means and decide whether observed differences are statistically significant.
+
+### Basics of the t-test
+
+The t-test helps us determine whether two groups have different means. This test assumes that the data follows a normally distributed pattern when the sample size is small and that variances are equal, unless stated otherwise.
+
+There are mainly two types of t-tests:
+1. **Independent samples t-test:** Used when comparing the means of two separate groups, like testing a new teaching method by comparing test scores from two different classrooms.
+2. **Paired sample t-test:** Useful when comparing measurements taken from the same group at different times, such as before and after a specific treatment in a medical study.
+
+### Step-by-Step Example Using Simulated Data
+
+Let’s consider a scenario where we're testing a new fertilizer on plant growth. We have a control group (old fertilizer) and a treatment group (new fertilizer). We want to know if the new fertilizer leads to better plant growth.
+
+#### Setting Up the Problem
+
+```{r}
+# Simulating plant heights for control and treatment groups
+set.seed(42)
+control <- rnorm(30, mean=20, sd=5)  # Control group, N=30, mean height = 20 cm
+treatment <- rnorm(30, mean=23, sd=5)  # Treatment group, N=30, mean height = 23 cm
+```
+
+#### Performing an Independent Samples t-test
+
+```{r}
+# Comparing the two groups
+t_test_result <- t.test(control, treatment, alternative = "two.sided")
+t_test_result
+```
+
+The output of this t-test will provide us with a p-value, which tells us if the differences in plant growth are statistically significant.
+
+### Interpreting Results
+
+If our p-value is less than 0.05, we can reject the null hypothesis and conclude that the new fertilizer makes a significant difference in plant growth. If it's higher, we might need more data or accept that the new fertilizer doesn't significantly outperform the old one.
+
+Awesome! Let's tackle A/B testing next. This section will show how A/B testing is a practical application of hypothesis testing and t-tests in real-world decision-making scenarios.
+
+
+## A/B Testing Explained
+
+Imagine you're running a website and want to test if a new homepage design increases user engagement compared to the current design. This scenario is perfect for A/B testing, which allows us to make data-driven decisions.
+
+### What is A/B Testing?
+
+A/B testing, also known as split testing, is a method of comparing two versions of a webpage or app against each other to determine which one performs better. Essentially, it's an experiment where two or more variants are shown to users at random, and statistical analysis is used to determine which variation performs better for a given conversion goal.
+
+### Running an A/B Test
+
+Let's set up a simple A/B test example where we compare two versions of a homepage.
+
+#### Example Scenario
+
+Suppose you have two versions of a homepage: Version A (the original) and Version B (the new design). You want to know which version keeps users on the site longer.
+
+#### Implementing in R
+
+Here's how you can simulate and analyze the results of an A/B test in R:
+
+```{r}
+# Simulating time spent on each version of the homepage
+set.seed(42)
+time_spent_A <- rnorm(100, mean=5, sd=1.5)  # Version A
+time_spent_B <- rnorm(100, mean=5.5, sd=1.5)  # Version B
+
+# A/B Testing using t-test
+ab_test_result <- t.test(time_spent_A, time_spent_B, alternative = "greater")
+ab_test_result
+```
+
+#### Analyzing Results
+
+The output from the t-test will tell us whether there's a statistically significant difference in the time spent on each version of the homepage. If the p-value is less than 0.05 (assuming a 5% significance level), we can conclude that Version B significantly increases the time users spend on the site.
+
+### Considerations and Best Practices
+
+- **Sample Size:** Ensure you have enough data to detect a meaningful difference if one exists.
+- **Segmentation:** Consider running the test on specific user segments to understand different impacts.
+- **Duration:** Run the test long enough to account for variability in user behavior but not so long that the market conditions change.
+
+
+## Introduction to Linear Regression
+
+Linear regression might sound complex, but let's break it down to something as simple as fitting a line through a set of points, just like you might have done in middle school. Remember the equation \( y = mx + b \)? We're going to start there. Remember m is the slope, and b is the intercept? Well, all regression does is solve for that using your data!
+
+### Simplifying the Concept
+
+In statistical terms, this line equation becomes \( y = \alpha + \beta \times x + \epsilon\), where:
+- \( \alpha \) (alpha) is the y-intercept,
+- \( \beta \) (beta) is the slope of the line,
+- \( \epsilon  \) (epsilon) or the error is the difference between the predicted values and the actual values.
+
+### Visualizing Simple Attempts
+
+Let’s imagine a "Dan Estimator" and "Steve Estimator" are trying to draw a line through some data points. Both are pretty bad at it. Their lines don't really capture the trend of the data.
+
+
+
+```{r}
+# Simulate some data
+set.seed(42)
+x <- 1:100
+y <- 2*x + rnorm(100, mean=0, sd=20)  # true line: y = 2x + noise
+plot(x, y, main = "Fitting Lines: Dan vs. Steve", xlab = "X", ylab = "Y", pch = 19)
+
+# Dan's and Steve's poor attempts
+lines(x, 4*x - 40, col = "red")  # Dan's line
+lines(x, .5*x + 30, col = "blue")  # Steve's line
+legend("topright", legend=c("Dan", "Steve"), col=c("red", "blue"), lty=1, cex=0.8)
+```
+
+### Finding the Best Fit
+
+Now, while Dan and Steve's attempts are entertaining, they're obviously not ideal. Maybe we want an estimator that draws a line right through the middle of these points? One that minimizes the distance from all points to the line itself. How can we ensure it's the best fit?
+
+#### Introducing Least Squares
+
+We want to fit a line through the middle one where we minimize the distance from the line to the points on average. In otherwords we aim to minimize the sum of the squared distances (squared errors) from the data points to the regression line. This method is called "least squares."
+
+
+```{r}
+set.seed(42)
+x <- 1:100
+y <- 2*x + rnorm(100, mean=0, sd=20)
+
+# Fitting a regression line
+fit <- lm(y ~ x)
+
+# true line: y = 2x + noise
+plot(x, y, main = "Fitting Lines: Dan vs. Steve vs. Least Squares", xlab = "X", ylab = "Y", pch = 19)
+
+# Dan's and Steve's poor attempts
+lines(x, 4*x - 40, col = "red")  # Dan's line
+lines(x, 0.5*x + 30, col = "blue")  # Steve's line
+abline(fit, col="black")  # adding the least squares line
+
+# Adding residuals for the least squares line
+predicted_values <- predict(fit)
+for (i in 1:length(x)) {
+    lines(c(x[i], x[i]), c(y[i], predicted_values[i]), col="black")
+}
+
+legend("topright", legend=c("Dan", "Steve", "Least Squares"), col=c("red", "blue", "black"), lty=1, cex=0.8)
+
+
+# Add a legend for the residuals
+legend("bottomright", legend=c("Residuals"), col=c("black"), lty=1, cex=0.8)
+
+```
+
+Here we can see that the Least Squares line goes right through the middle and on average the distance from the line, the "residuals" are about the same on top as they are on the bottom.
+
+### Understanding the Model
+
+The regression equation can be written as:
+\[ y = \alpha + \beta \times x + error\]
+where \( \hat{\alpha} \) and \( \hat{\beta} \) are estimates of the intercept and slope, determined by the least squares method.
+
+### Going a Step Further: Linear Algebra
+
+For those interested in the mathematical details, the coefficients \( \beta \) can also be estimated using linear algebra. This is expressed as:
+\[ \beta = (X^TX)^{-1}X^TY \]
+where \( X \) is the matrix of input values, and \( Y \) is the vector of output values. This formula provides the least squares estimates of the coefficients.
+
+Let’s take the `cars` dataset, which contains two variables: `speed` (the speed of cars) and `dist` (the distance required to stop). We'll predict `dist` based on `speed` using linear algebra.
+
+#### Load and Prepare Data
+
+First, let’s load the data and prepare the matrices.
+
+```{r}
+# Load the dataset
+data(mtcars)
+
+# Prepare the data matrix X (with intercept) and response vector Y
+X <- as.matrix(cbind(Intercept = 1, `Weight (1000 lbs)` = mtcars$wt, `Displacement (cu.in.)` = mtcars$disp, `Horsepower` = mtcars$hp, `Number of cylinders` = mtcars$cyl))  # Adding an intercept
+Y <- mtcars$mpg
+
+# Display the first few rows of X and Y
+head(X)
+head(Y)
+```
+
+#### Apply the Linear Algebra Formula for Beta
+
+Now, we apply the linear algebra formula to compute the coefficients. The formula \( \beta = (X^TX)^{-1}X^TY \) will give us the estimates for the intercept and the coefficient for `speed`.
+
+```{r}
+# Compute (X'X)^(-1)
+XTX_inv <- solve(t(X) %*% X)
+
+# Compute beta = (X'X)^(-1)X'Y
+beta <- XTX_inv %*% t(X) %*% Y
+
+# Print the estimated coefficients
+beta
+```
+
+This isn't as pretty but check that out! Let's just compare it to the built in lm function:
+
+```{r}
+cars <- lm(mpg ~ wt + disp + hp + cyl, data = mtcars)
+summary(cars)
+```
+
+Math works! In all seriousness though computers are much faster at solving \( \beta = (X^TX)^{-1}X^TY \) than running that function, so if you are computing many \( \beta\)s at once, it can come in handy.
+
+
+## Assumptions of Linear Regression
+
+To effectively use linear regression, it’s essential to understand its underlying assumptions. If these assumptions are violated, the results might not be reliable. Here are the key assumptions:
+
+1. **Linearity:** The relationship between the predictors and the dependent variable is linear.
+2. **Independence:** Observations are independent of each other.
+3. **Homoscedasticity:** The variance of residual is the same for any value of the input variables.
+4. **Normality:** For any fixed value of the predictors, the dependent variable is normally distributed.
+
+Addressing these assumptions ensures the validity of the regression results. When these assumptions are not met, modifications and more advanced techniques might be necessary.
+
+## Extending Linear Regression
+
+As powerful as linear regression is, it sometimes needs to be adjusted or extended to handle more complex data characteristics. Here are a few notable extensions:
+
+### Spatial Regression
+
+When dealing with geographical or spatial data, traditional regression might not suffice because observations in close proximity might be correlated, violating the independence assumption. Spatial regression models account for this correlation, offering more precise insights for geographical data analysis.
+
+### M Estimation
+
+M estimators are a broad class of estimators that generalize the method of least squares. They are particularly useful when dealing with outliers or heavy-tailed distributions, as they provide robustness against violations of the normality assumption.
+
+### Robust Standard Errors
+
+Robust standard errors are an adjustment to standard errors in regression analysis that provide a safeguard against violations of both the homoscedasticity and independence assumptions. They are essential for drawing reliable inference when these assumptions are challenged.
+
+
+## Going Beyond Linear Regression: Introduction to Logistic Regression
+
+While linear regression is suited for continuous outcomes, what do we do when our dependent variable is binary, like "yes" or "no," "success" or "failure"? This is where logistic regression comes into play.
+
+### Why Use Logistic Regression?
+
+Logistic regression is used when the dependent variable is categorical and binary. It allows us to estimate the probability that a given input belongs to a certain category, based on the logistic function.
+
+### The Logistic Function
+
+The logistic function, also known as the sigmoid function, ensures that the output of the regression model is always between 0 and 1, making it interpretable as a probability. The equation for logistic regression is:
+
+\[ \log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1x_1 + \beta_2x_2 + \ldots + \beta_nx_n \]
+
+where \( p \) is the probability of the dependent variable equaling a "success" or "1."
+
+### Demonstration in R
+
+Let's demonstrate logistic regression by considering a dataset where we predict whether a student passes (1) or fails (0) based on their hours of study.
+
+#### Setting Up the Problem
+
+```{r}
+# Simulating some data
+set.seed(42)
+hours_studied <- runif(100, 0, 10)  # Randomly generate hours studied between 0 and 10
+pass <- ifelse(hours_studied + rnorm(100, sd = 2) > 5, 1, 0)  # Pass if studied hours + noise > 5
+
+# Create a data frame
+student_data <- data.frame(hours_studied, pass)
+```
+
+#### Fitting a Logistic Regression Model
+
+```{r}
+# Fitting the model
+logit_model <- glm(pass ~ hours_studied, family = binomial(link = "logit"), data = student_data)
+
+# Summarizing the model
+summary(logit_model)
+```
+
+#### Visualizing the Results
+
+```{r}
+# Plotting the fitted probabilities
+plot(student_data$hours_studied, student_data$pass, col = ifelse(student_data$pass == 1, "green", "red"), pch = 19, main = "Probability of Passing based on Hours Studied")
+curve(predict(logit_model, data.frame(hours_studied = x), type = "response"), add = TRUE)
+```
+
+This plot shows the probability of a student passing based on their hours of study, with the logistic regression model providing a smooth probability curve.
+
+
+## Introduction to Machine Learning: Random Forests
+
+As we venture into the realm of machine learning, one of the most robust and widely-used algorithms we encounter is the Random Forest. It builds on the simplicity of decision trees and enhances their effectiveness.
+
+### Why Random Forests?
+
+Random Forests operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. They are known for their high accuracy, ability to run on large datasets, and their capability to handle both numerical and categorical data.
+
+### Shallow Learners Combined to Form a Strong Learner
+
+A single decision tree is often a "shallow learner" – good at learning simple structures. A random forest combines many such trees to create a "strong learner" that can model complex relationships within the data.
+
+### Step-by-Step Example with Random Forests
+
+Let's use the `randomForest` package in R to demonstrate how to use random forests for a classification problem.
+
+#### Setting Up the Problem
+
+Suppose we have a dataset `iris`, which is commonly used for demonstrating machine learning algorithms. We'll predict the species of iris plants based on four features: sepal length, sepal width, petal length, and petal width.
+
+```{r}
+# Load necessary library
+library(randomForest)
+
+# Load the iris dataset
+data(iris)
+
+# Fit a random forest model
+rf_model <- randomForest(Species ~ ., data = iris, ntree = 100)
+print(rf_model)
+```
+
+### Visualizing a Single Tree from the Forest
+
+It's instructive to visualize individual trees within the forest to understand how decisions are being made at a micro level.
+
+```{r}
+# Plot a single decision tree from the random forest
+plot(rf_model$forest$tree[[1]])
+title("A Single Tree in the Random Forest")
+```
+
+### Visualizing the Ensemble Effect
+
+While we cannot visualize all trees at once, plotting the error rate as more trees are added can demonstrate the ensemble effect.
+
+```{r}
+# Plot error rate versus number of trees
+plot(rf_model$err.rate[,1], type = "l", col = "red")
+title("Error Rate of Random Forest Over Trees")
+```
+
+This plot typically shows that as more trees are added, the error rate of the random forest stabilizes, demonstrating the power of combining many models.
+
+### Using the Model
+
+Let's demonstrate using the trained model to predict the species of a new iris flower.
+
+```{r}
+# New flower data
+new_flower <- data.frame(Sepal.Length = 5.0, Sepal.Width = 3.5, Petal.Length = 1.4, Petal.Width = 0.2)
+
+# Predict the species
+predict(rf_model, new_flower)
+```
+
+
+## Wrapping Up: Fun with Numbers and a Note of Caution
+
+Congratulations! We've ventured through a world where numbers tell stories, from the humble beginnings of hypothesis testing to the robust forests of machine learning models. It's been quite the journey, hasn't it? Along the way, we've decoded p-values, tamed t-tests, navigated through logistic curves, and even summoned random forests to do our bidding.
+
+### Embrace the Power, Use it Wisely
+
+As we arm ourselves with these potent "weapons of math," it's crucial to remember that with great power comes great responsibility. These tools can illuminate the hidden patterns in data and help make decisions that are both impactful and insightful. However, they can also mislead and misrepresent if not used with care and understanding.
+
+### The Cautionary Tale
+
+Always question the assumptions behind your models, scrutinize the validity of your data, and be mindful of the impact your conclusions might have on real people and situations. Algorithms are not free from bias, and even the most sophisticated model is only as good as the data it feeds on and the integrity of the questions it seeks to answer.
+
+### Stay Curious!
+
+
+Thank you for joining me on this enlightening adventure. Keep exploring, keep learning, and above all, use these tools to make a positive impact on the world around you. Here's to many more data-driven discoveries that are responsibly and joyfully made!
+
+Best,
+Dan
