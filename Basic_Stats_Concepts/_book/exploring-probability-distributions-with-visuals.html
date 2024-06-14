@@ -367,7 +367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-2"><a href="exploring-probability-distributions-with-visuals.html#cb1-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length =</span> <span class="dv">100</span>)</span>
 <span id="cb1-3"><a href="exploring-probability-distributions-with-visuals.html#cb1-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
 <span id="cb1-4"><a href="exploring-probability-distributions-with-visuals.html#cb1-4" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">main =</span> <span class="st">&#39;Normal Distribution&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;X&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Probability Density&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 </div>
 <div id="binomial-distribution-counting-successes" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Binomial Distribution: Counting Successes<a href="exploring-probability-distributions-with-visuals.html#binomial-distribution-counting-successes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -382,7 +382,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-2"><a href="exploring-probability-distributions-with-visuals.html#cb2-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
 <span id="cb2-3"><a href="exploring-probability-distributions-with-visuals.html#cb2-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(x, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span>
 <span id="cb2-4"><a href="exploring-probability-distributions-with-visuals.html#cb2-4" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">&#39;h&#39;</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>, <span class="at">main =</span> <span class="st">&#39;Binomial Distribution&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Number of Successes&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Probability&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 </div>
 <div id="poisson-distribution-counting-events" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Poisson Distribution: Counting Events<a href="exploring-probability-distributions-with-visuals.html#poisson-distribution-counting-events" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -396,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-2"><a href="exploring-probability-distributions-with-visuals.html#cb3-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
 <span id="cb3-3"><a href="exploring-probability-distributions-with-visuals.html#cb3-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dpois</span>(x, <span class="at">lambda =</span> <span class="dv">5</span>)</span>
 <span id="cb3-4"><a href="exploring-probability-distributions-with-visuals.html#cb3-4" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">&#39;h&#39;</span>, <span class="at">col =</span> <span class="st">&#39;green&#39;</span>, <span class="at">main =</span> <span class="st">&#39;Poisson Distribution&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Number of Events&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Probability&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
 </div>
 <div id="negative-binomial-distribution-waiting-for-successes" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Negative Binomial Distribution: Waiting for Successes<a href="exploring-probability-distributions-with-visuals.html#negative-binomial-distribution-waiting-for-successes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -412,7 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-2"><a href="exploring-probability-distributions-with-visuals.html#cb4-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
 <span id="cb4-3"><a href="exploring-probability-distributions-with-visuals.html#cb4-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnbinom</span>(x, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span>
 <span id="cb4-4"><a href="exploring-probability-distributions-with-visuals.html#cb4-4" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">&#39;h&#39;</span>, <span class="at">col =</span> <span class="st">&#39;purple&#39;</span>, <span class="at">main =</span> <span class="st">&#39;Negative Binomial Distribution&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Number of Trials&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Probability&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 </div>
 <div id="central-limit-theorem-what-happens-when-distributions-come-together" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> Central Limit Theorem: What Happens When Distributions Come Together?<a href="exploring-probability-distributions-with-visuals.html#central-limit-theorem-what-happens-when-distributions-come-together" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -434,7 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-4"><a href="exploring-probability-distributions-with-visuals.html#cb5-4" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="exploring-probability-distributions-with-visuals.html#cb5-5" tabindex="-1"></a><span class="co"># Plot the distribution of sums</span></span>
 <span id="cb5-6"><a href="exploring-probability-distributions-with-visuals.html#cb5-6" tabindex="-1"></a><span class="fu">hist</span>(rolls, <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">main =</span> <span class="st">&quot;Sum of 30 Die Rolls&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Sum&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">border =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
 </div>
 <div id="whats-happening-here" class="section level3 hasAnchor" number="2.5.2">
 <h3><span class="header-section-number">2.5.2</span> What’s Happening Here?<a href="exploring-probability-distributions-with-visuals.html#whats-happening-here" class="anchor-section" aria-label="Anchor link to header"></a></h3>

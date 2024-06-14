@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Understanding the p-value | Introduction to Basic Stats Concepts</title>
+  <title>Chapter 3 Understanding the p-value | Introduction to Basic Stats Concepts</title>
   <meta name="description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Understanding the p-value | Introduction to Basic Stats Concepts" />
+  <meta property="og:title" content="Chapter 3 Understanding the p-value | Introduction to Basic Stats Concepts" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Understanding the p-value | Introduction to Basic Stats Concepts" />
+  <meta name="twitter:title" content="Chapter 3 Understanding the p-value | Introduction to Basic Stats Concepts" />
   
   <meta name="twitter:description" content="“Dive into the world of statistics with ‘Introduction to Basic Stats Concepts.’ This book is designed to demystify complex statistical topics and make them accessible to everyone. Whether you’re a student starting out, a professional looking to refresh your knowledge, or a curious mind eager to understand how data shapes our understanding of the world, this book is for you. Featuring practical examples, detailed explanations, and interactive R code snippets, this guide is your first step towards mastering the fundamentals of statistics. Join us as we explore everything from p-values to machine learning, all explained in a clear and engaging manner.”" />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
+<link rel="prev" href="exploring-probability-distributions-with-visuals.html"/>
 <link rel="next" href="dive-into-the-t-test.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -151,76 +151,178 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lets-get-started"><i class="fa fa-check"></i><b>1.2</b> Let’s Get Started!</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html"><i class="fa fa-check"></i><b>2</b> Understanding the p-value</a>
+<li class="chapter" data-level="2" data-path="exploring-probability-distributions-with-visuals.html"><a href="exploring-probability-distributions-with-visuals.html"><i class="fa fa-check"></i><b>2</b> Exploring Probability Distributions with Visuals</a>
 <ul>
-<li class="chapter" data-level="2.0.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#what-is-a-p-value"><i class="fa fa-check"></i><b>2.0.1</b> What is a p-value?</a></li>
-<li class="chapter" data-level="2.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#visualizing-p-values-how-sigma-frames-our-understanding"><i class="fa fa-check"></i><b>2.1</b> Visualizing p-values: How Sigma Frames Our Understanding</a>
+<li class="chapter" data-level="2.1" data-path="exploring-probability-distributions-with-visuals.html"><a href="exploring-probability-distributions-with-visuals.html#normal-distribution-the-bell"><i class="fa fa-check"></i><b>2.1</b> Normal Distribution: The Bell</a></li>
+<li class="chapter" data-level="2.2" data-path="exploring-probability-distributions-with-visuals.html"><a href="exploring-probability-distributions-with-visuals.html#binomial-distribution-counting-successes"><i class="fa fa-check"></i><b>2.2</b> Binomial Distribution: Counting Successes</a></li>
+<li class="chapter" data-level="2.3" data-path="exploring-probability-distributions-with-visuals.html"><a href="exploring-probability-distributions-with-visuals.html#poisson-distribution-counting-events"><i class="fa fa-check"></i><b>2.3</b> Poisson Distribution: Counting Events</a></li>
+<li class="chapter" data-level="2.4" data-path="exploring-probability-distributions-with-visuals.html"><a href="exploring-probability-distributions-with-visuals.html#negative-binomial-distribution-waiting-for-successes"><i class="fa fa-check"></i><b>2.4</b> Negative Binomial Distribution: Waiting for Successes</a></li>
+<li class="chapter" data-level="2.5" data-path="exploring-probability-distributions-with-visuals.html"><a href="exploring-probability-distributions-with-visuals.html#central-limit-theorem-what-happens-when-distributions-come-together"><i class="fa fa-check"></i><b>2.5</b> Central Limit Theorem: What Happens When Distributions Come Together?</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-concept-of-sigma"><i class="fa fa-check"></i><b>2.1.1</b> The Concept of Sigma</a></li>
-<li class="chapter" data-level="2.1.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-plot-of-sigma-and-p-values"><i class="fa fa-check"></i><b>2.1.2</b> The Plot of Sigma and p-values</a></li>
-<li class="chapter" data-level="2.1.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#whats-going-on-here"><i class="fa fa-check"></i><b>2.1.3</b> What’s Going on Here?</a></li>
-<li class="chapter" data-level="2.1.4" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#takeaway"><i class="fa fa-check"></i><b>2.1.4</b> Takeaway</a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#exploring-p-values-through-simulation"><i class="fa fa-check"></i><b>2.2</b> Exploring p-values through Simulation</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#simulating-multiple-t-tests"><i class="fa fa-check"></i><b>2.2.1</b> Simulating Multiple t-tests</a></li>
-<li class="chapter" data-level="2.2.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#whats-happening-here"><i class="fa fa-check"></i><b>2.2.2</b> What’s Happening Here?</a></li>
-<li class="chapter" data-level="2.2.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#insights-from-the-simulation"><i class="fa fa-check"></i><b>2.2.3</b> Insights from the Simulation</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#false-positives-and-false-negatives"><i class="fa fa-check"></i><b>2.3</b> False Positives and False Negatives</a></li>
-<li class="chapter" data-level="2.4" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#understanding-power-through-elephants"><i class="fa fa-check"></i><b>2.4</b> Understanding Power Through Elephants</a></li>
-<li class="chapter" data-level="2.5" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#beyond-p-values-the-importance-of-substantive-significance"><i class="fa fa-check"></i><b>2.5</b> Beyond p-values: The Importance of Substantive Significance</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#example-water-vs.-cyanide"><i class="fa fa-check"></i><b>2.5.1</b> Example: Water vs. Cyanide</a></li>
+<li class="chapter" data-level="2.5.1" data-path="exploring-probability-distributions-with-visuals.html"><a href="exploring-probability-distributions-with-visuals.html#central-limit-theorem-in-r"><i class="fa fa-check"></i><b>2.5.1</b> Central Limit Theorem in R</a></li>
+<li class="chapter" data-level="2.5.2" data-path="exploring-probability-distributions-with-visuals.html"><a href="exploring-probability-distributions-with-visuals.html#whats-happening-here"><i class="fa fa-check"></i><b>2.5.2</b> What’s Happening Here?</a></li>
+<li class="chapter" data-level="2.5.3" data-path="exploring-probability-distributions-with-visuals.html"><a href="exploring-probability-distributions-with-visuals.html#implications"><i class="fa fa-check"></i><b>2.5.3</b> Implications</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html"><i class="fa fa-check"></i><b>3</b> Dive into the t-test</a>
+<li class="chapter" data-level="3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html"><i class="fa fa-check"></i><b>3</b> Understanding the p-value</a>
 <ul>
-<li class="chapter" data-level="3.0.1" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#basics-of-the-t-test"><i class="fa fa-check"></i><b>3.0.1</b> Basics of the t-test</a></li>
-<li class="chapter" data-level="3.0.2" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#step-by-step-example-using-simulated-data"><i class="fa fa-check"></i><b>3.0.2</b> Step-by-Step Example Using Simulated Data</a></li>
-<li class="chapter" data-level="3.0.3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#interpreting-results"><i class="fa fa-check"></i><b>3.0.3</b> Interpreting Results</a></li>
+<li class="chapter" data-level="3.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#what-is-a-p-value"><i class="fa fa-check"></i><b>3.1</b> What is a p-value?</a></li>
+<li class="chapter" data-level="3.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#visualizing-p-values-how-sigma-frames-our-understanding"><i class="fa fa-check"></i><b>3.2</b> Visualizing p-values: How Sigma Frames Our Understanding</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-concept-of-sigma"><i class="fa fa-check"></i><b>3.2.1</b> The Concept of Sigma</a></li>
+<li class="chapter" data-level="3.2.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#the-plot-of-sigma-and-p-values"><i class="fa fa-check"></i><b>3.2.2</b> The Plot of Sigma and p-values</a></li>
+<li class="chapter" data-level="3.2.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#whats-going-on-here"><i class="fa fa-check"></i><b>3.2.3</b> What’s Going on Here?</a></li>
+<li class="chapter" data-level="3.2.4" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#takeaway"><i class="fa fa-check"></i><b>3.2.4</b> Takeaway</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html"><i class="fa fa-check"></i><b>4</b> A/B Testing Explained</a>
+<li class="chapter" data-level="3.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#exploring-p-values-through-simulation"><i class="fa fa-check"></i><b>3.3</b> Exploring p-values through Simulation</a>
 <ul>
-<li class="chapter" data-level="4.0.1" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#what-is-ab-testing"><i class="fa fa-check"></i><b>4.0.1</b> What is A/B Testing?</a></li>
-<li class="chapter" data-level="4.0.2" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#running-an-ab-test"><i class="fa fa-check"></i><b>4.0.2</b> Running an A/B Test</a></li>
-<li class="chapter" data-level="4.0.3" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#considerations-and-best-practices"><i class="fa fa-check"></i><b>4.0.3</b> Considerations and Best Practices</a></li>
+<li class="chapter" data-level="3.3.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#simulating-multiple-t-tests"><i class="fa fa-check"></i><b>3.3.1</b> Simulating Multiple t-tests</a></li>
+<li class="chapter" data-level="3.3.2" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#whats-happening-here-1"><i class="fa fa-check"></i><b>3.3.2</b> What’s Happening Here?</a></li>
+<li class="chapter" data-level="3.3.3" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#insights-from-the-simulation"><i class="fa fa-check"></i><b>3.3.3</b> Insights from the Simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Introduction to Linear Regression</a>
+<li class="chapter" data-level="3.4" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#false-positives-and-false-negatives"><i class="fa fa-check"></i><b>3.4</b> False Positives and False Negatives</a></li>
+<li class="chapter" data-level="3.5" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#understanding-power-through-elephants"><i class="fa fa-check"></i><b>3.5</b> Understanding Power Through Elephants</a></li>
+<li class="chapter" data-level="3.6" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#beyond-p-values-the-importance-of-substantive-significance"><i class="fa fa-check"></i><b>3.6</b> Beyond p-values: The Importance of Substantive Significance</a>
 <ul>
-<li class="chapter" data-level="5.0.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#simplifying-the-concept"><i class="fa fa-check"></i><b>5.0.1</b> Simplifying the Concept</a></li>
-<li class="chapter" data-level="5.0.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#visualizing-simple-attempts"><i class="fa fa-check"></i><b>5.0.2</b> Visualizing Simple Attempts</a></li>
-<li class="chapter" data-level="5.0.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#finding-the-best-fit"><i class="fa fa-check"></i><b>5.0.3</b> Finding the Best Fit</a></li>
-<li class="chapter" data-level="5.0.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#understanding-the-model"><i class="fa fa-check"></i><b>5.0.4</b> Understanding the Model</a></li>
-<li class="chapter" data-level="5.0.5" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#going-a-step-further-linear-algebra"><i class="fa fa-check"></i><b>5.0.5</b> Going a Step Further: Linear Algebra</a></li>
-<li class="chapter" data-level="5.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Assumptions of Linear Regression</a></li>
-<li class="chapter" data-level="5.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#extending-linear-regression"><i class="fa fa-check"></i><b>5.2</b> Extending Linear Regression</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#spatial-regression"><i class="fa fa-check"></i><b>5.2.1</b> Spatial Regression</a></li>
-<li class="chapter" data-level="5.2.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#m-estimation"><i class="fa fa-check"></i><b>5.2.2</b> M Estimation</a></li>
-<li class="chapter" data-level="5.2.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#robust-standard-errors"><i class="fa fa-check"></i><b>5.2.3</b> Robust Standard Errors</a></li>
+<li class="chapter" data-level="3.6.1" data-path="understanding-the-p-value.html"><a href="understanding-the-p-value.html#example-water-vs.-cyanide"><i class="fa fa-check"></i><b>3.6.1</b> Example: Water vs. Cyanide</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Going Beyond Linear Regression: Introduction to Logistic Regression</a>
+<li class="chapter" data-level="4" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html"><i class="fa fa-check"></i><b>4</b> Dive into the t-test</a>
 <ul>
-<li class="chapter" data-level="6.0.1" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#why-use-logistic-regression"><i class="fa fa-check"></i><b>6.0.1</b> Why Use Logistic Regression?</a></li>
-<li class="chapter" data-level="6.0.2" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#the-logistic-function"><i class="fa fa-check"></i><b>6.0.2</b> The Logistic Function</a></li>
-<li class="chapter" data-level="6.0.3" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#demonstration-in-r"><i class="fa fa-check"></i><b>6.0.3</b> Demonstration in R</a></li>
+<li class="chapter" data-level="4.1" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#basics-of-the-t-test"><i class="fa fa-check"></i><b>4.1</b> Basics of the t-test</a></li>
+<li class="chapter" data-level="4.2" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#step-by-step-example-using-simulated-data"><i class="fa fa-check"></i><b>4.2</b> Step-by-Step Example Using Simulated Data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#setting-up-the-problem"><i class="fa fa-check"></i><b>4.2.1</b> Setting Up the Problem</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#performing-an-independent-samples-t-test"><i class="fa fa-check"></i><b>4.2.2</b> Performing an Independent Samples t-test</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html"><i class="fa fa-check"></i><b>7</b> Introduction to Machine Learning: Random Forests</a>
-<ul>
-<li class="chapter" data-level="7.0.1" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#why-random-forests"><i class="fa fa-check"></i><b>7.0.1</b> Why Random Forests?</a></li>
-<li class="chapter" data-level="7.0.2" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#shallow-learners-combined-to-form-a-strong-learner"><i class="fa fa-check"></i><b>7.0.2</b> Shallow Learners Combined to Form a Strong Learner</a></li>
-<li class="chapter" data-level="7.0.3" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#step-by-step-example-with-random-forests"><i class="fa fa-check"></i><b>7.0.3</b> Step-by-Step Example with Random Forests</a></li>
-<li class="chapter" data-level="7.0.4" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-a-single-tree-from-the-forest"><i class="fa fa-check"></i><b>7.0.4</b> Visualizing a Single Tree from the Forest</a></li>
-<li class="chapter" data-level="7.0.5" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-the-ensemble-effect"><i class="fa fa-check"></i><b>7.0.5</b> Visualizing the Ensemble Effect</a></li>
-<li class="chapter" data-level="7.0.6" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#using-the-model"><i class="fa fa-check"></i><b>7.0.6</b> Using the Model</a></li>
+<li class="chapter" data-level="4.3" data-path="dive-into-the-t-test.html"><a href="dive-into-the-t-test.html#interpreting-results"><i class="fa fa-check"></i><b>4.3</b> Interpreting Results</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html"><i class="fa fa-check"></i><b>8</b> Wrapping Up: Fun with Numbers</a>
+<li class="chapter" data-level="5" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html"><i class="fa fa-check"></i><b>5</b> A/B Testing Explained</a>
 <ul>
-<li class="chapter" data-level="8.0.1" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#embrace-the-power-use-it-wisely"><i class="fa fa-check"></i><b>8.0.1</b> Embrace the Power, Use it Wisely</a></li>
-<li class="chapter" data-level="8.0.2" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#the-cautionary-note"><i class="fa fa-check"></i><b>8.0.2</b> The Cautionary Note</a></li>
-<li class="chapter" data-level="8.0.3" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#stay-curious"><i class="fa fa-check"></i><b>8.0.3</b> Stay Curious!</a></li>
+<li class="chapter" data-level="5.1" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#what-is-ab-testing"><i class="fa fa-check"></i><b>5.1</b> What is A/B Testing?</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#running-an-ab-test"><i class="fa fa-check"></i><b>5.1.1</b> Running an A/B Test</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#example-scenario"><i class="fa fa-check"></i><b>5.1.2</b> Example Scenario</a></li>
+<li class="chapter" data-level="5.1.3" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#implementing-in-r"><i class="fa fa-check"></i><b>5.1.3</b> Implementing in R</a></li>
+<li class="chapter" data-level="5.1.4" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#analyzing-results"><i class="fa fa-check"></i><b>5.1.4</b> Analyzing Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="ab-testing-explained.html"><a href="ab-testing-explained.html#considerations-and-best-practices"><i class="fa fa-check"></i><b>5.2</b> Considerations and Best Practices</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html"><i class="fa fa-check"></i><b>6</b> Introduction to Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#the-concept"><i class="fa fa-check"></i><b>6.1</b> The Concept</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#visualizing-simple-attempts"><i class="fa fa-check"></i><b>6.1.1</b> Visualizing Simple Attempts</a></li>
+<li class="chapter" data-level="6.1.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#finding-the-best-fit"><i class="fa fa-check"></i><b>6.1.2</b> Finding the Best Fit</a></li>
+<li class="chapter" data-level="6.1.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#understanding-the-model"><i class="fa fa-check"></i><b>6.1.3</b> Understanding the Model</a></li>
+<li class="chapter" data-level="6.1.4" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#going-a-step-further-linear-algebra"><i class="fa fa-check"></i><b>6.1.4</b> Going a Step Further: Linear Algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#assumptions-of-linear-regression"><i class="fa fa-check"></i><b>6.2</b> Assumptions of Linear Regression</a></li>
+<li class="chapter" data-level="6.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#extending-linear-regression"><i class="fa fa-check"></i><b>6.3</b> Extending Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#spatial-regression"><i class="fa fa-check"></i><b>6.3.1</b> Spatial Regression</a></li>
+<li class="chapter" data-level="6.3.2" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#robust-estimation"><i class="fa fa-check"></i><b>6.3.2</b> Robust Estimation</a></li>
+<li class="chapter" data-level="6.3.3" data-path="introduction-to-linear-regression.html"><a href="introduction-to-linear-regression.html#robust-standard-errors"><i class="fa fa-check"></i><b>6.3.3</b> Robust Standard Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html"><i class="fa fa-check"></i><b>7</b> Diving into Spatial Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#why-not-just-use-ordinary-regression"><i class="fa fa-check"></i><b>7.1</b> Why Not Just Use Ordinary Regression?</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#introducing-spatial-regression"><i class="fa fa-check"></i><b>7.1.1</b> Introducing Spatial Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#key-concepts-in-spatial-regression"><i class="fa fa-check"></i><b>7.2</b> Key Concepts in Spatial Regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="diving-into-spatial-regression.html"><a href="diving-into-spatial-regression.html#why-does-this-matter"><i class="fa fa-check"></i><b>7.2.1</b> Why Does This Matter?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><i class="fa fa-check"></i><b>8</b> Robust Estimation: Dealing with Outliers and Heavy Tails</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#why-robust-estimation"><i class="fa fa-check"></i><b>8.1</b> Why Robust Estimation?</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#m-estimators-a-closer-look"><i class="fa fa-check"></i><b>8.1.1</b> M Estimators: A Closer Look</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#commonly-used-weight-functions"><i class="fa fa-check"></i><b>8.2</b> Commonly Used Weight Functions:</a></li>
+<li class="chapter" data-level="8.3" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#mm-estimators-enhancing-robustness"><i class="fa fa-check"></i><b>8.3</b> MM Estimators: Enhancing Robustness</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#simulation-and-analysis-in-r"><i class="fa fa-check"></i><b>8.3.1</b> Simulation and Analysis in R</a></li>
+<li class="chapter" data-level="8.3.2" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#observations-from-the-simulation"><i class="fa fa-check"></i><b>8.3.2</b> Observations from the Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#how-robust-is-robust"><i class="fa fa-check"></i><b>8.4</b> How Robust is Robust?</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#simulation-setup"><i class="fa fa-check"></i><b>8.4.1</b> Simulation Setup</a></li>
+<li class="chapter" data-level="8.4.2" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#observations-from-the-plot"><i class="fa fa-check"></i><b>8.4.2</b> Observations from the Plot</a></li>
+<li class="chapter" data-level="8.4.3" data-path="robust-estimation-dealing-with-outliers-and-heavy-tails.html"><a href="robust-estimation-dealing-with-outliers-and-heavy-tails.html#conclusion"><i class="fa fa-check"></i><b>8.4.3</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html"><i class="fa fa-check"></i><b>9</b> Robust Standard Errors: Tackling Heteroscedasticity</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#visualizing-heteroscedasticity"><i class="fa fa-check"></i><b>9.1</b> Visualizing Heteroscedasticity</a></li>
+<li class="chapter" data-level="9.2" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#addressing-heteroscedasticity-with-robust-standard-errors"><i class="fa fa-check"></i><b>9.2</b> Addressing Heteroscedasticity with Robust Standard Errors</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#observations-from-the-analysis"><i class="fa fa-check"></i><b>9.2.1</b> Observations from the Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#math-behind-robust-standard-errors"><i class="fa fa-check"></i><b>9.3</b> Math Behind Robust Standard Errors</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#basic-formulation"><i class="fa fa-check"></i><b>9.3.1</b> Basic Formulation</a></li>
+<li class="chapter" data-level="9.3.2" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#robust-standard-errors-1"><i class="fa fa-check"></i><b>9.3.2</b> Robust Standard Errors</a></li>
+<li class="chapter" data-level="9.3.3" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#heteroscedasticity-consistent-estimators-hc"><i class="fa fa-check"></i><b>9.3.3</b> Heteroscedasticity-Consistent Estimators (HC)</a></li>
+<li class="chapter" data-level="9.3.4" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#choosing-the-right-estimator"><i class="fa fa-check"></i><b>9.3.4</b> Choosing the Right Estimator</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#implementing-in-r-1"><i class="fa fa-check"></i><b>9.4</b> Implementing in R</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="robust-standard-errors-tackling-heteroscedasticity.html"><a href="robust-standard-errors-tackling-heteroscedasticity.html#ending-thoughts"><i class="fa fa-check"></i><b>9.4.1</b> Ending Thoughts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html"><i class="fa fa-check"></i><b>10</b> Going Beyond Linear Regression: Introduction to Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#why-use-logistic-regression"><i class="fa fa-check"></i><b>10.1</b> Why Use Logistic Regression?</a></li>
+<li class="chapter" data-level="10.2" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#the-logistic-function"><i class="fa fa-check"></i><b>10.2</b> The Logistic Function</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#visualizing-the-sigmoid-function"><i class="fa fa-check"></i><b>10.2.1</b> Visualizing the Sigmoid Function</a></li>
+<li class="chapter" data-level="10.2.2" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#what-does-this-plot-show"><i class="fa fa-check"></i><b>10.2.2</b> What Does This Plot Show?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="going-beyond-linear-regression-introduction-to-logistic-regression.html"><a href="going-beyond-linear-regression-introduction-to-logistic-regression.html#demonstration-in-r"><i class="fa fa-check"></i><b>10.3</b> Demonstration in R</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html"><i class="fa fa-check"></i><b>11</b> Introduction to K-Means Clustering</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#why-k-means-clustering"><i class="fa fa-check"></i><b>11.1</b> Why K-Means Clustering?</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#how-does-k-means-work"><i class="fa fa-check"></i><b>11.1.1</b> How Does K-Means Work?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#practical-example-k-means-on-the-iris-dataset"><i class="fa fa-check"></i><b>11.2</b> Practical Example: K-Means on the Iris Dataset</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#visualizing-k-means-clustering"><i class="fa fa-check"></i><b>11.2.1</b> Visualizing K-Means Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#the-math-of-k-means-clustering-getting-the-grouping-right"><i class="fa fa-check"></i><b>11.3</b> The Math of K-Means Clustering: Getting the Grouping Right</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#the-math-behind-perfect-grouping"><i class="fa fa-check"></i><b>11.3.1</b> The Math Behind Perfect Grouping</a></li>
+<li class="chapter" data-level="11.3.2" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#how-k-means-tidies-up"><i class="fa fa-check"></i><b>11.3.2</b> How K-Means Tidies Up</a></li>
+<li class="chapter" data-level="11.3.3" data-path="introduction-to-k-means-clustering.html"><a href="introduction-to-k-means-clustering.html#why-do-we-care"><i class="fa fa-check"></i><b>11.3.3</b> Why Do We Care?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html"><i class="fa fa-check"></i><b>12</b> Introduction to Machine Learning: Random Forests</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#why-random-forests"><i class="fa fa-check"></i><b>12.1</b> Why Random Forests?</a></li>
+<li class="chapter" data-level="12.2" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#understanding-random-forests-by-starting-with-a-single-tree"><i class="fa fa-check"></i><b>12.2</b> Understanding Random Forests by Starting with a Single Tree</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#how-are-splits-determined"><i class="fa fa-check"></i><b>12.2.1</b> How are Splits Determined?</a></li>
+<li class="chapter" data-level="12.2.2" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#example-decision-tree-with-the-iris-dataset"><i class="fa fa-check"></i><b>12.2.2</b> Example: Decision Tree with the Iris Dataset</a></li>
+<li class="chapter" data-level="12.2.3" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-the-decision-tree"><i class="fa fa-check"></i><b>12.2.3</b> Visualizing the Decision Tree</a></li>
+<li class="chapter" data-level="12.2.4" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#decision-tree-insights"><i class="fa fa-check"></i><b>12.2.4</b> Decision Tree Insights</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#step-by-step-example-with-random-forests"><i class="fa fa-check"></i><b>12.3</b> Step-by-Step Example with Random Forests</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#setting-up-the-problem-2"><i class="fa fa-check"></i><b>12.3.1</b> Setting Up the Problem</a></li>
+<li class="chapter" data-level="12.3.2" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#visualizing-the-ensemble-effect"><i class="fa fa-check"></i><b>12.3.2</b> Visualizing the Ensemble Effect</a></li>
+<li class="chapter" data-level="12.3.3" data-path="introduction-to-machine-learning-random-forests.html"><a href="introduction-to-machine-learning-random-forests.html#using-the-model"><i class="fa fa-check"></i><b>12.3.3</b> Using the Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html"><i class="fa fa-check"></i><b>13</b> Wrapping Up: Fun with Numbers</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#embrace-the-power-use-it-wisely"><i class="fa fa-check"></i><b>13.1</b> Embrace the Power, Use it Wisely</a></li>
+<li class="chapter" data-level="13.2" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#the-cautionary-note"><i class="fa fa-check"></i><b>13.2</b> The Cautionary Note</a></li>
+<li class="chapter" data-level="13.3" data-path="wrapping-up-fun-with-numbers.html"><a href="wrapping-up-fun-with-numbers.html#stay-curious"><i class="fa fa-check"></i><b>13.3</b> Stay Curious!</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -242,124 +344,124 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="understanding-the-p-value" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Understanding the p-value<a href="understanding-the-p-value.html#understanding-the-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="understanding-the-p-value" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Understanding the p-value<a href="understanding-the-p-value.html#understanding-the-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Let’s start with a simple question: What is the probability that what we observe in a test is due to random chance? This is an important question, right? It’s the foundational idea behind the p-value.</p>
-<div id="what-is-a-p-value" class="section level3 hasAnchor" number="2.0.1">
-<h3><span class="header-section-number">2.0.1</span> What is a p-value?<a href="understanding-the-p-value.html#what-is-a-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="what-is-a-p-value" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> What is a p-value?<a href="understanding-the-p-value.html#what-is-a-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The p-value helps us answer this question. It measures the probability of observing results at least as extreme as the ones in your study, assuming that the null hypothesis (no effect, no difference, etc.) is true. In simpler terms, a low p-value indicates that the observed data is unusual under the assumption of the null hypothesis.</p>
 </div>
-<div id="visualizing-p-values-how-sigma-frames-our-understanding" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Visualizing p-values: How Sigma Frames Our Understanding<a href="understanding-the-p-value.html#visualizing-p-values-how-sigma-frames-our-understanding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="visualizing-p-values-how-sigma-frames-our-understanding" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Visualizing p-values: How Sigma Frames Our Understanding<a href="understanding-the-p-value.html#visualizing-p-values-how-sigma-frames-our-understanding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Ever wondered how statisticians turn abstract p-values into something you can actually picture? Let’s dive into an engaging visualization that makes this concept as clear as a sunny day.</p>
-<div id="the-concept-of-sigma" class="section level3 hasAnchor" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> The Concept of Sigma<a href="understanding-the-p-value.html#the-concept-of-sigma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="the-concept-of-sigma" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> The Concept of Sigma<a href="understanding-the-p-value.html#the-concept-of-sigma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In statistics, when we talk about sigma (σ), we’re really diving into the world of standard deviations—a measure of how spread out numbers are in your data. It’s like measuring how far people in a park are spread out from the ice cream truck!</p>
 </div>
-<div id="the-plot-of-sigma-and-p-values" class="section level3 hasAnchor" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> The Plot of Sigma and p-values<a href="understanding-the-p-value.html#the-plot-of-sigma-and-p-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="the-plot-of-sigma-and-p-values" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> The Plot of Sigma and p-values<a href="understanding-the-p-value.html#the-plot-of-sigma-and-p-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s paint this picture. We’re going to plot a standard normal distribution (you know, that classic bell-shaped curve) and shade the areas that correspond to significant p-values.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="understanding-the-p-value.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="understanding-the-p-value.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="understanding-the-p-value.html#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="understanding-the-p-value.html#cb1-4" tabindex="-1"></a><span class="co"># Create a sequence of z-scores and their density values</span></span>
-<span id="cb1-5"><a href="understanding-the-p-value.html#cb1-5" tabindex="-1"></a>z_scores <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb1-6"><a href="understanding-the-p-value.html#cb1-6" tabindex="-1"></a>density_values <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(z_scores)  <span class="co"># Normal density</span></span>
-<span id="cb1-7"><a href="understanding-the-p-value.html#cb1-7" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="understanding-the-p-value.html#cb1-8" tabindex="-1"></a><span class="co"># Data frame for ggplot</span></span>
-<span id="cb1-9"><a href="understanding-the-p-value.html#cb1-9" tabindex="-1"></a>data_for_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(z_scores, density_values) <span class="sc">%&gt;%</span></span>
-<span id="cb1-10"><a href="understanding-the-p-value.html#cb1-10" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-11"><a href="understanding-the-p-value.html#cb1-11" tabindex="-1"></a>    <span class="at">fill_color =</span> <span class="fu">case_when</span>(</span>
-<span id="cb1-12"><a href="understanding-the-p-value.html#cb1-12" tabindex="-1"></a>      z_scores <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">1.96</span> <span class="sc">|</span> z_scores <span class="sc">&gt;</span> <span class="fl">1.96</span> <span class="sc">&amp;</span> z_scores <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">2.58</span> <span class="sc">|</span> z_scores <span class="sc">&gt;</span> <span class="fl">2.58</span> <span class="sc">~</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb1-13"><a href="understanding-the-p-value.html#cb1-13" tabindex="-1"></a>      z_scores <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">1.96</span> <span class="sc">|</span> z_scores <span class="sc">&gt;</span> <span class="fl">1.96</span> <span class="sc">~</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb1-14"><a href="understanding-the-p-value.html#cb1-14" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb1-15"><a href="understanding-the-p-value.html#cb1-15" tabindex="-1"></a>    )</span>
-<span id="cb1-16"><a href="understanding-the-p-value.html#cb1-16" tabindex="-1"></a>  )</span>
-<span id="cb1-17"><a href="understanding-the-p-value.html#cb1-17" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="understanding-the-p-value.html#cb1-18" tabindex="-1"></a><span class="co"># Create the plot</span></span>
-<span id="cb1-19"><a href="understanding-the-p-value.html#cb1-19" tabindex="-1"></a>p_value_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_for_plot, <span class="fu">aes</span>(<span class="at">x =</span> z_scores, <span class="at">y =</span> density_values)) <span class="sc">+</span></span>
-<span id="cb1-20"><a href="understanding-the-p-value.html#cb1-20" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb1-21"><a href="understanding-the-p-value.html#cb1-21" tabindex="-1"></a>  <span class="co"># geom_area(aes(fill = fill_color), alpha = 0.2) +</span></span>
-<span id="cb1-22"><a href="understanding-the-p-value.html#cb1-22" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb1-23"><a href="understanding-the-p-value.html#cb1-23" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.96</span>, <span class="fl">1.96</span>), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1-24"><a href="understanding-the-p-value.html#cb1-24" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.58</span>, <span class="fl">2.58</span>), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1-25"><a href="understanding-the-p-value.html#cb1-25" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-26"><a href="understanding-the-p-value.html#cb1-26" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Visualizing p-values in terms of Sigma&quot;</span>,</span>
-<span id="cb1-27"><a href="understanding-the-p-value.html#cb1-27" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Red: p &lt; 0.05 (approx. 2-sigma), Blue: p &lt; 0.01 (approx. 3-sigma)&quot;</span>,</span>
-<span id="cb1-28"><a href="understanding-the-p-value.html#cb1-28" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Z-score (Sigma)&quot;</span>,</span>
-<span id="cb1-29"><a href="understanding-the-p-value.html#cb1-29" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
-<span id="cb1-30"><a href="understanding-the-p-value.html#cb1-30" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-31"><a href="understanding-the-p-value.html#cb1-31" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-32"><a href="understanding-the-p-value.html#cb1-32" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="understanding-the-p-value.html#cb1-33" tabindex="-1"></a>p_value_plot</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="understanding-the-p-value.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="understanding-the-p-value.html#cb6-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-3"><a href="understanding-the-p-value.html#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="understanding-the-p-value.html#cb6-4" tabindex="-1"></a><span class="co"># Create a sequence of z-scores and their density values</span></span>
+<span id="cb6-5"><a href="understanding-the-p-value.html#cb6-5" tabindex="-1"></a>z_scores <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb6-6"><a href="understanding-the-p-value.html#cb6-6" tabindex="-1"></a>density_values <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(z_scores)  <span class="co"># Normal density</span></span>
+<span id="cb6-7"><a href="understanding-the-p-value.html#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="understanding-the-p-value.html#cb6-8" tabindex="-1"></a><span class="co"># Data frame for ggplot</span></span>
+<span id="cb6-9"><a href="understanding-the-p-value.html#cb6-9" tabindex="-1"></a>data_for_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(z_scores, density_values) <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="understanding-the-p-value.html#cb6-10" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-11"><a href="understanding-the-p-value.html#cb6-11" tabindex="-1"></a>    <span class="at">fill_color =</span> <span class="fu">case_when</span>(</span>
+<span id="cb6-12"><a href="understanding-the-p-value.html#cb6-12" tabindex="-1"></a>      z_scores <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">1.96</span> <span class="sc">|</span> z_scores <span class="sc">&gt;</span> <span class="fl">1.96</span> <span class="sc">&amp;</span> z_scores <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">2.58</span> <span class="sc">|</span> z_scores <span class="sc">&gt;</span> <span class="fl">2.58</span> <span class="sc">~</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb6-13"><a href="understanding-the-p-value.html#cb6-13" tabindex="-1"></a>      z_scores <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">1.96</span> <span class="sc">|</span> z_scores <span class="sc">&gt;</span> <span class="fl">1.96</span> <span class="sc">~</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb6-14"><a href="understanding-the-p-value.html#cb6-14" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb6-15"><a href="understanding-the-p-value.html#cb6-15" tabindex="-1"></a>    )</span>
+<span id="cb6-16"><a href="understanding-the-p-value.html#cb6-16" tabindex="-1"></a>  )</span>
+<span id="cb6-17"><a href="understanding-the-p-value.html#cb6-17" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="understanding-the-p-value.html#cb6-18" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb6-19"><a href="understanding-the-p-value.html#cb6-19" tabindex="-1"></a>p_value_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_for_plot, <span class="fu">aes</span>(<span class="at">x =</span> z_scores, <span class="at">y =</span> density_values)) <span class="sc">+</span></span>
+<span id="cb6-20"><a href="understanding-the-p-value.html#cb6-20" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb6-21"><a href="understanding-the-p-value.html#cb6-21" tabindex="-1"></a>  <span class="co"># geom_area(aes(fill = fill_color), alpha = 0.2) +</span></span>
+<span id="cb6-22"><a href="understanding-the-p-value.html#cb6-22" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb6-23"><a href="understanding-the-p-value.html#cb6-23" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.96</span>, <span class="fl">1.96</span>), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-24"><a href="understanding-the-p-value.html#cb6-24" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.58</span>, <span class="fl">2.58</span>), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-25"><a href="understanding-the-p-value.html#cb6-25" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-26"><a href="understanding-the-p-value.html#cb6-26" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Visualizing p-values in terms of Sigma&quot;</span>,</span>
+<span id="cb6-27"><a href="understanding-the-p-value.html#cb6-27" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Red: p &lt; 0.05 (approx. 2-sigma), Blue: p &lt; 0.01 (approx. 3-sigma)&quot;</span>,</span>
+<span id="cb6-28"><a href="understanding-the-p-value.html#cb6-28" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Z-score (Sigma)&quot;</span>,</span>
+<span id="cb6-29"><a href="understanding-the-p-value.html#cb6-29" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Density&quot;</span></span>
+<span id="cb6-30"><a href="understanding-the-p-value.html#cb6-30" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-31"><a href="understanding-the-p-value.html#cb6-31" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb6-32"><a href="understanding-the-p-value.html#cb6-32" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="understanding-the-p-value.html#cb6-33" tabindex="-1"></a>p_value_plot</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 </div>
-<div id="whats-going-on-here" class="section level3 hasAnchor" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> What’s Going on Here?<a href="understanding-the-p-value.html#whats-going-on-here" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="whats-going-on-here" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> What’s Going on Here?<a href="understanding-the-p-value.html#whats-going-on-here" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><strong>Red Zones:</strong> These areas show where our results would fall if they were more than 1.96 standard deviations away from the mean (either side). Statistically, this represents a p-value less than 0.05, where we start to raise our eyebrows and think, “Hmm, maybe there’s something interesting going on here.”</li>
 <li><strong>Blue Zones:</strong> Even more extreme, these parts of the curve represent results more than 2.58 standard deviations from the mean. Here, with a p-value less than 0.01, our eyebrows aren’t just raised, they’re practically in our hairline, signaling even stronger evidence against the Null Hypothesis.</li>
 </ul>
 </div>
-<div id="takeaway" class="section level3 hasAnchor" number="2.1.4">
-<h3><span class="header-section-number">2.1.4</span> Takeaway<a href="understanding-the-p-value.html#takeaway" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="takeaway" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Takeaway<a href="understanding-the-p-value.html#takeaway" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>By mapping p-values to this visual sigma scale, we can literally see the “distance” a result needs to achieve to be considered significant. It’s a fun and illuminative way to grasp what can often be an elusive concept. Keep this visual in mind next time you come across p-values in your research or studies!</p>
 </div>
 </div>
-<div id="exploring-p-values-through-simulation" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Exploring p-values through Simulation<a href="understanding-the-p-value.html#exploring-p-values-through-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exploring-p-values-through-simulation" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Exploring p-values through Simulation<a href="understanding-the-p-value.html#exploring-p-values-through-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It is a lot easier to grasp the concept of p-values when you see them, so let’s do that! We’re going to simulate data 100 times from the normal distribution with mean 0 and perform a t-test each time. This exercise will help illustrate the variability of p-values and how often we might encounter false positives even when there is no real effect.</p>
-<div id="simulating-multiple-t-tests" class="section level3 hasAnchor" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Simulating Multiple t-tests<a href="understanding-the-p-value.html#simulating-multiple-t-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="understanding-the-p-value.html#cb2-1" tabindex="-1"></a><span class="co"># Set the seed for reproducibility</span></span>
-<span id="cb2-2"><a href="understanding-the-p-value.html#cb2-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb2-3"><a href="understanding-the-p-value.html#cb2-3" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="understanding-the-p-value.html#cb2-4" tabindex="-1"></a><span class="co"># Simulate 100 t-tests under the null hypothesis</span></span>
-<span id="cb2-5"><a href="understanding-the-p-value.html#cb2-5" tabindex="-1"></a>p_values <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>, {</span>
-<span id="cb2-6"><a href="understanding-the-p-value.html#cb2-6" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)  <span class="co"># 100 random normals, mean = 0, sd = 1</span></span>
-<span id="cb2-7"><a href="understanding-the-p-value.html#cb2-7" tabindex="-1"></a>  <span class="fu">t.test</span>(data)<span class="sc">$</span>p.value  <span class="co"># Perform a t-test and extract the p-value</span></span>
-<span id="cb2-8"><a href="understanding-the-p-value.html#cb2-8" tabindex="-1"></a>})</span>
-<span id="cb2-9"><a href="understanding-the-p-value.html#cb2-9" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="understanding-the-p-value.html#cb2-10" tabindex="-1"></a><span class="co"># Plot the p-values</span></span>
-<span id="cb2-11"><a href="understanding-the-p-value.html#cb2-11" tabindex="-1"></a><span class="fu">plot</span>(p_values, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">main =</span> <span class="st">&quot;Simulated p-values from 100 t-tests&quot;</span>,</span>
-<span id="cb2-12"><a href="understanding-the-p-value.html#cb2-12" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Simulation Number&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;p-value&quot;</span>)</span>
-<span id="cb2-13"><a href="understanding-the-p-value.html#cb2-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.05</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)  <span class="co"># Line at p-value = 0.05</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div id="simulating-multiple-t-tests" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Simulating Multiple t-tests<a href="understanding-the-p-value.html#simulating-multiple-t-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="understanding-the-p-value.html#cb7-1" tabindex="-1"></a><span class="co"># Set the seed for reproducibility</span></span>
+<span id="cb7-2"><a href="understanding-the-p-value.html#cb7-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb7-3"><a href="understanding-the-p-value.html#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="understanding-the-p-value.html#cb7-4" tabindex="-1"></a><span class="co"># Simulate 100 t-tests under the null hypothesis</span></span>
+<span id="cb7-5"><a href="understanding-the-p-value.html#cb7-5" tabindex="-1"></a>p_values <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>, {</span>
+<span id="cb7-6"><a href="understanding-the-p-value.html#cb7-6" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)  <span class="co"># 100 random normals, mean = 0, sd = 1</span></span>
+<span id="cb7-7"><a href="understanding-the-p-value.html#cb7-7" tabindex="-1"></a>  <span class="fu">t.test</span>(data)<span class="sc">$</span>p.value  <span class="co"># Perform a t-test and extract the p-value</span></span>
+<span id="cb7-8"><a href="understanding-the-p-value.html#cb7-8" tabindex="-1"></a>})</span>
+<span id="cb7-9"><a href="understanding-the-p-value.html#cb7-9" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="understanding-the-p-value.html#cb7-10" tabindex="-1"></a><span class="co"># Plot the p-values</span></span>
+<span id="cb7-11"><a href="understanding-the-p-value.html#cb7-11" tabindex="-1"></a><span class="fu">plot</span>(p_values, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">main =</span> <span class="st">&quot;Simulated p-values from 100 t-tests&quot;</span>,</span>
+<span id="cb7-12"><a href="understanding-the-p-value.html#cb7-12" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Simulation Number&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;p-value&quot;</span>)</span>
+<span id="cb7-13"><a href="understanding-the-p-value.html#cb7-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.05</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)  <span class="co"># Line at p-value = 0.05</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 </div>
-<div id="whats-happening-here" class="section level3 hasAnchor" number="2.2.2">
-<h3><span class="header-section-number">2.2.2</span> What’s Happening Here?<a href="understanding-the-p-value.html#whats-happening-here" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="whats-happening-here-1" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> What’s Happening Here?<a href="understanding-the-p-value.html#whats-happening-here-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this plot, each point represents the p-value from a single t-test under the null hypothesis (where the true mean is zero). The red line at 0.05 marks the conventional threshold for statistical significance.</p>
 </div>
-<div id="insights-from-the-simulation" class="section level3 hasAnchor" number="2.2.3">
-<h3><span class="header-section-number">2.2.3</span> Insights from the Simulation<a href="understanding-the-p-value.html#insights-from-the-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="insights-from-the-simulation" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Insights from the Simulation<a href="understanding-the-p-value.html#insights-from-the-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>From the plot, observe how the p-values are scattered across the range from 0 to 1. Some p-values fall below 0.05, suggesting significant results. Here’s the catch: since there’s truly no effect (we know because we set the mean to zero), these “significant” results are actually false positives.</p>
 <p>This visualization vividly demonstrates a critical point: statistical significance (p &lt; 0.05) does not always imply practical significance. It shows that even when there is no true effect, we can still expect to see about 5% of the p-values falling below 0.05 purely by chance. This is a crucial lesson in the interpretation of p-values and the importance of considering other factors, like the power of the test and the context of the data, before drawing conclusions.</p>
 </div>
 </div>
-<div id="false-positives-and-false-negatives" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> False Positives and False Negatives<a href="understanding-the-p-value.html#false-positives-and-false-negatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="false-positives-and-false-negatives" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> False Positives and False Negatives<a href="understanding-the-p-value.html#false-positives-and-false-negatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, let’s discuss a bit about false positives and false negatives:</p>
 <ul>
 <li><strong>False Positive (Type I Error):</strong> This occurs when we incorrectly reject the null hypothesis when it is actually true. For example, our experiment might suggest that a drug is effective when it isn’t.</li>
 <li><strong>False Negative (Type II Error):</strong> This happens when we fail to reject the null hypothesis when it is actually false. In this case, we might miss out on recognizing an effective treatment.</li>
 </ul>
-<div id="the-balancing-act-of-false-positives" class="section level4 hasAnchor" number="2.3.0.1">
-<h4><span class="header-section-number">2.3.0.1</span> The Balancing Act of False Positives<a href="understanding-the-p-value.html#the-balancing-act-of-false-positives" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="the-balancing-act-of-false-positives" class="section level4 hasAnchor" number="3.4.0.1">
+<h4><span class="header-section-number">3.4.0.1</span> The Balancing Act of False Positives<a href="understanding-the-p-value.html#the-balancing-act-of-false-positives" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Why do we accept a risk of false positives (Type I errors) at all? Why not just set a p-value threshold so low that false positives are virtually nonexistent? While intuitively appealing, setting an extremely low p-value threshold (like 0.001 or lower) would make it very difficult to find a statistically significant result even when a true effect exists. This conservative approach would increase the risk of Type II errors (false negatives), where we fail to detect true effects. The conventional p-value threshold of 0.05 is a compromise that reflects a practical balance between these types of errors, aiming to protect against too many false discoveries while still allowing us to detect true effects reasonably often.</p>
 </div>
 </div>
-<div id="understanding-power-through-elephants" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Understanding Power Through Elephants<a href="understanding-the-p-value.html#understanding-power-through-elephants" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="understanding-power-through-elephants" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Understanding Power Through Elephants<a href="understanding-the-p-value.html#understanding-power-through-elephants" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s use a fun example to understand statistical power. Imagine we’re trying to detect an elephant in this room. How many of you would it take to notice it? Probably just one, right? Because an elephant is huge and obvious. This scenario describes a test with high power, even with minimal data, you can correctly detect an effect.</p>
 <p>Now, what if we’re trying to detect a mouse instead? It’s much smaller, more elusive. You’d probably need more people to confirm it’s really there. This is like a statistical test where detecting a small effect size requires a larger sample to maintain high power.</p>
-<div id="the-concept-of-power-and-cohens-d" class="section level4 hasAnchor" number="2.4.0.1">
-<h4><span class="header-section-number">2.4.0.1</span> The Concept of Power and Cohen’s d<a href="understanding-the-p-value.html#the-concept-of-power-and-cohens-d" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="the-concept-of-power-and-cohens-d" class="section level4 hasAnchor" number="3.5.0.1">
+<h4><span class="header-section-number">3.5.0.1</span> The Concept of Power and Cohen’s d<a href="understanding-the-p-value.html#the-concept-of-power-and-cohens-d" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Statistical power is the probability that a test correctly rejects the null hypothesis when it is false. It depends on several factors, including the effect size, sample size, significance level, and the variability of the data. An often-used measure of effect size in comparing two means is Cohen’s d. Cohen defined d = 0.2 as a ‘small’ effect size, d = 0.5 as ‘medium’, and d = 0.8 as ‘large’. These benchmarks help researchers understand the strength of an effect independent of sample size and can guide the design of experiments.</p>
 <p>Cohen’s d of 0.8 is often used as a benchmark for a “large” effect size, reflecting a robust and noticeable difference between groups. In many fields, this level of effect is considered practically significant, and achieving this power of 0.8 (80% chance of detecting the effect if it exists) is desirable because it balances the likelihood of detecting true effects with the cost of the study.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="understanding-the-p-value.html#cb3-1" tabindex="-1"></a><span class="co"># Calculating power in R</span></span>
-<span id="cb3-2"><a href="understanding-the-p-value.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
-<span id="cb3-3"><a href="understanding-the-p-value.html#cb3-3" tabindex="-1"></a><span class="co"># Example with Cohen&#39;s d = 0.8 for a large effect size</span></span>
-<span id="cb3-4"><a href="understanding-the-p-value.html#cb3-4" tabindex="-1"></a><span class="fu">pwr.t.test</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">d =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="understanding-the-p-value.html#cb8-1" tabindex="-1"></a><span class="co"># Calculating power in R</span></span>
+<span id="cb8-2"><a href="understanding-the-p-value.html#cb8-2" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
+<span id="cb8-3"><a href="understanding-the-p-value.html#cb8-3" tabindex="-1"></a><span class="co"># Example with Cohen&#39;s d = 0.8 for a large effect size</span></span>
+<span id="cb8-4"><a href="understanding-the-p-value.html#cb8-4" tabindex="-1"></a><span class="fu">pwr.t.test</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">d =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Two-sample t test power calculation 
 ## 
@@ -374,11 +476,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>By grasping these insights, you can better design your studies and interpret their results. Isn’t that cool?</p>
 </div>
 </div>
-<div id="beyond-p-values-the-importance-of-substantive-significance" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> Beyond p-values: The Importance of Substantive Significance<a href="understanding-the-p-value.html#beyond-p-values-the-importance-of-substantive-significance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="beyond-p-values-the-importance-of-substantive-significance" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Beyond p-values: The Importance of Substantive Significance<a href="understanding-the-p-value.html#beyond-p-values-the-importance-of-substantive-significance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>While diving into hypothesis testing and p-values, it’s crucial to remember that statistical significance doesn’t always equate to substantive, or practical, significance. This distinction can help us make more meaningful interpretations of our results.</p>
-<div id="example-water-vs.-cyanide" class="section level3 hasAnchor" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> Example: Water vs. Cyanide<a href="understanding-the-p-value.html#example-water-vs.-cyanide" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-water-vs.-cyanide" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Example: Water vs. Cyanide<a href="understanding-the-p-value.html#example-water-vs.-cyanide" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Consider an experiment determining the lethality of drinking water compared to cyanide. If one consumes enough water, they can get water poisoning. Thus, statistically we might find significant effects for both substances on health outcomes, but the substantive significance differs dramatically. The amount of cyanide required to be lethal is minuscule compared to water. Here, the p-value tells us there’s an effect, but it doesn’t tell us about the magnitude or practical implications of these effects.</p>
 <p>In practical terms, always ask, “How big is the effect? Is it large enough to be of concern or interest?” This approach ensures that we’re not just chasing statistically significant results but are also making decisions based on their real-world impacts.</p>
 
@@ -390,7 +492,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exploring-probability-distributions-with-visuals.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="dive-into-the-t-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -445,6 +547,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
