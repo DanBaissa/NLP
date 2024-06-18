@@ -15,17 +15,19 @@ import torch
 import torchvision
 import matplotlib.pyplot as plt
 
-def show_images(datset, num_samples=20, cols=4):
-    """ Plots some samples from the dataset """
-    plt.figure(figsize=(15,15)) 
-    for i, img in enumerate(data):
+def show_images(dataset, num_samples=20, cols=4):
+    """ Plots some samples from the dataset without axes """
+    plt.figure(figsize=(15,15))
+    for i, img in enumerate(dataset):
         if i == num_samples:
             break
         plt.subplot(int(num_samples/cols) + 1, cols, i + 1)
         plt.imshow(img[0])
+        plt.axis('off') 
 
-data = torchvision.datasets.FGVCAircraft(root="./Data", download=True)
+data = torchvision.datasets.FGVCAircraft(root="./Data", download=False)
 show_images(data)
+
 ```
 
 
@@ -106,7 +108,7 @@ from torch.utils.data import DataLoader
 import numpy as np
 
 IMG_SIZE = 64
-BATCH_SIZE = 128
+BATCH_SIZE = 150
 
 def load_transformed_dataset():
     data_transforms = [
@@ -146,7 +148,7 @@ dataloader = DataLoader(data, batch_size=BATCH_SIZE, shuffle=True, drop_last=Tru
 # Simulate forward diffusion
 image = next(iter(dataloader))[0]
 
-plt.figure(figsize=(15,15))
+plt.figure(figsize=(15,1))
 plt.axis('off')
 num_images = 10
 stepsize = int(T/num_images)
@@ -154,6 +156,7 @@ stepsize = int(T/num_images)
 for idx in range(0, T, stepsize):
     t = torch.Tensor([idx]).type(torch.int64)
     plt.subplot(1, num_images+1, int(idx/stepsize) + 1)
+    plt.axis('off') 
     img, noise = forward_diffusion_sample(image, t)
     show_tensor_image(img)
 ```
@@ -444,7 +447,7 @@ def sample_plot_image():
     # Sample noise
     img_size = IMG_SIZE
     img = torch.randn((1, 3, img_size, img_size), device=device)
-    plt.figure(figsize=(15,15))
+    plt.figure(figsize=(15,1))
     plt.axis('off')
     num_images = 10
     stepsize = int(T/num_images)
@@ -469,7 +472,7 @@ from torch.optim import Adam
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model.to(device)
 optimizer = Adam(model.parameters(), lr=0.001)
-epochs = 100 # Try more!
+epochs = 4000 # Try more!
 
 for epoch in range(epochs):
     for step, batch in enumerate(dataloader):
@@ -489,7 +492,7 @@ for epoch in range(epochs):
       return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
     
 
-    Epoch 0 | step 000 Loss: 0.8096771240234375 
+    Epoch 0 | step 000 Loss: 0.8094829320907593 
     
 
 
@@ -498,7 +501,7 @@ for epoch in range(epochs):
     
 
 
-    Epoch 5 | step 000 Loss: 0.14619992673397064 
+    Epoch 5 | step 000 Loss: 0.16461926698684692 
     
 
 
@@ -507,7 +510,7 @@ for epoch in range(epochs):
     
 
 
-    Epoch 10 | step 000 Loss: 0.13441219925880432 
+    Epoch 10 | step 000 Loss: 0.14478705823421478 
     
 
 
@@ -516,157 +519,150 @@ for epoch in range(epochs):
     
 
 
-    Epoch 15 | step 000 Loss: 0.13300220668315887 
+...
+
+    
+![png](output_21_1226.png)
+    
+
+
+    Epoch 3065 | step 000 Loss: 0.0734172910451889 
     
 
 
     
-![png](output_21_8.png)
+![png](output_21_1228.png)
     
 
 
-    Epoch 20 | step 000 Loss: 0.10845174640417099 
-    
-
-
-    
-![png](output_21_10.png)
-    
-
-
-    Epoch 25 | step 000 Loss: 0.1307198703289032 
+    Epoch 3070 | step 000 Loss: 0.05952020734548569 
     
 
 
     
-![png](output_21_12.png)
+![png](output_21_1230.png)
+    ...
     
 
 
-    Epoch 30 | step 000 Loss: 0.10639368742704391 
-    
-
-
-    
-![png](output_21_14.png)
-    
-
-
-    Epoch 35 | step 000 Loss: 0.10509079694747925 
+    Epoch 3990 | step 000 Loss: 0.07037621736526489 
     
 
 
     
-![png](output_21_16.png)
+![png](output_21_1598.png)
     
 
 
-    Epoch 40 | step 000 Loss: 0.11443942785263062 
-    
-
-
-    
-![png](output_21_18.png)
-    
-
-
-    Epoch 45 | step 000 Loss: 0.09646131098270416 
+    Epoch 3995 | step 000 Loss: 0.06961195170879364 
     
 
 
     
-![png](output_21_20.png)
+![png](output_21_1600.png)
     
 
 
-    Epoch 50 | step 000 Loss: 0.099498450756073 
-    
+
+```python
+torch.save(model.state_dict(), 'final_model.pth')
+```
 
 
-    
-![png](output_21_22.png)
-    
+```python
+model.load_state_dict(torch.load('final_model.pth'))
+model.eval()
+```
 
 
-    Epoch 55 | step 000 Loss: 0.10285266488790512 
-    
 
 
-    
-![png](output_21_24.png)
-    
+    SimpleUnet(
+      (time_mlp): Sequential(
+        (0): SinusoidalPositionEmbeddings()
+        (1): Linear(in_features=32, out_features=32, bias=True)
+        (2): ReLU()
+      )
+      (conv0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (downs): ModuleList(
+        (0): Block(
+          (time_mlp): Linear(in_features=32, out_features=128, bias=True)
+          (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (transform): Conv2d(128, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+          (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bnorm1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (bnorm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU()
+        )
+        (1): Block(
+          (time_mlp): Linear(in_features=32, out_features=256, bias=True)
+          (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (transform): Conv2d(256, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+          (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bnorm1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (bnorm2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU()
+        )
+        (2): Block(
+          (time_mlp): Linear(in_features=32, out_features=512, bias=True)
+          (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (transform): Conv2d(512, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+          (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bnorm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (bnorm2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU()
+        )
+        (3): Block(
+          (time_mlp): Linear(in_features=32, out_features=1024, bias=True)
+          (conv1): Conv2d(512, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (transform): Conv2d(1024, 1024, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+          (conv2): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bnorm1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (bnorm2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU()
+        )
+      )
+      (ups): ModuleList(
+        (0): Block(
+          (time_mlp): Linear(in_features=32, out_features=512, bias=True)
+          (conv1): Conv2d(2048, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (transform): ConvTranspose2d(512, 512, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+          (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bnorm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (bnorm2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU()
+        )
+        (1): Block(
+          (time_mlp): Linear(in_features=32, out_features=256, bias=True)
+          (conv1): Conv2d(1024, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (transform): ConvTranspose2d(256, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+          (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bnorm1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (bnorm2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU()
+        )
+        (2): Block(
+          (time_mlp): Linear(in_features=32, out_features=128, bias=True)
+          (conv1): Conv2d(512, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (transform): ConvTranspose2d(128, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+          (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bnorm1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (bnorm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU()
+        )
+        (3): Block(
+          (time_mlp): Linear(in_features=32, out_features=64, bias=True)
+          (conv1): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (transform): ConvTranspose2d(64, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (bnorm1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (bnorm2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU()
+        )
+      )
+      (output): Conv2d(64, 3, kernel_size=(1, 1), stride=(1, 1))
+    )
 
-
-    Epoch 60 | step 000 Loss: 0.11766951531171799 
-    
-
-
-    
-![png](output_21_26.png)
-    
-
-
-    Epoch 65 | step 000 Loss: 0.10376261919736862 
-    
-
-
-    
-![png](output_21_28.png)
-    
-
-
-    Epoch 70 | step 000 Loss: 0.10764466226100922 
-    
-
-
-    
-![png](output_21_30.png)
-    
-
-
-    Epoch 75 | step 000 Loss: 0.09608006477355957 
-    
-
-
-    
-![png](output_21_32.png)
-    
-
-
-    Epoch 80 | step 000 Loss: 0.09636728465557098 
-    
-
-
-    
-![png](output_21_34.png)
-    
-
-
-    Epoch 85 | step 000 Loss: 0.08825286477804184 
-    
-
-
-    
-![png](output_21_36.png)
-    
-
-
-    Epoch 90 | step 000 Loss: 0.10597211122512817 
-    
-
-
-    
-![png](output_21_38.png)
-    
-
-
-    Epoch 95 | step 000 Loss: 0.10141967982053757 
-    
-
-
-    
-![png](output_21_40.png)
-    
 
 
 **Sources:**
